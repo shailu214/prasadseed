@@ -1,0 +1,274 @@
+@keyframes lds-eclipse {
+0% {
+-webkit-transform: rotate(0deg);
+transform: rotate(0deg);
+}
+50% {
+-webkit-transform: rotate(180deg);
+transform: rotate(180deg);
+}
+100% {
+-webkit-transform: rotate(360deg);
+transform: rotate(360deg);
+}
+}
+@-webkit-keyframes lds-eclipse {
+0% {
+-webkit-transform: rotate(0deg);
+transform: rotate(0deg);
+}
+50% {
+-webkit-transform: rotate(180deg);
+transform: rotate(180deg);
+}
+100% {
+-webkit-transform: rotate(360deg);
+transform: rotate(360deg);
+}
+}
+.lds-eclipse {
+position: relative;
+}
+.lds-eclipse div {
+position: absolute;
+-webkit-animation: lds-eclipse 1s linear infinite;
+animation: lds-eclipse 1s linear infinite;
+width: 150px;
+height: 150px;
+top: 20px;
+left: 20px;
+border-radius: 50%;
+box-shadow: 0 10px 0 0 #0579c1;
+-webkit-transform-origin: 80px 85px;
+transform-origin: 80px 85px;
+}
+.lds-eclipse {
+width: 40px !important;
+height: 40px !important;
+-webkit-transform: translate(-20px, -20px) scale(0.2) translate(20px, 20px);
+transform: translate(-20px, -20px) scale(0.2) translate(20px, 20px);
+}
+
+.form-error {
+  color:#af0303;
+  font-size: 14px;
+}
+
+.shop-cart {
+  border: 1px solid #eee;
+  min-height: 260px;
+}
+
+.pro-box {
+  border: 1px solid #eee;
+  min-height: 280px;
+}
+.cart-tbl{
+  width: 100%;
+  border-collapse: collapse;
+}
+.cart-tbl tr {
+  border-bottom: 1px solid #ddd;
+}
+.cart-tbl td, th {
+  padding: 5px 10px;
+}
+.pqty {
+  width:50px;
+  padding-left: 10px;
+}
+.item-tbl {
+  width: 100%;
+  border: 1px solid #f1f1f1;
+}
+.item-tbl td, th { padding:8px 15px; text-align: center;}
+.item-tbl th {
+  background: #f1f1f1;
+}
+
+.tfoot {
+  text-align: right;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+
+.print-btn {
+  background: #fff;
+  padding: 6px 25px;
+  color: #444 !important;
+  text-decoration: none !important;
+  margin-bottom: 8px;
+  border: 1px solid #ddd;
+}
+.src-box { position: relative; display: none;}
+.src-box ul {
+  list-style: none;
+  padding: 0px;
+  margin: 0px;
+  position: absolute;
+  border: 1px solid #ddd;
+  width:100%;
+  box-shadow:0px 2px 5px #ccc;
+}
+.src-box ul li{
+padding: 8px 12px;
+border-bottom: 1px solid #ddd;
+cursor: pointer;
+background: #fff;
+}
+
+.src-box ul li:hover{
+  background: #316CBE;
+  color: #fff;
+}
+
+.rem-prd {
+  color: #a50000;
+  text-decoration: none !important;
+}
+
+.pay-tbl {
+  width:100%;
+  border: 1px solid #ddd;
+}
+
+.pay-tbl td, th {
+  padding: 10px 20px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+.pay-tbl tr {
+  border-bottom: 1px solid #ddd;
+}
+
+
+.src-inp {
+  border: 1px solid #ddd;
+  padding: 5px 12px;
+  width: 160px;
+}
+
+.nt-inp {
+  border:1px solid #ddd;
+  padding: 3px 10px;
+  width: 160px;
+}
+
+.cal-tbl {
+  /* width: 100%; */
+  margin: auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.cal-tbl td {
+  width:150px;
+  height:120px;
+  border: 1px solid #333;
+  text-align: center;
+  font-size: 23px;
+}
+
+.cal-tbl td div {
+
+  font-size: 13px;
+  line-height: 1.2;
+
+}
+
+.tbl-col-red {
+  background:#ffd8d8;
+}
+
+.tbl-col-green {
+  background:#c9ffdf;
+}
+.tbl-col-yellow {
+  background:#ffffdf;
+}
+
+.atd-block {
+  padding: 6px 15px;
+  border: 1px solid #ddd;
+  float: right
+}
+
+.atd-block select {
+border:0px;
+font-size: 17px;
+color: #333;
+padding: 0px;
+margin: 0px;
+padding-right: 12px;
+-moz-appearance:none; /* Firefox */
+-webkit-appearance:none; /* Safari and Chrome */
+appearance:none;
+}
+
+
+.block-success {
+  background: #5EBA00;
+  padding: 2px;
+  border-radius:2px;
+  width: 120px;
+  float: left;
+  margin-left:15px;
+}
+
+.bs-child {
+  font-size: 15px;
+  padding: 0px 5px 3px 5px;
+  border-radius:2px;
+  color: #fff;
+  border: 1px solid #fff;
+}
+
+.bs-child b {
+  font-size: 18px;
+}
+
+.block-info {
+  background: #0676e5;
+  padding: 2px;
+  border-radius:2px;
+  width: 120px;
+  float: left;
+  margin-left:15px;
+}
+
+
+.block-danger {
+  background: #e80252;
+  padding: 2px;
+  border-radius:2px;
+  width: 125px;
+  float: left;
+  margin-left:15px;
+}
+
+.app-error {
+  background: #ff004c;
+  padding: 6px 12px;
+  color: #fff; font-size: 17px;
+  font-weight: 600;
+  text-align:center;
+}
+
+.app-error a {
+  color: #fff;
+  text-decoration: underline;
+}
+
+
+.notidiv {
+  background: #2eba00;
+  z-index: 10000;
+  right:50px;
+  top:50px;
+  color:#fff;
+  padding: 12px 30px;
+  border-radius:2px;
+  position: fixed;
+  display: none;
+}
