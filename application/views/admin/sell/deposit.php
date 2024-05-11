@@ -39,7 +39,12 @@
 						  </div>
 						</div>
 						
-						
+						<div class="col-md-3">
+                          <div class="form-group">
+                            <label class="form-label">Due Date</label>
+                            <input type="date" class="form-control year" name="data[due_date]">
+						  </div>
+                        </div>
 					</div>
 					  
                     </div>
