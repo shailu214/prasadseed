@@ -123,8 +123,10 @@ class Sell extends CI_Controller {
 			if(empty($post['farmer_lot_id'])) {
 				$errors[] = 'Farmer Lot is required';
 			}
-			if(empty($post['vendor_id'])) {
-				$errors[] = 'Vendor is required';
+			if($post['self'] == 0) {
+				if(empty($post['vendor_id'])) {
+					$errors[] = 'Vendor is required';
+				}
 			}
 			
 			$lotid = $post['farmer_lot_id'];
@@ -157,6 +159,9 @@ class Sell extends CI_Controller {
 			$this->db->where('id', $pkid);
 			$obj = $this->db->get('sell')->row();
 			//echo '<pre>'; print_r($_POST); die;
+			if($post['self'] == 1) {
+				$post['price'] = 0;
+			}
 			if($obj) {
 				
 				$this->session->set_flashdata('success_entry', 'success update');
@@ -202,7 +207,7 @@ class Sell extends CI_Controller {
 			}
 			
 		}
-		
+		//echo '<pre>'; print_r($result['obj']);  die;
 		$result['db'] = $this->db;
 		$this->load->view('admin/head');
 		$this->load->view('admin/header');

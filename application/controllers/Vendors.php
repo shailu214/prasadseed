@@ -393,10 +393,10 @@ class Vendors extends CI_Controller {
 
 				$result['entry_management'] = $entry_management;
 
-				$this->db->select('bardana.*, bardana_comment.id as commentid, bardana_comment.comment');
-				$this->db->join('bardana_comment', 'bardana_comment.bardana_id = bardana.id', 'left');
+				$this->db->select('bardana.*');
+				//$this->db->join('bardana_comment', 'bardana_comment.bardana_id = bardana.id', 'left');
 				$this->db->where('farmer_id', $entry_management->farmer_id);
-				$result['bardana'] = $this->db->get('bardana')->result_array();
+				$bardanalist = $this->db->get('bardana')->result();
 
 				$this->db->where('farmer_lot_id', $lotid);
 				$this->db->where('farmer_id', $entry_management->farmer_id);
@@ -404,15 +404,54 @@ class Vendors extends CI_Controller {
 				if($loan) {
 					$result['loan'] = $loan;
 				}
-				
+
 				if($pkid > 0) {
 					$this->db->where('id', $pkid);
 					$result['obj'] = $this->db->get('sell')->row();
+
+					foreach($bardanalist as $bardana) {
+						
+						$qtyone = 0;
+						$this->db->select_sum('return_qty');
+						$this->db->where('bardana_id', $bardana->id);
+						$this->db->where('type', 1);
+						$total_return_qty = $this->db->get('bardana_detail_return')->row();
+						if($total_return_qty) {
+							$qtyone = $bardana->qty-$total_return_qty->return_qty;
+						}
+						$bardana->returnqty = $qtyone;
+						
+						$this->db->select('bardana_comment.*');
+						$this->db->where('bardana_id', $bardana->id);
+						$this->db->where('sell_id', $pkid);
+						$bardana->iscomment = true;
+						$bardana->comment = $this->db->get('bardana_comment')->row();
+						
+					}
+					
+					$result['bardana'] = $bardanalist;
+				} else {
+					foreach($bardanalist as $bardana) {
+						$qtyone = 0;
+						$this->db->select_sum('return_qty');
+						$this->db->where('bardana_id', $bardana->id);
+						$this->db->where('type', 1);
+						$total_return_qty = $this->db->get('bardana_detail_return')->row();
+						if($total_return_qty) {
+							$qtyone = $bardana->qty-$total_return_qty->return_qty;
+						}
+						$bardana->returnqty = $qtyone;
+						
+						$bardana->comment = null;
+						$bardana->iscomment = false;
+					}
+					
+					$result['bardana'] = $bardanalist;
 				}
 				
 			}
 		}
-
-		echo json_encode($result);
+		//echo '<pre>'; print_r($result); die;
+		echo json_encode($result, JSON_PRETTY_PRINT);
 	}
 }
