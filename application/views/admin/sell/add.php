@@ -1,4 +1,11 @@
-
+<?php
+$isSelf = 'float:left';
+if(@$obj->id > 0) {
+	if($obj->self == 1) {
+		$isSelf = 'display:none';
+	}
+}
+?>
       <div class="my-3 my-md-5">
         <div class="container">
           <?php if($this->session->flashdata('success_entry')) { ?>
@@ -110,15 +117,27 @@
 						  </div>
                         </div>
 						<div class="col-md-3">
-                          <div class="form-group">
-                            <label class="form-label">Ventor Name <a style="float:right" href="#" class="farmerform">Add Vendor</a></label>
-							<select name="" class="selectvendor2" style="width:100%">
-								<option> </option>
-							</select><br>
-							<input type="hidden" id="vendor_id" value="<?=@$obj->vendor_id?>" name="data[vendor_id]">
-							<span class="v_name"></span>
-						  </div>
-                        </div>
+							<div class="col-md-3" style="float:left">
+							<div class="form-group">
+								<label class="form-label">Self </label>
+								<input type="hidden" value="0" name="data[self]" checked>
+								<input type="checkbox" id="self" <?php if(@$obj->self == 1) { echo 'checked'; } ?> value="1" name="data[self]">
+								
+							  </div>
+							</div>
+						
+							<div class="col-md-9 vendor_name" style="<?php echo $isSelf; ?>">
+							  <div class="form-group">
+								<label class="form-label">Ventor Name <a style="float:right" href="#" class="farmerform">Add Vendor</a></label>
+								<select name="" class="selectvendor2" style="width:100%">
+									<option> </option>
+								</select><br>
+								<input type="hidden" id="vendor_id" value="<?=@$obj->vendor_id?>" name="data[vendor_id]">
+								<span class="v_name"></span>
+							  </div>
+							</div>
+						</div>
+						
                       </div>
 
 				<div class="card">
@@ -303,13 +322,13 @@
 							<input type="text" class="form-control quantity" value="<?=@$obj->quantity?>" name="data[quantity]">
 						  </div>
 						</div>
-						<div class="col-md-3">
+						<div class="col-md-3 credit_amount_row" style="<?=$isSelf?>">
 						  <div class="form-group">
 							<label class="form-label">Price</label>
 							<input type="text" class="form-control credit_amount prce" value="<?=@$obj->price?>" name="data[price]">
 						  </div>
 						</div>
-						<div class="col-md-3">
+						<div class="col-md-3 total_price_row" style="<?=$isSelf?>">
 						  <div class="form-group">
 							<label class="form-label">Total Price</label>
 							<input type="text" value="<?=@$obj->quantity*@$obj->price?>"  class="form-control total_price"  disabled>
@@ -392,6 +411,7 @@
 	  function onChangeLot(obj, lotid) {
 		$('.get_load_detail').html('');
 		$('.loadlist').html('');
+
 			$.ajax({
 				url: '<?=base_url("vendors/getdata")?>',
 				dataType: 'json',
@@ -399,12 +419,13 @@
 				data: {'lotid':lotid, 'pkid':obj},
 				success: function(json){
 					let obj = json.obj;
-					
+					console.log(obj);
 					$('.fare').val(json.fare);
 					
 					let entry_management = json.entry_management;
 					if(entry_management) {
 						var bardanahtml = '';
+						console.log(json);
 						$.each(json.bardana, function(key,list) {  
 							//console.log(key,list);
 							let k = ++key;
@@ -414,12 +435,46 @@
 							 bardanahtml += '<td>'+list.year+'</td>';
 							 bardanahtml += '<td>'+list.item+'</td>';
 							 bardanahtml += '<td>'+list.qty+'</td>';
-							 bardanahtml += '<td></td>';
-							 bardanahtml += '<td><textarea name="bardanacomment['+list.id+']" >'+list.comment+'</textarea></td>';
+							 bardanahtml += '<td>'+list.returnqty+'</td>';
+							 let cmt = '';
+							 if(list.iscomment === true) {
+								 cmt = list.comment.comment;
+							 }
+							 bardanahtml += '<td><textarea name="bardanacomment['+list.id+']" >'+cmt+'</textarea></td>';
+							 /*
+							 if(typeof list.comment === 'undefined') {
+								 bardanahtml += '<td><textarea name="bardanacomment['+list.id+']" ></textarea></td>';
+							 } else {
+								 let cmt = '';
+								 if(list.commentid > 0) {
+									 cmt = list.comment;
+									 
+								 }
+								 bardanahtml += '<td><textarea name="bardanacomment['+list.id+']" >'+cmt+'</textarea></td>';
+							 }
+							 */
+							 
 							 bardanahtml += '</tr>';
 						});
 						$('.bardana_list').html(bardanahtml);
-						$('.get_load_detail').html('<td><span class="text-muted">1</span></td><td align="left"></td><td align="left">'+entry_management.sno+'/'+entry_management.qty+'</td><td align="left">25/10/2024</td><td align="left"> '+entry_management.vegetable_id+'</td><td align="left">'+entry_management.variety_id+'</td><td align="left">'+entry_management.title_category_id+'</td><td align="left"><textarea name="data[lot_detail_action]">'+obj.lot_detail_action+'</textarea></td>');
+						
+						
+						let load_detail = '<td><span class="text-muted">1</span></td>';
+						load_detail += '<td align="left"></td>';
+						load_detail += '<td align="left">'+entry_management.sno+'/'+entry_management.qty+'</td>';
+						load_detail += '<td align="left">25/10/2024</td>';
+						load_detail += '<td align="left"> '+entry_management.vegetable_id+'</td>';
+						load_detail += '<td align="left">'+entry_management.variety_id+'</td>';
+						load_detail += '<td align="left">'+entry_management.title_category_id+'</td>';
+						if(typeof obj.lot_detail_action === 'undefined') {
+							load_detail += '<td align="left"><textarea name="data[lot_detail_action]"></textarea></td>';
+						} else {
+							load_detail += '<td align="left"><textarea name="data[lot_detail_action]">'+obj.lot_detail_action+'</textarea></td>';
+						}
+						
+						$('.get_load_detail').html(load_detail);
+						
+						//$('.get_load_detail').html('<td><span class="text-muted">1</span></td><td align="left"></td><td align="left">'+entry_management.sno+'/'+entry_management.qty+'</td><td align="left">25/10/2024</td><td align="left"> '+entry_management.vegetable_id+'</td><td align="left">'+entry_management.variety_id+'</td><td align="left">'+entry_management.title_category_id+'</td><td align="left"><textarea name="data[lot_detail_action]">'+obj.lot_detail_action+'</textarea></td>');
 
 						let loan = json.loan;
 						if(loan) {
@@ -430,7 +485,13 @@
 							loadlist += '<td align="left">'+loan.credit_amount+'</td>';
 							loadlist += '<td align="left">'+loan.deposit_amount+'</td>';
 							loadlist += '<td align="left">'+loan.balance_amount+'</td>';
-							loadlist += '<td align="left"><textarea name="data[loan_action]">'+obj.loan_action+'</textarea></td>';
+							
+							if(typeof  obj.loan_action === 'undefined') {
+								loadlist += '<td align="left"><textarea name="data[loan_action]"></textarea></td>';
+							} else {
+								loadlist += '<td align="left"><textarea name="data[loan_action]">'+obj.loan_action+'</textarea></td>';
+							}
+							
 							
 							$('.loadlist').html(loadlist);
 						}
@@ -438,30 +499,50 @@
 					
 				}
 			});
-	  }		  
+	  }
 	  
 	  $(document).ready(function () { // 
-	  $('body').on('keyup', '.quantity', function() {
-		  let quantity = $(this).val();
-		  let price = $('.prce').val();
-		  $('.total_price').val(quantity*price);
-	  });
 	  
-	  $('body').on('keyup', '.prce', function() {
-		  let price = $(this).val();
-		  let quantity = $('.quantity').val();
-		  $('.total_price').val(quantity*price);
-	  });
-	  
-	  
-	$('body').on('click', '.farmerform', function() {
-		$('.q4').removeClass('d-none');
+		  $('body').on('change', '#self', function() {
+			  $('.vendor_name').removeAttr('style');
+			  $('.credit_amount').val(0);
+			  $('.total_price').val(0);
+			  if ($(this).is(':checked')) {
+				  $(this).attr('value', 1);
+				  $('.credit_amount_row').attr('style', 'display:none');
+				 $('.total_price_row').attr('style', 'display:none');
+			  
+				  $('.vendor_name').attr('style', 'float:left;display:none');
+			  } else {
+				   $(this).attr('value', 0);
+				   $('.vendor_name').attr('style', 'float:left');
+				   $('.credit_amount_row').removeAttr('style');
+				 $('.total_price_row').removeAttr('style');
+			  }
+		  });
+		  
+		  $('body').on('keyup', '.quantity', function() {
+			  let quantity = $(this).val();
+			  let price = $('.prce').val();
+			  $('.total_price').val(quantity*price);
+		  });
+		  
+		  $('body').on('keyup', '.prce', function() {
+			  let price = $(this).val();
+			  let quantity = $('.quantity').val();
+			  $('.total_price').val(quantity*price);
+		  });
+		  
+		  
+		$('body').on('click', '.farmerform', function() {
+			$('.q4').removeClass('d-none');
+		});
+		
+		$('body').on('change', '.farmer_lot_id', function() {
+			onChangeLot('<?php echo @$obj->id; ?>', $(this).val());
+		});
 	});
 	
-	$('body').on('change', '.farmer_lot_id', function() {
-		onChangeLot('<?php echo @$obj->id; ?>', $(this).val());
-	});
-});
 	  function handlepricecal(amt, per) {
 		  let date = '<?php echo date('Y-m-d'); ?>';
 		  let lending_date = '<?php echo @$obj->lending_date; ?>';

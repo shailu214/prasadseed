@@ -123,8 +123,10 @@ class Sell extends CI_Controller {
 			if(empty($post['farmer_lot_id'])) {
 				$errors[] = 'Farmer Lot is required';
 			}
-			if(empty($post['vendor_id'])) {
-				$errors[] = 'Vendor is required';
+			if($post['self'] == 0) {
+				if(empty($post['vendor_id'])) {
+					$errors[] = 'Vendor is required';
+				}
 			}
 			
 			$lotid = $post['farmer_lot_id'];
@@ -157,6 +159,9 @@ class Sell extends CI_Controller {
 			$this->db->where('id', $pkid);
 			$obj = $this->db->get('sell')->row();
 			//echo '<pre>'; print_r($_POST); die;
+			if($post['self'] == 1) {
+				$post['price'] = 0;
+			}
 			if($obj) {
 				
 				$this->session->set_flashdata('success_entry', 'success update');
@@ -202,7 +207,7 @@ class Sell extends CI_Controller {
 			}
 			
 		}
-		
+		//echo '<pre>'; print_r($result['obj']);  die;
 		$result['db'] = $this->db;
 		$this->load->view('admin/head');
 		$this->load->view('admin/header');
@@ -244,7 +249,6 @@ class Sell extends CI_Controller {
 		echo json_encode($result);
 	}
 	
-	
 	public function deposit($id) {
 		
 		$post = $this->input->post('data');
@@ -257,6 +261,80 @@ class Sell extends CI_Controller {
 			}
 			if(empty($post['amount'])) {
 				$errors[] = 'Amount is required';
+			}
+			if(empty($post['due_date'])) {
+				$errors[] = 'Due Date is required';
+			}
+			
+			/* if($post['amount'] > 0 && $pkid > 0) {
+				$this->db->where('id', $pkid);
+				$row = $this->db->get("amount")->row();
+				
+				$this->db->where('amount_id', $pkid);
+				$this->db->select_sum('amount');
+
+				$totalPreAmount = $this->db->get("amount_deposit")->row();
+				
+				if(($totalPreAmount->amount+$post['amount']) > $row->balance_amount) {
+					$errors[] = 'Amount should not be more then balance amount';
+				}
+				
+			} */
+			
+			if(count($errors) > 0) {
+				$this->session->set_flashdata('errors', $errors);
+				redirect("sell/deposit/".$pkid);
+			}
+			
+			if($post['amount'] > 0) {
+				$post['sell_id'] = $pkid;
+				$this->db->insert("sell_deposit", $post );
+				//$lastid = $this->db->insert_id();
+				
+				/* $this->db->where('id', $pkid);
+				$row = $this->db->get("amount")->row();
+				$deposit = $row->deposit_amount + $post['amount'];
+				$balance_amount = $row->balance_amount - $post['amount'];
+				$this->db->where('id', $pkid);
+				$this->db->update('amount', ['deposit_amount' => $deposit, 'balance_amount' => $balance_amount]); */
+				redirect("sell");
+			} else {
+				$errors[] = 'Enter Valid Amount';
+				if(count($errors) > 0) {
+					$this->session->set_flashdata('errors', $errors);
+					redirect("sell/deposit/".$pkid);
+				}
+			}
+		}
+		$this->db->where('id', $id);
+		$obj = $this->db->get("sell")->row();
+		if($obj == null) {
+			redirect("sell");
+		}
+
+		$data = ['obj' => $obj];
+		$this->load->view('admin/head');
+		$this->load->view('admin/header');
+		$this->load->view('admin/sell/deposit',$data);
+		
+	}
+	
+	
+	public function deposit_x($id) {
+		
+		$post = $this->input->post('data');
+		$search = null;
+		if(!empty( $post )) {
+			$pkid = $this->input->post('pkid');
+			$errors = [];
+			if(empty($post['date'])) {
+				$errors[] = 'Date is required';
+			}
+			if(empty($post['amount'])) {
+				$errors[] = 'Amount is required';
+			}
+			if(empty($post['due_date'])) {
+				$errors[] = 'Due Date is required';
 			}
 			
 			if($post['amount'] > 0 && $pkid > 0) {
@@ -276,7 +354,7 @@ class Sell extends CI_Controller {
 			
 			if(count($errors) > 0) {
 				$this->session->set_flashdata('errors', $errors);
-				redirect("amount/deposit/".$pkid);
+				redirect("sell/deposit/".$pkid);
 			}
 			
 			if($post['amount'] > 0) {
@@ -290,25 +368,25 @@ class Sell extends CI_Controller {
 				$balance_amount = $row->balance_amount - $post['amount'];
 				$this->db->where('id', $pkid);
 				$this->db->update('amount', ['deposit_amount' => $deposit, 'balance_amount' => $balance_amount]);
-				redirect("amount");
+				redirect("sell");
 			} else {
 				$errors[] = 'Enter Valid Amount';
 				if(count($errors) > 0) {
 					$this->session->set_flashdata('errors', $errors);
-					redirect("amount/deposit/".$pkid);
+					redirect("sell/deposit/".$pkid);
 				}
 			}
 		}
 		$this->db->where('id', $id);
-		$obj = $this->db->get("amount")->row();
+		$obj = $this->db->get("sell")->row();
 		if($obj == null) {
-			redirect("amount");
+			redirect("sell");
 		}
 
 		$data = ['obj' => $obj];
 		$this->load->view('admin/head');
 		$this->load->view('admin/header');
-		$this->load->view('admin/amount/deposit',$data);
+		$this->load->view('admin/sell/deposit',$data);
 		
 	}
 	
