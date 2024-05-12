@@ -53,9 +53,7 @@
 						  <th>Farmer</th>
 						  <th>Lot No.</th>
                           <th>Year</th>
-						  <th>Credit Amount</th>
-						  <th>Deposit Amount</th>
-						  <th>Balance Amount</th>
+						  <th>Vendor</th><th>Qty</th><th>Price</th><th>Total Price</th>
                           <th>Action</th>
                         </tr>
                       </thead>
@@ -63,7 +61,16 @@
                         <?php 
 						
 						foreach ($result as $key => $val ) { $sn++;
-							$this->db->where('farmer_id', $val['farmer_id']);
+							$vendorname = 'self';
+							if($val['self'] == 0 && $val['vendor_id'] > 0) {
+								$this->db->where('id', $val['vendor_id']);
+								$vendor = $this->db->get('vendors')->row();
+								if($vendor) {
+									$vendorname = $vendor->name;
+								}
+							}
+							
+							/* $this->db->where('farmer_id', $val['farmer_id']);
 							$this->db->where('farmer_lot_id', $val['farmer_lot_id']);
 							$amtObj = $this->db->get('tbl_amount')->row();
 							$creditAmount = $depositAmount = $balanceAmount = '';
@@ -71,7 +78,7 @@
 								$creditAmount = $amtObj->credit_amount;
 								$depositAmount = $amtObj->deposit_amount;
 								$balanceAmount = $amtObj->balance_amount;
-							}
+							} */
 						?>
                         <tr>
                           <td><span class="text-muted"><?=$sn?></span></td>
@@ -96,10 +103,12 @@
 							?>
 							
 							</td>
+							
                           <td align="left">  <?=$val['year']; ?>  </td>
-						  <td align="left">  <?=$creditAmount; ?>  </td>
-						  <td align="left">  <?=$depositAmount; ?>  </td>
-						  <td align="left">  <?=$balanceAmount; ?>  </td>
+						  <td><?=$vendorname?></td>
+						  <td><?=$val['quantity']?></td>
+						  <td><?=$val['price']?></td>
+						  <td><?=$val['quantity']*$val['price']?></td>
 						  <td align="left">  
 							<a class="icon" href="<?=base_url()?>sell/view/<?=$val['id']?>" data-row-id="<?=$val['id']?>" data-tbl="category">
                               <i class="fe fe-eye"></i>

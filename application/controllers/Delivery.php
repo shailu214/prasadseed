@@ -111,9 +111,11 @@ class Delivery extends CI_Controller {
 
 		$post = $this->input->post('data');
 		if(!empty($post)) {
+			$pkid = $this->input->post('pkid');
 			if($this->pageParam->role != 1) {
 				redirect("delivery");
 			}
+			
 			$errors = [];
 			if(empty($post['year'])) {
 				$errors[] = 'Year is required';
@@ -127,11 +129,20 @@ class Delivery extends CI_Controller {
 				$this->session->set_flashdata('errors', $errors);
 				redirect("delivery/add");
 			}
-			$this->db->insert("delivery", $post );
-			redirect("delivery/add");
+			if($pkid > 0) {
+				$this->session->set_flashdata('success_entry', 'success update');
+				$this->db->where('id', $id);
+				$this->db->update('delivery', $post);
+				redirect("delivery/add/".$id);
+			} else {
+				$this->session->set_flashdata('success_entry', 'success create');
+				$this->db->insert("delivery", $post );
+				redirect("delivery/add");
+			}
 			
-			$pkid = $this->input->post('pkid');
-			$this->db->where('id', $pkid);
+			
+			
+			
 			
 		}
 		

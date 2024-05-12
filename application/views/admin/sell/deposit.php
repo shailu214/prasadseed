@@ -22,6 +22,33 @@
 						echo implode(',<br>', $this->session->flashdata('errors'));
 					}  ?>
                     <div class="col-md-12">
+						<?php foreach($list as $v) { ?>
+							<div class="row">
+								<div class="col-md-3">
+								  <div class="form-group">
+									<label class="form-label">Deposit Date</label>
+									<input type="date" class="form-control" value="<?=$v['date']?>">
+								  </div>
+								</div>
+								
+								<div class="col-md-3">
+								  <div class="form-group">
+									<label class="form-label">Deposit Amount</label>
+									<input type="text" class="form-control" value="<?=$v['amount']?>">
+								  
+								  </div>
+								</div>
+								
+								<div class="col-md-3">
+								  <div class="form-group">
+									<label class="form-label">Due Date</label>
+									<input type="date" class="form-control" value="<?=$v['due_date']?>">
+								  </div>
+								</div>
+							</div>
+						<?php } ?>
+					
+					
                       <div class="row">
                         <div class="col-md-3">
                           <div class="form-group">

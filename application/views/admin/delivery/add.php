@@ -26,7 +26,7 @@
 									  <div class="form-group">
 										<label class="form-label">Name</label>
 										<input type="text" class="form-control" placeholder="Name.." data-validation="required" name="data[name]" data-validation-error-msg="Please enter name." value="">
-										<input type="hidden" name="pkid" value="">
+										<input type="hidden" name="pkid" value="<?=@$obj->id?>">
 										<input type="hidden" name="fromway" value="<?php echo 'delivery/add'; ?>">
 									 </div>
 									</div>

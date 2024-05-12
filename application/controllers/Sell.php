@@ -95,9 +95,12 @@ class Sell extends CI_Controller {
 			$obj->farmer_id = $farmer->name;
 		}
 
-		$this->db->where('amount_id', $id);
-		$amount_deposit = $this->db->get("amount_deposit")->result_array();
+		//$this->db->where('amount_id', $id);
+		//$amount_deposit = $this->db->get("amount_deposit")->result_array();
 
+		$this->db->where('sell_id', $id);
+		$amount_deposit = $this->db->get("sell_deposit")->result_array();
+		
 		$data = ['obj' => $obj, 'amount_deposit' => $amount_deposit];
 		$this->load->view('admin/head');
 		$this->load->view('admin/header');
@@ -266,20 +269,20 @@ class Sell extends CI_Controller {
 				$errors[] = 'Due Date is required';
 			}
 			
-			/* if($post['amount'] > 0 && $pkid > 0) {
+			if($post['amount'] > 0 && $pkid > 0) {
 				$this->db->where('id', $pkid);
-				$row = $this->db->get("amount")->row();
+				$row = $this->db->get("sell")->row();
 				
-				$this->db->where('amount_id', $pkid);
+				$this->db->where('sell_id', $pkid);
 				$this->db->select_sum('amount');
 
-				$totalPreAmount = $this->db->get("amount_deposit")->row();
-				
-				if(($totalPreAmount->amount+$post['amount']) > $row->balance_amount) {
+				$totalPreAmount = $this->db->get("sell_deposit")->row();
+				//echo $post['amount']; die;
+				if(($totalPreAmount->amount+$post['amount']) > ($row->quantity*$row->price)) {
 					$errors[] = 'Amount should not be more then balance amount';
 				}
 				
-			} */
+			}
 			
 			if(count($errors) > 0) {
 				$this->session->set_flashdata('errors', $errors);
@@ -311,8 +314,11 @@ class Sell extends CI_Controller {
 		if($obj == null) {
 			redirect("sell");
 		}
-
-		$data = ['obj' => $obj];
+		
+		$this->db->where('sell_id', $id);
+		$list = $this->db->get("sell_deposit")->result_array();
+		
+		$data = ['obj' => $obj, 'list' => $list];
 		$this->load->view('admin/head');
 		$this->load->view('admin/header');
 		$this->load->view('admin/sell/deposit',$data);

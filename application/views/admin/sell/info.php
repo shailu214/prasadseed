@@ -84,6 +84,7 @@
 					  <th class="w-1">S.No.</th>
 					  <th>Date</th>
 					  <th>Deposit Amount</th>
+					  <th>Due Date</th>
 					</tr>
 					
 					<?php foreach($amount_deposit as $k=>$deposit) { ?>
@@ -91,6 +92,7 @@
 					  <th class="w-1"><?=++$k?></th>
 					  <th><?=$deposit['date']?></th>
 					  <th><?=$deposit['amount']?></th>
+					  <th><?=$deposit['due_date']?></th>
 					</tr>
 					<?php } ?>
 				 
