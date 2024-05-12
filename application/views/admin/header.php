@@ -131,6 +131,22 @@
                     
                   </div>
                 </li>
+                <li class="nav-item">
+                  <a href="javascript:void(0)" class="nav-link <?=($this->pageParam->nav == 'delivery')? 'active' : ''?>" data-toggle="dropdown"><i class="fe fe-user"></i>Delivery Order</a>
+                  <div class="dropdown-menu dropdown-menu-arrow">
+					            <a href="<?=base_url()?>delivery/add.html" class="dropdown-item ">Add Delivery Order</a>
+                      <a href="<?=base_url()?>delivery.html" class="dropdown-item ">Delivery Order List</a>
+                    
+                  </div>
+                </li>
+                <li class="nav-item">
+                  <a href="javascript:void(0)" class="nav-link <?=($this->pageParam->nav == 'challan')? 'active' : ''?>" data-toggle="dropdown"><i class="fe fe-user"></i>Challan</a>
+                  <div class="dropdown-menu dropdown-menu-arrow">
+					            <a href="<?=base_url()?>challan/add.html" class="dropdown-item ">Add Challan</a>
+                      <a href="<?=base_url()?>challan.html" class="dropdown-item ">Challan List</a>
+                    
+                  </div>
+                </li>
 				<?php //if($this->pageParam->role == 1) { ?>
 					<li class="nav-item">
 					  <a href="javascript:void(0)" class="nav-link <?=($nav == 5)? 'active' : ''?>" data-toggle="dropdown"><i class="fe fe-user"></i> Staff</a>
