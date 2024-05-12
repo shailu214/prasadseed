@@ -32,13 +32,27 @@
 
 									
 								  </td>
-									 <td>
-									<select name="" class="select2" style="width:100%">
-										<option> </option>
-									</select>
-									<input type="hidden" id="farmer_id" name="data[farmer_id]">
+								  
+								  <td>
+										From <input type="date" id="fdate" name="data[fdate]">
+										To <input type="date" id="tdate" name="data[tdate]">
+									</td>
+								  
+									<td>
+										<select name="" class="select2" style="width:100%">
+											<option> </option>
+										</select>
+										<input type="hidden" id="farmer_id" name="data[farmer_id]">
 									
-								  </td>
+									</td>
+									
+									<td>
+										<select name="" id="vendorselect3" style="width:100%">
+											<option> </option>
+										</select>
+										<input type="hidden" id="vendor_id" name="data[vendor_id]">
+									
+									</td>
 								  
                                   <td><button class="btn btn-primary btn-sm"><i class="fe fe-search"></i> Search</button></td>
                                   <td><a href="<?php echo base_url(); ?>/amount" class="btn btn-danger btn-sm" id="reset" style="color:#fff"><i class="fe fe-rotate-ccw"></i> Reset</a></td>
@@ -159,36 +173,69 @@ $(document).ready(function() {
 	});
 });
 
-	   $(function(){
-			$(".select2").select2({
-				placeholder: "Search Farmer...",
-				minimumInputLength: 1,
-				//templateResult: formatState,
-				ajax: {
-					url: '<?=base_url("entry/farmerajax")?>',
-					dataType: 'json',
-					type: "POST",
-					data: function (params) {
-						return {
-							searchTerm: params.term 
-						};
-					},
-					processResults: function (data) {
-						return {
-							results: $.map(data, function (item) {
-								return {
-									text: item.search,
-									id: item.id
-								}
-							})
-						};
-					}
+				
+$(function(){
+	$("#vendorselect3").select2({
+		placeholder: "Search Vendor...",
+		minimumInputLength: 1,
+		//templateResult: formatState,
+			ajax: {
+				url: '<?=base_url("sell/vendorsearchajax")?>',
+				dataType: 'json',
+				type: "POST",
+				data: function (params) {
+					return {
+						searchTerm: params.term 
+					};
+				},
+				processResults: function (data) {
+					return {
+						results: $.map(data, function (item) {
+							return {
+								text: item.search,
+								id: item.id
+							}
+						})
+					};
+				}
 
+		}
+	}).on('change', function(e) {
+		var data = $("#vendorselect3 option:selected");
+		$("#vendor_id").val(data.val());
+	});
+});
+
+$(function(){
+	$(".select2").select2({
+		placeholder: "Search Farmer...",
+		minimumInputLength: 1,
+		//templateResult: formatState,
+		ajax: {
+			url: '<?=base_url("entry/farmerajax")?>',
+			dataType: 'json',
+			type: "POST",
+			data: function (params) {
+				return {
+					searchTerm: params.term 
+				};
+			},
+			processResults: function (data) {
+				return {
+					results: $.map(data, function (item) {
+						return {
+							text: item.search,
+							id: item.id
+						}
+					})
+				};
 			}
-		}).on('change', function(e) {
-			var data = $(".select2 option:selected");
-			$("#farmer_id").val(data.val());
-		  });
-		});
-		
-		</script>
+
+	}
+}).on('change', function(e) {
+	var data = $(".select2 option:selected");
+	$("#farmer_id").val(data.val());
+  });
+});
+
+</script>

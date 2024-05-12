@@ -18,8 +18,16 @@ class Sell extends CI_Controller {
 	public function index( $pg=null ) {
 		$post = $this->input->get('data');
 		$request = http_build_query($_GET);
+		//echo '<pre>'; print_r($request); die;
 		$search = null;
 		if(!empty( $post )) {
+			if($post['fdate'] != '' && $post['tdate'] != '') {
+				//$start_date = $post['fdate'];
+				//$end_date = $post['tdate'];
+				//$this->db->where('due_date BETWEEN "'. date('Y-m-d', strtotime($start_date)). '" and "'. date('Y-m-d', strtotime($end_date)).'"');
+				//$this->db->join('sell_deposit', 'sell.id = sell_deposit.sell_id');
+			}
+			
 			if($post['search_year'] != '') {
 				$this->db->where('year(year)', $post['search_year']);
 			}
@@ -36,6 +44,7 @@ class Sell extends CI_Controller {
 		
 		$search = null;
 		if(!empty( $post )) {
+			
 			if($post['search_year'] != '') {
 				$this->db->where('year(year)', $post['search_year']);
 			}
@@ -70,8 +79,19 @@ class Sell extends CI_Controller {
 		if($search != null) {
 			$this->db->where('year(year)', $search);
 		}
+		$this->db->select("sell.*");
+		if(!empty( $post )) {
+			if($post['fdate'] != '' && $post['tdate'] != '') {
+				$start_date = $post['fdate'];
+				$end_date = $post['tdate'];
+				
+				$this->db->where('sell_deposit.due_date >=', $start_date);
+				$this->db->where('sell_deposit.due_date <=', $end_date);
+				$this->db->join('sell_deposit', 'sell.id = sell_deposit.sell_id');
+			}
+		}
 
-		$this->db->order_by("id","desc");
+		$this->db->order_by("sell.id","desc");
 		$this->db->limit($lim,$start);
 
 		$data['result'] = $this->db->get("sell")->result_array();
@@ -410,5 +430,22 @@ class Sell extends CI_Controller {
 		}
 		
 		redirect("amount");
+	}
+	
+	public function vendorsearchajax()
+	{
+		$term = $this->input->post('searchTerm');
+		$this->db->select('vendors.*');
+		$this->db->like('vendors.name', $term);
+		$this->db->or_like('vendors.address', $term);
+		$this->db->or_like('vendors.mobile', $term);
+		$this->db->limit(5);
+		$data = $this->db->get('vendors');
+		$result = [];
+		foreach($data->result_array() as $val) {
+			$string = $val['name'].', '.$val['mobile'].', '.$val['address'];
+			$result[] = ['id' => $val['id'], 'search' => $string, 'lots' => $lots];
+		}
+		echo json_encode($result);
 	}
 }
