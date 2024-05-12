@@ -95,8 +95,8 @@ class Delivery extends CI_Controller {
 			$obj->farmer_id = $farmer->name;
 		}
 
-		$this->db->where('amount_id', $id);
-		$amount_deposit = $this->db->get("amount_deposit")->result_array();
+		//$this->db->where('amount_id', $id);
+		//$amount_deposit = $this->db->get("amount_deposit")->result_array();
 
 		$data = ['obj' => $obj, 'amount_deposit' => $amount_deposit];
 		$this->load->view('admin/head');
@@ -130,8 +130,8 @@ class Delivery extends CI_Controller {
 			$this->db->insert("delivery", $post );
 			redirect("delivery/add");
 			
-			//$pkid = $this->input->post('pkid');
-			//$this->db->where('id', $pkid);
+			$pkid = $this->input->post('pkid');
+			$this->db->where('id', $pkid);
 			
 		}
 		
@@ -198,9 +198,6 @@ class Delivery extends CI_Controller {
 			$this->db->where('id', $amountid);
 			$amt = $this->db->get('delivery')->row();
 			if($amt) {
-				$this->db->where('amount_id', $amt->id);
-				$this->db->delete('amount_deposit');
-				
 				$this->db->where('id', $amt->id);
 				$this->db->delete('delivery');
 			}

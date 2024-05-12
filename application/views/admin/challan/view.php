@@ -6,8 +6,8 @@
 
                 <div class="card">
                   <div class="card-header">
-                    <h3 class="card-title" style="width:100%;">Delivery Order List
-                    <a href="<?=base_url()?>delivery/add" class="btn btn-primary btn-sm pull-right" style="color:#fff;"><i class="fe fe-plus"></i> Add New</a>
+                    <h3 class="card-title" style="width:100%;">Challan  List
+                    <a href="<?=base_url()?>challan/add" class="btn btn-primary btn-sm pull-right" style="color:#fff;"><i class="fe fe-plus"></i> Add New</a>
                     </h3>
                   </div>
                   <div class="table-responsive">
@@ -51,9 +51,10 @@
                         <tr>
                           <th class="w-1">S.No.</th>
 						  <th>Farmer</th>
-						  <th>Lot No.</th>
+						  <th>M/S Name</th>
                           <th>Year</th>
-						  <th>Bori No</th>
+						  <th>No. Of Bori</th>
+						  <th>Vechicle No</th>
                           <th>Action</th>
                         </tr>
                       </thead>
@@ -73,27 +74,20 @@
 								}
 							?>
 						  </td>
-							<td>
-							<?php 
-								$db->where('id', $val['farmer_lot_id']);
-								$obj = $db->get('farmer_lots')->row();
-								if($obj) {
-									echo $obj->lots;
-								}
-							?>
-							</td>
+						  <td align="left">  <?=$val['ms_name']; ?>  </td>	
                           <td align="left">  <?=$val['year']; ?>  </td>
 						 
-						  <td align="left">  <?=$val['bori_no']; ?>  </td>
+						  <td align="left">  <?=$val['no_of_bori_count']; ?>  </td>
+						  <td align="left">  <?=$val['vechicle_no']; ?>  </td>
 						  <td align="left">  
-							<a class="icon" href="<?=base_url()?>delivery/view/<?=$val['id']?>" data-row-id="<?=$val['id']?>" data-tbl="category">
+							<a class="icon" href="<?=base_url()?>challan/view/<?=$val['id']?>" data-row-id="<?=$val['id']?>" data-tbl="category">
                               <i class="fe fe-eye"></i>
                             </a>
 							<?php if($this->pageParam->role == 1) { ?>
-							<a class="icon" href="<?=base_url()?>delivery/add/<?=$val['id']?>" data-row-id="<?=$val['id']?>" data-tbl="category">
+							<a class="icon" href="<?=base_url()?>challan/add/<?=$val['id']?>" data-row-id="<?=$val['id']?>" data-tbl="category">
                               <i class="fe fe-edit"></i>
                             </a>
-							<a class="icon delete" href="<?=base_url()?>delivery/delete/<?=$val['id']?>" data-row-id="<?=$val['id']?>" data-tbl="category">
+							<a class="icon delete" href="<?=base_url()?>challan/delete/<?=$val['id']?>" data-row-id="<?=$val['id']?>" data-tbl="category">
                               <i class="fe fe-trash"></i>
                             </a>
 							<?php } ?>
