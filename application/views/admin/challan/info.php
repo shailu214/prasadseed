@@ -49,38 +49,6 @@
               </table>
             </div>
           </div>
-		  
-		  <div class="card">
-            <div class="card-header">
-              <h3 class="card-title" style="width:100%;">
-            <i class="fe fe-user"></i> Deposit Amount
-              </h3>
-            </div>
-            <div class="table-responsive">
-              <!-- <br> -->
-              <table class="table table-bordered">
-                <tbody>
-					<tr>
-					  <th class="w-1">S.No.</th>
-					  <th>Date</th>
-					  <th>Deposit Amount</th>
-					</tr>
-					
-					<?php foreach($amount_deposit as $k=>$deposit) { ?>
-					<tr>
-					  <th class="w-1"><?=++$k?></th>
-					  <th><?=$deposit['date']?></th>
-					  <th><?=$deposit['amount']?></th>
-					</tr>
-					<?php } ?>
-				 
-                </tbody>
-                <tfoot>
-                </tfoot>
-              </table>
-            </div>
-          </div>
-
         </div>
       </div>
   </div>

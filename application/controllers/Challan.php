@@ -94,7 +94,7 @@ class Challan extends CI_Controller {
 		if($farmer) {
 			$obj->farmer_id = $farmer->name;
 		}
-
+		
 		//$this->db->where('amount_id', $id);
 		//$amount_deposit = $this->db->get("amount_deposit")->result_array();
 
@@ -109,8 +109,10 @@ class Challan extends CI_Controller {
 	public function add($id=null)
 	{
 
+
 		$post = $this->input->post('data');
 		if(!empty($post)) {
+			$pkid = $this->input->post('pkid');
 			if($this->pageParam->role != 1) {
 				redirect("challan");
 			}
@@ -126,12 +128,19 @@ class Challan extends CI_Controller {
 			if(count($errors) > 0) {
 				$this->session->set_flashdata('errors', $errors);
 				redirect("challan/add");
+				
 			}
+			if($pkid > 0){
+				$this->db->where('id', $pkid);
+				$this->db->update("challan", $post );
+				redirect("challan/add/".$id);
+			} else{
 			$this->db->insert("challan", $post );
 			redirect("challan/add");
+			}
 			
-			$pkid = $this->input->post('pkid');
-			$this->db->where('id', $pkid);
+			
+			
 			
 		}
 		
@@ -139,7 +148,7 @@ class Challan extends CI_Controller {
 		$data['lots'] = [];
 		if($id > 0) {
 			$this->db->where('id', $id);
-			$obj = $this->db->get('delivery')->row();
+			$obj = $this->db->get('challan')->row();
 			if($obj) {
 				$data['obj'] = $obj;
 				$data['persent'] = $obj->per;
@@ -147,7 +156,7 @@ class Challan extends CI_Controller {
 				$data['lots'] = $this->db->get('farmer_lots')->result_array();
 				$data['farmer_lot_id'] = $obj->farmer_lot_id;
 			} else {
-				redirect("delivery/add");
+				redirect("challan/add");
 			}
 			
 		}

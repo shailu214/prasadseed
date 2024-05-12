@@ -126,7 +126,10 @@ class Farmer extends CI_Controller {
 		$data['bardana'] = $this->bardanaList($id, $search);
 		$data['amount'] = $this->amountList($id, $search);
 		$data['fare'] = $this->fareList($id, $search);
-		//echo '<pre>'; print_r($data['bardana']); die;
+
+		$this->db->where('farmer_id', $id);
+		$data['resultsell'] = $this->db->get("sell")->result_array();
+		//echo '<pre>'; print_r($data['resultsell']); die;
 		$this->load->view('admin/head');
 		$this->load->view('admin/header');
 		$this->load->view('admin/farmer/info',$data);
