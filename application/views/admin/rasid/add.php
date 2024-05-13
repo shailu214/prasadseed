@@ -139,17 +139,23 @@ if(@$obj->id > 0) {
 						
 						</div>
 						<div class="row">
+						<div class="col-md-4">
+						  <div class="form-group">
+							<label class="form-label">Quantity </label>
+							<input type="text" class="form-control quantity" value="<?=@$obj->quantity?>" name="data[quantity]">
+						  </div>
+						</div>
 							
 						<div class="col-md-4">
 						  <div class="form-group">
 							<label class="form-label">Kiraya Per Unit </label>
-							<input type="text" class="form-control" value="<?=@$obj->kiraya?>" name="data[kiraya]">
+							<input type="text" class="form-control prce" value="<?=@$obj->kiraya?>" name="data[kiraya]">
 						  </div>
 						</div>
-						<div class="col-md-4">
+						<div class="col-md-4" style="<?=$isSelf?>">
 						  <div class="form-group">
 							<label class="form-label">Total Amount </label>
-							<input type="text" class="form-control" value="<?=@$obj->total_amount?>" name="data[total_amount]">
+							<input type="text" class="form-control total_price" value="<?=@$obj->quantity*@$obj->kiraya?>"  disabled>
 						  </div>
 						</div>
 								
@@ -286,34 +292,18 @@ if(@$obj->id > 0) {
 	  
 	  $(document).ready(function () { // 
 	  
-		  $('body').on('change', '#self', function() {
-			  $('.vendor_name').removeAttr('style');
-			  $('.credit_amount').val(0);
-			  $('.total_price').val(0);
-			  if ($(this).is(':checked')) {
-				  $(this).attr('value', 1);
-				  $('.credit_amount_row').attr('style', 'display:none');
-				 $('.total_price_row').attr('style', 'display:none');
-			  
-				  $('.vendor_name').attr('style', 'float:left;display:none');
-			  } else {
-				   $(this).attr('value', 0);
-				   $('.vendor_name').attr('style', 'float:left');
-				   $('.credit_amount_row').removeAttr('style');
-				 $('.total_price_row').removeAttr('style');
-			  }
-		  });
+		 
 		  
 		  $('body').on('keyup', '.quantity', function() {
 			  let quantity = $(this).val();
-			  let price = $('.prce').val();
-			  $('.total_price').val(quantity*price);
+			  let kiraya = $('.prce').val();
+			  $('.total_price').val(quantity*kiraya);
 		  });
 		  
 		  $('body').on('keyup', '.prce', function() {
-			  let price = $(this).val();
+			  let kiraya = $(this).val();
 			  let quantity = $('.quantity').val();
-			  $('.total_price').val(quantity*price);
+			  $('.total_price').val(quantity*kiraya);
 		  });
 		  
 		  

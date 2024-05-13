@@ -52,10 +52,16 @@
                   ?>
 
                     </td>
-					<th >Kiraya Per Unit</th>
+					<th >Quantity</th>
+                    <td colspan="2"><?=$obj->quantity?></td>
+                    <th >Kiraya Per Unit</th>
                     <td colspan="2"><?=$obj->kiraya?></td>
 					<th >Total Amount	</th>
-                    <td colspan="2"><?=$obj->total_amount	?></td>
+                    <td colspan="2">
+                      
+                   <?php echo $obj->quantity*$obj->kiraya; ?>
+                    
+                     </td>
                   </tr>
 				  
 				  

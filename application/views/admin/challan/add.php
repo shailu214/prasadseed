@@ -123,6 +123,19 @@
 							</select><br>
 								<input type="hidden" id="vegetable_id" value="<?=@$obj->vegetable_id?>" name="data[vegetable_id]">
 								<input type="hidden" id="vegetable_name" name="vegetable_name">
+								<?php
+								$vname = '';
+								if(@$obj->id > 0) {
+									$db->where('id', $obj->vegetable_id);
+									$vegetable = $db->get('vegetable')->row();
+									if($vegetable) {
+										$vname = $vegetable->name;
+					
+									} 
+								}
+								
+								?>
+								<span class="vegetable_name"><?=$vname;?></span>
                           </div>
                         </div>
 						<div class="col-md-2">
@@ -151,8 +164,8 @@
                             <label class="form-label">Bank Account</label>
 							<select name="data[bank_account]" class="form-control" style="">
 								<option value="">Select Bank Account</option>
-								<option value="Prasad Agro Industries">Prasad Agro Industries</option>
-								<option value="Krishna Trading Company">Krishna Trading Company</option>
+								<option value="Prasad Agro Industries" <?php  if(@$obj->bank_account == 'Prasad Agro Industries') { echo 'selected'; } ?>>Prasad Agro Industries</option>
+								<option value="Krishna Trading Company" <?php  if(@$obj->bank_account == 'Krishna Trading Company') { echo 'selected'; } ?>>Krishna Trading Company</option>
 							</select>				
 						  </div>
                         </div>

@@ -173,9 +173,9 @@ class Rasid extends CI_Controller {
 			$this->db->where('id', $farmerlot->entry_management_id);
 			$entryCheck = $this->db->get('entry_management')->row();
 			
-			if(($entryCheck->qty - $objcount[0]['quantity']) < $post['quantity']) {
-				$errors[] = 'Qty should be '.($entryCheck->qty - $objcount[0]['quantity']);
-			}
+			//if(($entryCheck->qty - $objcount[0]['quantity']) < $post['quantity']) {
+				//$errors[] = 'Qty should be '.($entryCheck->qty - $objcount[0]['quantity']);
+			//}
 			
 			if(count($errors) > 0) {
 				$this->session->set_flashdata('errors', $errors);
@@ -186,7 +186,7 @@ class Rasid extends CI_Controller {
 			$this->db->where('id', $pkid);
 			$obj = $this->db->get('rasid')->row();
 			//echo '<pre>'; print_r($_POST); die;
-			
+			$post['total_amount'] = $post['quantity']*$post['kiraya'];
 			if($obj) {
 				
 				$this->session->set_flashdata('success_entry', 'success update');

@@ -150,6 +150,8 @@ class Challan extends CI_Controller {
 			$this->db->where('id', $id);
 			$obj = $this->db->get('challan')->row();
 			if($obj) {
+
+				
 				$data['obj'] = $obj;
 				$data['persent'] = $obj->per;
 				$this->db->where('farmer_id', $obj->farmer_id);

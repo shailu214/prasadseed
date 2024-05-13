@@ -65,6 +65,7 @@
 						  <th>Lot No.</th>
                           <th>Year</th>
 						  <th>Vendor</th>
+						  <th>Qunatity</th>
 						  <th>Kiraya Per Unit</th>
 						  <th>Total Amount</th>
                           <th>Action</th>
@@ -119,8 +120,9 @@
 							
                           <td align="left">  <?=$val['year']; ?>  </td>
 						  <td><?=$vendorname?></td>
+						  <td><?=$val['quantity']?></td>
 						  <td><?=$val['kiraya']?></td>
-						  <td><?=$val['total_amount']?></td>
+						  <td><?php echo $obj->quantity*$obj->kiraya; ?></td>
 						  <td align="left">  
 							<a class="icon" href="<?=base_url()?>rasid/view/<?=$val['id']?>" data-row-id="<?=$val['id']?>" data-tbl="category">
                               <i class="fe fe-eye"></i>
