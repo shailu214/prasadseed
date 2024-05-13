@@ -211,13 +211,14 @@
                         <?php 
 						$sn = 0;
 						foreach($bardana as $bardanaobj) { 
+						$tqty = ($bardanaobj['qty']+$bardanaobj['qty_two']+$bardanaobj['qty_three']+$bardanaobj['qty_four']);
 						$qtyone = 0;
 						$this->db->select_sum('return_qty');
 							$db->where('bardana_id', $bardanaobj['id']);
-							$db->where('type', 1);
+							//$db->where('type', 1);
 							$total_return_qty = $db->get('tbl_bardana_detail_return')->row();
 							if($total_return_qty) {
-								$qtyone = $bardanaobj['qty']-$total_return_qty->return_qty;
+								$qtyone = $tqty-$total_return_qty->return_qty;
 							}
 						if($qtyone > 0) {
 						$sn++; ?>
@@ -235,7 +236,7 @@
 						  </td>
                           <td align="left">  <?=$bardanaobj['year']; ?>  </td>
 						  <td align="left"><?=$bardanaobj['item']; ?></td>
-						  <td align="left"><?=$bardanaobj['qty']; ?></td>
+						  <td align="left"><?=$tqty; ?></td>
 						  <td align="left">
 							<?php 
 							echo $qtyone;

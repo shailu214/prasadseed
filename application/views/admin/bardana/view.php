@@ -58,7 +58,8 @@
 						  <th>Farmer</th>
                           <th>Year</th>
 						  <th>Item</th>
-						  <th>Quantity</th>
+						  <th>
+						  </th>
                           <th>Action</th>
                         </tr>
                       </thead>
@@ -80,7 +81,7 @@
 						  </td>
                           <td align="left">  <?=$val['year']; ?>  </td>
 						  <td align="left"><?=$val['item']; ?></td>
-						  <td align="left"><?=$val['qty']; ?></td>
+						  <td align="left"><?=$val['qty']+$val['qty_two']+$val['qty_three']+$val['qty_four']; ?></td>
 						  <td align="left">  
 							<a class="icon" href="<?=base_url()?>bardana/view/<?=$val['id']?>" data-row-id="<?=$val['id']?>" data-tbl="category">
                               <i class="fe fe-eye"></i>
