@@ -173,6 +173,37 @@ $(document).ready(function() {
 	});
 });
 
+$(function(){
+	$(".select2").select2({
+		placeholder: "Search Farmer...",
+		minimumInputLength: 1,
+		//templateResult: formatState,
+		ajax: {
+			url: '<?=base_url("entry/farmerajax")?>',
+			dataType: 'json',
+			type: "POST",
+			data: function (params) {
+				return {
+					searchTerm: params.term 
+				};
+			},
+			processResults: function (data) {
+				return {
+					results: $.map(data, function (item) {
+						return {
+							text: item.search,
+							id: item.id
+						}
+					})
+				};
+			}
+
+	}
+}).on('change', function(e) {
+	var data = $(".select2 option:selected");
+	$("#farmer_id").val(data.val());
+  });
+});
 				
 $(function(){
 	$("#vendorselect3").select2({
@@ -206,36 +237,5 @@ $(function(){
 	});
 });
 
-$(function(){
-	$(".select2").select2({
-		placeholder: "Search Farmer...",
-		minimumInputLength: 1,
-		//templateResult: formatState,
-		ajax: {
-			url: '<?=base_url("entry/farmerajax")?>',
-			dataType: 'json',
-			type: "POST",
-			data: function (params) {
-				return {
-					searchTerm: params.term 
-				};
-			},
-			processResults: function (data) {
-				return {
-					results: $.map(data, function (item) {
-						return {
-							text: item.search,
-							id: item.id
-						}
-					})
-				};
-			}
-
-	}
-}).on('change', function(e) {
-	var data = $(".select2 option:selected");
-	$("#farmer_id").val(data.val());
-  });
-});
 
 </script>

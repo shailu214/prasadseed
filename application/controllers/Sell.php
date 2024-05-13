@@ -35,6 +35,10 @@ class Sell extends CI_Controller {
 			if($post['farmer_id'] != '') {
 				$this->db->where('farmer_id', $post['farmer_id']);
 			}
+			
+			if($post['vendor_id'] != '') {
+				//$this->db->where('vendor_id', $post['vendor_id']);
+			}
 		}
 		if($search != null) {
 			$this->db->where('year(year)', $search);
@@ -44,6 +48,9 @@ class Sell extends CI_Controller {
 		
 		$search = null;
 		if(!empty( $post )) {
+			if($post['vendor_id'] != '') {
+				$this->db->where('vendor_id', $post['vendor_id']);
+			}
 			
 			if($post['search_year'] != '') {
 				$this->db->where('year(year)', $post['search_year']);
