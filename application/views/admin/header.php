@@ -147,6 +147,14 @@
                     
                   </div>
                 </li>
+                <li class="nav-item">
+                  <a href="javascript:void(0)" class="nav-link <?=($this->pageParam->nav == 'rasid')? 'active' : ''?>" data-toggle="dropdown"><i class="fe fe-user"></i>Rasid</a>
+                  <div class="dropdown-menu dropdown-menu-arrow">
+					            <a href="<?=base_url()?>rasid/add.html" class="dropdown-item ">Add Rasid</a>
+                      <a href="<?=base_url()?>rasid.html" class="dropdown-item ">Rasid List</a>
+                    
+                  </div>
+                </li>
 				<?php //if($this->pageParam->role == 1) { ?>
 					<li class="nav-item">
 					  <a href="javascript:void(0)" class="nav-link <?=($nav == 5)? 'active' : ''?>" data-toggle="dropdown"><i class="fe fe-user"></i> Staff</a>

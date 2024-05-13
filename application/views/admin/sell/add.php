@@ -77,7 +77,7 @@ if(@$obj->id > 0) {
 				</div>
 			
               <form method="post" class="card">
-                <h3 class="card-title" style="margin:20px 25px;;"><i class="fe fe-list"></i> &nbsp;Amount</h3>
+                <h3 class="card-title" style="margin:20px 25px;;"><i class="fe fe-list"></i> &nbsp;Vendor Purchase </h3>
                 <hr style="margin:0px;">
                 <div class="card-body">
                   <div class="row">

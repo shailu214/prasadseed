@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Sell extends CI_Controller {
+class Rasid extends CI_Controller {
 
 	public function __construct() {
 		parent::__construct();
@@ -10,12 +10,11 @@ class Sell extends CI_Controller {
 		}
 		if(empty($_SESSION[ADMIN])) { redirect(''); }
 		//if($_SESSION[ADMIN]['role'] != 1 && !in_array(1,$_SESSION[ADMIN]['prms'])) { redirect('dashboard'); }
-		$this->pageParam->nav = 'sell';
+		$this->pageParam->nav = 'rasid';
 		$this->pageParam->role = $_SESSION[ADMIN]['role'];
 	}
 
-	
-	public function index( $pg=null ) {
+    public function index( $pg=null ) {
 		$post = $this->input->get('data');
 		$request = http_build_query($_GET);
 		//echo '<pre>'; print_r($request); die;
@@ -39,7 +38,7 @@ class Sell extends CI_Controller {
 		if($search != null) {
 			$this->db->where('year(year)', $search);
 		}
-		$rows = $this->db->get('amount')->num_rows();
+		$rows = $this->db->get('rasid')->num_rows();
 		$lim = 10;
 		
 		$search = null;
@@ -59,7 +58,7 @@ class Sell extends CI_Controller {
 	
 		$this->load->library('pagination');
 		$config['suffix'] = '?'.$request;
-		$config['base_url'] = base_url().'sell/index/';
+		$config['base_url'] = base_url().'rasid/index/';
 		$config['total_rows'] = $rows;
 		$config['per_page'] = $lim;
 		$config['use_page_numbers'] = TRUE;
@@ -79,7 +78,7 @@ class Sell extends CI_Controller {
 		if($search != null) {
 			$this->db->where('year(year)', $search);
 		}
-		$this->db->select("sell.*");
+		$this->db->select("rasid.*");
 		if(!empty( $post )) {
 			if($post['fdate'] != '' && $post['tdate'] != '') {
 				$start_date = $post['fdate'];
@@ -91,23 +90,23 @@ class Sell extends CI_Controller {
 			}
 		}
 
-		$this->db->order_by("sell.id","desc");
+		$this->db->order_by("rasid.id","desc");
 		$this->db->limit($lim,$start);
 
-		$data['result'] = $this->db->get("sell")->result_array();
+		$data['result'] = $this->db->get("rasid")->result_array();
 		$data['pages'] = $pages;
 		$data['sno'] = $start;
 		$data['db'] = $this->db;
 		
 		$this->load->view('admin/head');
 		$this->load->view('admin/header');
-		$this->load->view('admin/sell/view',$data);
+		$this->load->view('admin/rasid/view',$data);
 		$this->load->view('admin/footer');
 	}
-	
-	public function view($id) {
+
+    public function view($id) {
 		$this->db->where('id', $id);
-		$obj = $this->db->get("sell")->row();
+		$obj = $this->db->get("rasid")->row();
 		
 		$this->db->where('id', $obj->farmer_id);
 		$farmer = $this->db->get("farmer")->row();
@@ -120,31 +119,26 @@ class Sell extends CI_Controller {
 			$obj->vendor_id = $vendors->name;
 		}
 
-			$this->db->select_sum('amount');
-			$this->db->where('sell_id', $obj->id);
-			$objcount = $this->db->get('sell_deposit')->result_array();
-		//echo '<pre>'; print_r($objcount); die;
-
 		//$this->db->where('amount_id', $id);
 		//$amount_deposit = $this->db->get("amount_deposit")->result_array();
 
 		$this->db->where('sell_id', $id);
 		$amount_deposit = $this->db->get("sell_deposit")->result_array();
 		
-		$data = ['obj' => $obj, 'amount_deposit' => $amount_deposit, 'totalamt' => $objcount[0]['amount']];
+		$data = ['obj' => $obj, 'amount_deposit' => $amount_deposit];
+
+		//ECHO '<pre>'; print_R($data); DIE;
 		$this->load->view('admin/head');
 		$this->load->view('admin/header');
-		$this->load->view('admin/sell/info',$data);
+		$this->load->view('admin/rasid/info',$data);
 		$this->load->view('admin/footer');
 	}
-
-
-	public function add($id=null)
+    public function add($id=null)
 	{
 		$post = $this->input->post('data');
 		if(!empty($post)) {
 			if($this->pageParam->role != 1) {
-				redirect("sell");
+				redirect("rasid");
 			}
 			$errors = [];
 			if(empty($post['year'])) {
@@ -168,7 +162,7 @@ class Sell extends CI_Controller {
 			if($farmerlot == null) {
 				$errors[] = 'Lot Not Found ';
 				$this->session->set_flashdata('errors', $errors);
-				redirect("sell/add");
+				redirect("rasid/add");
 			}
 			
 			$this->db->select_sum('quantity');
@@ -185,25 +179,23 @@ class Sell extends CI_Controller {
 			
 			if(count($errors) > 0) {
 				$this->session->set_flashdata('errors', $errors);
-				redirect("sell/add");
+				redirect("rasid/add");
 			}
 			
 			$pkid = $this->input->post('pkid');
 			$this->db->where('id', $pkid);
-			$obj = $this->db->get('sell')->row();
+			$obj = $this->db->get('rasid')->row();
 			//echo '<pre>'; print_r($_POST); die;
-			if($post['self'] == 1) {
-				$post['price'] = 0;
-			}
+			
 			if($obj) {
 				
 				$this->session->set_flashdata('success_entry', 'success update');
 				$this->db->where('id', $pkid);
-				$this->db->update('sell', $post);
-				redirect("sell/add/".$pkid);
+				$this->db->update('rasid', $post);
+				redirect("rasid/add/".$pkid);
 			} else {
 				$this->session->set_flashdata('success_entry', 'success');
-				$this->db->insert("sell", $post );
+				$this->db->insert("rasid", $post );
 				$insert_id = $this->db->insert_id();
 				//$this->db->where('bardana_id', $insert_id);
 				foreach($this->input->post('bardanacomment') as $k => $bardanacmt) {//echo 1111; print_r($bardanacmt);
@@ -212,14 +204,14 @@ class Sell extends CI_Controller {
 				//echo '<pre>'; print_r($_POST); print_r($this->input->post('bardanacomment')); die;
 				
 				//die;
-				redirect("sell/add");
+				redirect("rasid/add");
 			}
 		}
 		//echo 123; die;
 		$result = ['obj' => null, 'lots' => [], 'bardana' => []];
 		if($id > 0) {
 			$this->db->where('id', $id);
-			$obj = $this->db->get('sell')->row();
+			$obj = $this->db->get('rasid')->row();
 			if($obj) {
 				$result['obj'] = $obj;
 				
@@ -236,7 +228,7 @@ class Sell extends CI_Controller {
 				$result['lots'] = $lots;
 		
 			} else {
-				redirect("sell/add");
+				redirect("rasid/add");
 			}
 			
 		}
@@ -244,7 +236,7 @@ class Sell extends CI_Controller {
 		$result['db'] = $this->db;
 		$this->load->view('admin/head');
 		$this->load->view('admin/header');
-		$this->load->view('admin/sell/add',$result);
+		$this->load->view('admin/rasid/add',$result);
 		$this->load->view('admin/footer');
 	}
 
@@ -281,181 +273,17 @@ class Sell extends CI_Controller {
 		}
 		echo json_encode($result);
 	}
-	
-	public function deposit($id) {
-		
-		$post = $this->input->post('data');
-		$search = null;
-		if(!empty( $post )) {
-			$pkid = $this->input->post('pkid');
-			$errors = [];
-			if(empty($post['date'])) {
-				$errors[] = 'Date is required';
-			}
-			if(empty($post['amount'])) {
-				$errors[] = 'Amount is required';
-			}
-			if(empty($post['due_date'])) {
-				$errors[] = 'Due Date is required';
-			}
-			
-			if($post['amount'] > 0 && $pkid > 0) {
-				$this->db->where('id', $pkid);
-				$row = $this->db->get("sell")->row();
-				
-				$this->db->where('sell_id', $pkid);
-				$this->db->select_sum('amount');
-
-				$totalPreAmount = $this->db->get("sell_deposit")->row();
-				//echo $post['amount']; die;
-				if(($totalPreAmount->amount+$post['amount']) > ($row->quantity*$row->price)) {
-					$errors[] = 'Amount should not be more then balance amount';
-				}
-				
-			}
-			
-			if(count($errors) > 0) {
-				$this->session->set_flashdata('errors', $errors);
-				redirect("sell/deposit/".$pkid);
-			}
-			
-			if($post['amount'] > 0) {
-				$post['sell_id'] = $pkid;
-				$this->db->insert("sell_deposit", $post );
-				//$lastid = $this->db->insert_id();
-				
-				/* $this->db->where('id', $pkid);
-				$row = $this->db->get("amount")->row();
-				$deposit = $row->deposit_amount + $post['amount'];
-				$balance_amount = $row->balance_amount - $post['amount'];
-				$this->db->where('id', $pkid);
-				$this->db->update('amount', ['deposit_amount' => $deposit, 'balance_amount' => $balance_amount]); */
-				redirect("sell");
-			} else {
-				$errors[] = 'Enter Valid Amount';
-				if(count($errors) > 0) {
-					$this->session->set_flashdata('errors', $errors);
-					redirect("sell/deposit/".$pkid);
-				}
-			}
-		}
-		$this->db->where('id', $id);
-		$obj = $this->db->get("sell")->row();
-		if($obj == null) {
-			redirect("sell");
-		}
-		
-		$this->db->where('sell_id', $id);
-		$list = $this->db->get("sell_deposit")->result_array();
-		
-		$data = ['obj' => $obj, 'list' => $list];
-		$this->load->view('admin/head');
-		$this->load->view('admin/header');
-		$this->load->view('admin/sell/deposit',$data);
-		
-	}
-	
-	
-	public function deposit_x($id) {
-		
-		$post = $this->input->post('data');
-		$search = null;
-		if(!empty( $post )) {
-			$pkid = $this->input->post('pkid');
-			$errors = [];
-			if(empty($post['date'])) {
-				$errors[] = 'Date is required';
-			}
-			if(empty($post['amount'])) {
-				$errors[] = 'Amount is required';
-			}
-			if(empty($post['due_date'])) {
-				$errors[] = 'Due Date is required';
-			}
-			
-			if($post['amount'] > 0 && $pkid > 0) {
-				$this->db->where('id', $pkid);
-				$row = $this->db->get("amount")->row();
-				
-				$this->db->where('amount_id', $pkid);
-				$this->db->select_sum('amount');
-
-				$totalPreAmount = $this->db->get("amount_deposit")->row();
-				
-				if(($totalPreAmount->amount+$post['amount']) > $row->balance_amount) {
-					$errors[] = 'Amount should not be more then balance amount';
-				}
-				
-			}
-			
-			if(count($errors) > 0) {
-				$this->session->set_flashdata('errors', $errors);
-				redirect("sell/deposit/".$pkid);
-			}
-			
-			if($post['amount'] > 0) {
-				$post['amount_id'] = $pkid;
-				$this->db->insert("amount_deposit", $post );
-				//$lastid = $this->db->insert_id();
-				
-				$this->db->where('id', $pkid);
-				$row = $this->db->get("amount")->row();
-				$deposit = $row->deposit_amount + $post['amount'];
-				$balance_amount = $row->balance_amount - $post['amount'];
-				$this->db->where('id', $pkid);
-				$this->db->update('amount', ['deposit_amount' => $deposit, 'balance_amount' => $balance_amount]);
-				redirect("sell");
-			} else {
-				$errors[] = 'Enter Valid Amount';
-				if(count($errors) > 0) {
-					$this->session->set_flashdata('errors', $errors);
-					redirect("sell/deposit/".$pkid);
-				}
-			}
-		}
-		$this->db->where('id', $id);
-		$obj = $this->db->get("sell")->row();
-		if($obj == null) {
-			redirect("sell");
-		}
-
-		$data = ['obj' => $obj];
-		$this->load->view('admin/head');
-		$this->load->view('admin/header');
-		$this->load->view('admin/sell/deposit',$data);
-		
-	}
-	
-	public function delete($amountid) {
+    public function delete($amountid) {
 		if($this->pageParam->role == 1) {
 			$this->db->where('id', $amountid);
-			$amt = $this->db->get('sell')->row();
+			$amt = $this->db->get('rasid')->row();
 			if($amt) {
-				$this->db->where('sell_id', $amt->id);
-				$this->db->delete('sell_deposit');
-				
 				$this->db->where('id', $amt->id);
-				$this->db->delete('sell');
+				$this->db->delete('rasid');
 			}
 		}
 		
-		redirect("sell");
+		redirect("rasid");
 	}
-	
-	public function vendorsearchajax()
-	{
-		$term = $this->input->post('searchTerm');
-		$this->db->select('vendors.*');
-		$this->db->like('vendors.name', $term);
-		$this->db->or_like('vendors.address', $term);
-		$this->db->or_like('vendors.mobile', $term);
-		$this->db->limit(5);
-		$data = $this->db->get('vendors');
-		$result = [];
-		foreach($data->result_array() as $val) {
-			$string = $val['name'].', '.$val['mobile'].', '.$val['address'];
-			$result[] = ['id' => $val['id'], 'search' => $string, 'lots' => $lots];
-		}
-		echo json_encode($result);
-	}
+
 }

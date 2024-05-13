@@ -34,7 +34,7 @@
 				  
 				        <tr>
                     <th  width="150">Bori No.</th>
-                    <td colspan="2"><?=$obj->lending_date?></td>
+                    <td colspan="2"><?=$obj->bori_no?></td>
 					
                   </tr>
                 </tbody>

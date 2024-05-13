@@ -7,7 +7,7 @@
           <div class="card">
             <div class="card-header">
               <h3 class="card-title" style="width:100%;">
-            <i class="fe fe-user"></i> Amount Details
+            <i class="fe fe-user"></i> Vendor Purchase Entry Details
               </h3>
             </div>
             <div class="table-responsive">
@@ -36,27 +36,54 @@
 				  
 				  <tr>
 
-                    <th  width="150">Lending Date</th>
-                    <td colspan="2"><?=$obj->lending_date?></td>
-					<th >Credit Amount</th>
-                    <td colspan="2"><?=$obj->credit_amount?></td>
-					<th >Per</th>
-                    <td colspan="2"><?=$obj->per?></td>
+                    <th  width="150">Vendor Name</th>
+                    <td colspan="2"><?=$obj->vendor_id?></td>
+					<th >Quantity</th>
+                    <td colspan="2"><?=$obj->quantity?></td>
+					<th >Short Qty</th>
+                    <td colspan="2"><?=$obj->short_qty?></td>
                   </tr>
 				  
 				  <tr>
 
-                    <th  width="150">Cal</th>
-                    <td colspan="2"><?=$obj->cal_per?></td>
-					<th >Deposit Amount</th>
-                    <td colspan="2"><?=$obj->deposit_amount?></td>
-					<th >Balance Amount</th>
-                    <td colspan="2"><?=$obj->balance_amount?></td>
+                    <th  width="150">Price</th>
+                    <td colspan="2"><?=$obj->price?></td>
+					<th >Total Price</th>
+                    <td colspan="2">
+                      
+                    <?php
+						
+						echo $obj->quantity*$obj->price;
+						
+					?>
+                    
+                    
+					<th >Nikasi Date</th>
+                    <td colspan="2"><?=$obj->nikasi_date?></td>
                   </tr>
                   <tr>
 
-                    <th  width="150">Comment</th>
-                    <td colspan="2"><?=$obj->comment?></td>
+                    <th  width="150">Payment Mode</th>
+                    <td colspan="2"><?php
+                    if($obj->pament_mode == 1) {
+							echo 'CASH';
+						} else if($obj->pament_mode == 2) {
+              echo 'Account'; 
+            } else if($obj->pament_mode == 3) { 
+              echo 'CASH / Account';
+
+            }
+                  ?>  
+                    
+                  </td>
+                    <th  width="150">Total Deposit Amount</th>
+                    <td colspan="2">
+                      
+                    <?php
+                    echo $totalamt;
+                    ?>
+                  
+                    </td>
 					
                     
                   </tr>

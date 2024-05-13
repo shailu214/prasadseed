@@ -7,7 +7,7 @@
           <div class="card">
             <div class="card-header">
               <h3 class="card-title" style="width:100%;">
-            <i class="fe fe-user"></i> Delivery Order Details
+            <i class="fe fe-user"></i> Rasid
               </h3>
             </div>
             <div class="table-responsive">
@@ -31,42 +31,36 @@
 						}
 					?></td>
                   </tr>
-				  
-				        <tr>
-                    <th  width="150">Bori No.</th>
-                    <td colspan="2"><?=$obj->lending_date?></td>
-					
+
+                  
+				  <tr>
+
+                    <th  width="150">Vendor Name</th>
+                    <td colspan="2">
+
+                  <?php 
+                  $self = 'Self';
+                  if($obj->self == 1) {
+                    $self = 'Self';
+                  } else{
+                    
+                    $self= $obj->vendor_id;
+                  
+                  }
+                  echo $self;
+                  
+                  ?>
+
+                    </td>
+					<th >Kiraya Per Unit</th>
+                    <td colspan="2"><?=$obj->kiraya?></td>
+					<th >Total Amount	</th>
+                    <td colspan="2"><?=$obj->total_amount	?></td>
                   </tr>
-                </tbody>
-                <tfoot>
-                </tfoot>
-              </table>
-            </div>
-          </div>
-		  
-		  <div class="card">
-            <div class="card-header">
-              <h3 class="card-title" style="width:100%;">
-            <i class="fe fe-user"></i> Deposit Amount
-              </h3>
-            </div>
-            <div class="table-responsive">
-              <!-- <br> -->
-              <table class="table table-bordered">
-                <tbody>
-					<tr>
-					  <th class="w-1">S.No.</th>
-					  <th>Date</th>
-					  <th>Deposit Amount</th>
-					</tr>
-					
-					<?php foreach($amount_deposit as $k=>$deposit) { ?>
-					<tr>
-					  <th class="w-1"><?=++$k?></th>
-					  <th><?=$deposit['date']?></th>
-					  <th><?=$deposit['amount']?></th>
-					</tr>
-					<?php } ?>
+				  
+				  
+                  
+                  <tr>
 				 
                 </tbody>
                 <tfoot>

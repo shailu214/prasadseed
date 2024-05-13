@@ -6,8 +6,8 @@
 
                 <div class="card">
                   <div class="card-header">
-                    <h3 class="card-title" style="width:100%;">Delivery Order List
-                    <a href="<?=base_url()?>delivery/add" class="btn btn-primary btn-sm pull-right" style="color:#fff;"><i class="fe fe-plus"></i> Add New</a>
+                    <h3 class="card-title" style="width:100%;">Rasid List
+                    <a href="<?=base_url()?>rasid/add" class="btn btn-primary btn-sm pull-right" style="color:#fff;"><i class="fe fe-plus"></i> Add New</a>
                     </h3>
                   </div>
                   <div class="table-responsive">
@@ -32,16 +32,27 @@
 
 									
 								  </td>
-									 <td>
-									<select name="" class="select2" style="width:100%">
-										<option> </option>
-									</select>
-									<input type="hidden" id="farmer_id" name="data[farmer_id]">
+								  
+								  
+								  
+									<td>
+										<select name="" class="select2" style="width:100%">
+											<option> </option>
+										</select>
+										<input type="hidden" id="farmer_id" name="data[farmer_id]">
 									
-								  </td>
+									</td>
+									
+									<td>
+										<select name="" id="vendorselect3" style="width:100%">
+											<option> </option>
+										</select>
+										<input type="hidden" id="vendor_id" name="data[vendor_id]">
+									
+									</td>
 								  
                                   <td><button class="btn btn-primary btn-sm"><i class="fe fe-search"></i> Search</button></td>
-                                  <td><a href="<?php echo base_url(); ?>/delivery" class="btn btn-danger btn-sm" id="reset" style="color:#fff"><i class="fe fe-rotate-ccw"></i> Reset</a></td>
+                                  <td><a href="<?php echo base_url(); ?>/sell" class="btn btn-danger btn-sm" id="reset" style="color:#fff"><i class="fe fe-rotate-ccw"></i> Reset</a></td>
                                 </tr>
                               </table>
                             </form>
@@ -53,14 +64,35 @@
 						  <th>Farmer</th>
 						  <th>Lot No.</th>
                           <th>Year</th>
-						  <th>Bori No</th>
+						  <th>Vendor</th>
+						  <th>Kiraya Per Unit</th>
+						  <th>Total Amount</th>
                           <th>Action</th>
                         </tr>
                       </thead>
                       <tbody>
                         <?php 
 						
-						foreach ($result as $key => $val ) { $sn++; ?>
+						foreach ($result as $key => $val ) { $sn++;
+							$vendorname = 'self';
+							if($val['self'] == 0 && $val['vendor_id'] > 0) {
+								$this->db->where('id', $val['vendor_id']);
+								$vendor = $this->db->get('vendors')->row();
+								if($vendor) {
+									$vendorname = $vendor->name;
+								}
+							}
+							
+							/* $this->db->where('farmer_id', $val['farmer_id']);
+							$this->db->where('farmer_lot_id', $val['farmer_lot_id']);
+							$amtObj = $this->db->get('tbl_amount')->row();
+							$creditAmount = $depositAmount = $balanceAmount = '';
+							if($amtObj) {
+								$creditAmount = $amtObj->credit_amount;
+								$depositAmount = $amtObj->deposit_amount;
+								$balanceAmount = $amtObj->balance_amount;
+							} */
+						?>
                         <tr>
                           <td><span class="text-muted"><?=$sn?></span></td>
 						  <td align="left"> 
@@ -74,6 +106,7 @@
 							?>
 						  </td>
 							<td>
+							
 							<?php 
 								$db->where('id', $val['farmer_lot_id']);
 								$obj = $db->get('farmer_lots')->row();
@@ -81,19 +114,22 @@
 									echo $obj->lots;
 								}
 							?>
+							
 							</td>
+							
                           <td align="left">  <?=$val['year']; ?>  </td>
-						 
-						  <td align="left">  <?=$val['bori_no']; ?>  </td>
+						  <td><?=$vendorname?></td>
+						  <td><?=$val['kiraya']?></td>
+						  <td><?=$val['total_amount']?></td>
 						  <td align="left">  
-							<a class="icon" href="<?=base_url()?>delivery/view/<?=$val['id']?>" data-row-id="<?=$val['id']?>" data-tbl="category">
+							<a class="icon" href="<?=base_url()?>rasid/view/<?=$val['id']?>" data-row-id="<?=$val['id']?>" data-tbl="category">
                               <i class="fe fe-eye"></i>
                             </a>
 							<?php if($this->pageParam->role == 1) { ?>
-							<a class="icon" href="<?=base_url()?>delivery/add/<?=$val['id']?>" data-row-id="<?=$val['id']?>" data-tbl="category">
+							<a class="icon" href="<?=base_url()?>rasid/add/<?=$val['id']?>" data-row-id="<?=$val['id']?>" data-tbl="category">
                               <i class="fe fe-edit"></i>
                             </a>
-							<a class="icon delete" href="<?=base_url()?>delivery/delete/<?=$val['id']?>" data-row-id="<?=$val['id']?>" data-tbl="category">
+							<a class="icon delete" href="<?=base_url()?>rasid/delete/<?=$val['id']?>" data-row-id="<?=$val['id']?>" data-tbl="category">
                               <i class="fe fe-trash"></i>
                             </a>
 							<?php } ?>
@@ -132,36 +168,69 @@ $(document).ready(function() {
 	});
 });
 
-	   $(function(){
-			$(".select2").select2({
-				placeholder: "Search Farmer...",
-				minimumInputLength: 1,
-				//templateResult: formatState,
-				ajax: {
-					url: '<?=base_url("entry/farmerajax")?>',
-					dataType: 'json',
-					type: "POST",
-					data: function (params) {
-						return {
-							searchTerm: params.term 
-						};
-					},
-					processResults: function (data) {
-						return {
-							results: $.map(data, function (item) {
-								return {
-									text: item.search,
-									id: item.id
-								}
-							})
-						};
-					}
+				
+$(function(){
+	$("#vendorselect3").select2({
+		placeholder: "Search Vendor...",
+		minimumInputLength: 1,
+		//templateResult: formatState,
+			ajax: {
+				url: '<?=base_url("sell/vendorsearchajax")?>',
+				dataType: 'json',
+				type: "POST",
+				data: function (params) {
+					return {
+						searchTerm: params.term 
+					};
+				},
+				processResults: function (data) {
+					return {
+						results: $.map(data, function (item) {
+							return {
+								text: item.search,
+								id: item.id
+							}
+						})
+					};
+				}
 
+		}
+	}).on('change', function(e) {
+		var data = $("#vendorselect3 option:selected");
+		$("#vendor_id").val(data.val());
+	});
+});
+
+$(function(){
+	$(".select2").select2({
+		placeholder: "Search Farmer...",
+		minimumInputLength: 1,
+		//templateResult: formatState,
+		ajax: {
+			url: '<?=base_url("entry/farmerajax")?>',
+			dataType: 'json',
+			type: "POST",
+			data: function (params) {
+				return {
+					searchTerm: params.term 
+				};
+			},
+			processResults: function (data) {
+				return {
+					results: $.map(data, function (item) {
+						return {
+							text: item.search,
+							id: item.id
+						}
+					})
+				};
 			}
-		}).on('change', function(e) {
-			var data = $(".select2 option:selected");
-			$("#farmer_id").val(data.val());
-		  });
-		});
-		
-		</script>
+
+	}
+}).on('change', function(e) {
+	var data = $(".select2 option:selected");
+	$("#farmer_id").val(data.val());
+  });
+});
+
+</script>

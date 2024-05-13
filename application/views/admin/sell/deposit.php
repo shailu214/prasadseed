@@ -22,7 +22,7 @@
 						echo implode(',<br>', $this->session->flashdata('errors'));
 					}  ?>
                     <div class="col-md-12">
-						<?php foreach($list as $v) { ?>
+						<?php foreach([] as $v) { ?>
 							<div class="row">
 								<div class="col-md-3">
 								  <div class="form-group">

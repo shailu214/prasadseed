@@ -6,8 +6,8 @@
 
                 <div class="card">
                   <div class="card-header">
-                    <h3 class="card-title" style="width:100%;">Amount List
-                    <a href="<?=base_url()?>amount/add" class="btn btn-primary btn-sm pull-right" style="color:#fff;"><i class="fe fe-plus"></i> Add New</a>
+                    <h3 class="card-title" style="width:100%;">Vendor Purchase List
+                    <a href="<?=base_url()?>sell/add" class="btn btn-primary btn-sm pull-right" style="color:#fff;"><i class="fe fe-plus"></i> Add New</a>
                     </h3>
                   </div>
                   <div class="table-responsive">
@@ -55,7 +55,7 @@
 									</td>
 								  
                                   <td><button class="btn btn-primary btn-sm"><i class="fe fe-search"></i> Search</button></td>
-                                  <td><a href="<?php echo base_url(); ?>/amount" class="btn btn-danger btn-sm" id="reset" style="color:#fff"><i class="fe fe-rotate-ccw"></i> Reset</a></td>
+                                  <td><a href="<?php echo base_url(); ?>/sell" class="btn btn-danger btn-sm" id="reset" style="color:#fff"><i class="fe fe-rotate-ccw"></i> Reset</a></td>
                                 </tr>
                               </table>
                             </form>
