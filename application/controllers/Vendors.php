@@ -427,8 +427,14 @@ class Vendors extends CI_Controller {
 						$this->db->select('bardana_comment.*');
 						$this->db->where('bardana_id', $bardana->id);
 						$this->db->where('sell_id', $pkid);
-						$bardana->iscomment = true;
-						$bardana->comment = $this->db->get('bardana_comment')->row();
+						
+						$cmt = $this->db->get('bardana_comment')->row();
+						if($cmt) {
+							$bardana->iscomment = true;
+						} else {
+							$bardana->iscomment = false;
+						}
+						$bardana->comment = $cmt;
 						
 					}
 					
