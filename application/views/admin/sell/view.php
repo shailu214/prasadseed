@@ -150,7 +150,7 @@
 								$db->select_sum('amount');
 
 								$totalPreAmount = $db->get("sell_deposit")->row();
-								echo $val['price']-$totalPreAmount->amount;
+								echo $val['total_amount']-$totalPreAmount->amount;
 							?>
 							</td>
 							

@@ -215,6 +215,7 @@ class Sell extends CI_Controller {
 			if($post['self'] == 1) {
 				$post['price'] = 0;
 			}
+			$post['total_amount'] = $post['quantity']*$post['price'];
 			if($obj) {
 				
 				$this->session->set_flashdata('success_entry', 'success update');
