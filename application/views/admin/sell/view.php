@@ -75,6 +75,7 @@
 						  <th>Lot No.</th>
                           <th>Year</th>
 						  <th>Vendor</th><th>Qty</th><th>Price</th><th>Total Price</th>
+						  <th>Due Date</th>
                           <th>Action</th>
                         </tr>
                       </thead>
@@ -130,6 +131,17 @@
 						  <td><?=$val['quantity']?></td>
 						  <td><?=$val['price']?></td>
 						  <td><?=$val['quantity']*$val['price']?></td>
+						  <td>
+						  <?php 
+								$db->where('sell_id', $val['id']);
+								$db->limit(1);
+								$db->order_by('id', 'desc');
+								$obj = $db->get('sell_deposit')->row();
+								if($obj) {
+									echo $obj->due_date;
+								}
+							?>
+							</td>
 						  <td align="left">  
 							<a class="icon" href="<?=base_url()?>sell/view/<?=$val['id']?>" data-row-id="<?=$val['id']?>" data-tbl="category">
                               <i class="fe fe-eye"></i>
