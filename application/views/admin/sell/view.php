@@ -76,6 +76,7 @@
                           <th>Year</th>
 						  <th>Vendor</th><th>Qty</th><th>Price</th><th>Total Price</th>
 						  <th>Due Date</th>
+						  <th>Due Amount</th>
                           <th>Action</th>
                         </tr>
                       </thead>
@@ -142,6 +143,17 @@
 								}
 							?>
 							</td>
+							
+							<td>
+						  <?php
+								$db->where('sell_id', $val['id']);
+								$db->select_sum('amount');
+
+								$totalPreAmount = $db->get("sell_deposit")->row();
+								echo $val['price']-$totalPreAmount->amount;
+							?>
+							</td>
+							
 						  <td align="left">  
 							<a class="icon" href="<?=base_url()?>sell/view/<?=$val['id']?>" data-row-id="<?=$val['id']?>" data-tbl="category">
                               <i class="fe fe-eye"></i>
