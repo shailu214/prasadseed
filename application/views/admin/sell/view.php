@@ -7,6 +7,7 @@
                 <div class="card">
                   <div class="card-header">
                     <h3 class="card-title" style="width:100%;">Vendor Purchase List
+					<a href="#" class="export btn btn-primary btn-sm pull-" style="color:#fff;"> Export</a>
                     <a href="<?=base_url()?>sell/add" class="btn btn-primary btn-sm pull-right" style="color:#fff;"><i class="fe fe-plus"></i> Add New</a>
                     </h3>
                   </div>
@@ -15,7 +16,7 @@
                       <thead>
 						<tr>
                           <td colspan="9"  style="border-bottom:1px solid #ddd">
-                            <form method="get">
+                            <form method="get" id="formsubmit" action="<?=base_url()?>sell/index">
                               <table>
                                 <tr>
 								
@@ -37,6 +38,8 @@
 										From <input type="date" id="fdate" name="data[fdate]">
 										To <input type="date" id="tdate" name="data[tdate]">
 									</td>
+									
+									
 								  
 									<td>
 										<select name="" class="select2" style="width:100%">
@@ -52,6 +55,10 @@
 										</select>
 										<input type="hidden" id="vendor_id" name="data[vendor_id]">
 									
+									</td>
+									
+									<td>
+										Due Date <input type="date" id="due_date" name="data[due_date]">
 									</td>
 								  
                                   <td><button class="btn btn-primary btn-sm"><i class="fe fe-search"></i> Search</button></td>
@@ -170,6 +177,19 @@ $(document).ready(function() {
 			return true;
 		}
 		return false;
+	});
+	
+	$('body').on('click', '.submit', function() {
+		$('#formsubmit').attr('action', '<?=base_url()?>sell/index');
+		return true;
+	});
+	
+	$('body').on('click', '.export', function() {
+		//$('#formsubmit').submit();
+		$('#formsubmit').attr('action', '<?=base_url()?>sell/export');
+		document.getElementById("formsubmit").submit()
+
+		//return true;
 	});
 });
 

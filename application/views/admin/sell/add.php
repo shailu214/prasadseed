@@ -206,8 +206,6 @@ if(@$obj->id > 0) {
                       <thead>
                         <tr>
                           <th class="w-1">S.No.</th>
-						  <th>Farmer</th>
-                          <th>Date</th>
 						  <th>Item</th>
 						  <th>Qty</th>
 						  <th>Remaining Qty</th>
@@ -215,17 +213,7 @@ if(@$obj->id > 0) {
                         </tr>
                       </thead>
                       <tbody class="bardana_list">
-                        <tr>
-						<td><span class="text-muted">1</span></td>
-						  <td align="left"> 
-							Shailendra 
-						  </td>
-						  <td align="left">25/10/2024</td>
-                          <td align="left">Item1</td>
-						  <td align="left"> 500</td>
-						  <td align="left">250</td><td align="left"><textarea name="bardana_action[]"></textarea></td>
-						</tr>
-						
+                        
                      
                       </tbody>
                     </table>
@@ -431,30 +419,41 @@ if(@$obj->id > 0) {
 							let k = ++key;
 							 bardanahtml += '<tr>';
 							 bardanahtml += '<td>'+k+'</td>';
-							 bardanahtml += '<td></td>';
-							 bardanahtml += '<td>'+list.year+'</td>';
 							 bardanahtml += '<td>'+list.item+'</td>';
 							 bardanahtml += '<td>'+list.qty+'</td>';
 							 bardanahtml += '<td>'+list.returnqty+'</td>';
-							 let cmt = '';
+							let cmt = '';
 							 if(list.iscomment === true) {
 								 cmt = list.comment.comment;
 							 }
 							 bardanahtml += '<td><textarea name="bardanacomment['+list.id+']" >'+cmt+'</textarea></td>';
-							 /*
-							 if(typeof list.comment === 'undefined') {
-								 bardanahtml += '<td><textarea name="bardanacomment['+list.id+']" ></textarea></td>';
-							 } else {
-								 let cmt = '';
-								 if(list.commentid > 0) {
-									 cmt = list.comment;
-									 
-								 }
-								 bardanahtml += '<td><textarea name="bardanacomment['+list.id+']" >'+cmt+'</textarea></td>';
-							 }
-							 */
+							 bardanahtml += '<tr>';
 							 
-							 bardanahtml += '</tr>';
+							 bardanahtml += '<tr>';
+							 bardanahtml += '<td></td>';
+							 bardanahtml += '<td>'+list.item_two+'</td>';
+							 bardanahtml += '<td>'+list.qty_two+'</td>';
+							 bardanahtml += '<td>'+list.returnqtytwo+'</td>';
+							 bardanahtml += '<td></td>';
+							 bardanahtml += '<tr>';
+							 
+							 bardanahtml += '<tr>';
+							 bardanahtml += '<td></td>';
+							 bardanahtml += '<td>'+list.item_three+'</td>';
+							 bardanahtml += '<td>'+list.qty_three+'</td>';
+							 bardanahtml += '<td>'+list.returnqtythree+'</td>';
+							 bardanahtml += '<td></td>';
+							 bardanahtml += '<tr>';
+							 
+							 bardanahtml += '<tr>';
+							 bardanahtml += '<td></td>';
+							 bardanahtml += '<td>'+list.item_four+'</td>';
+							 bardanahtml += '<td>'+list.qty_four+'</td>';
+							 bardanahtml += '<td>'+list.returnqtyfour+'</td>';
+							 bardanahtml += '<td></td>';
+							 bardanahtml += '<tr>';
+							 
+							 
 						});
 						$('.bardana_list').html(bardanahtml);
 						

@@ -88,13 +88,26 @@ class Sell extends CI_Controller {
 		}
 		$this->db->select("sell.*");
 		if(!empty( $post )) {
-			if($post['fdate'] != '' && $post['tdate'] != '') {
+			/* if($post['fdate'] != '' && $post['tdate'] != '') {
 				$start_date = $post['fdate'];
 				$end_date = $post['tdate'];
 				
 				$this->db->where('sell_deposit.due_date >=', $start_date);
 				$this->db->where('sell_deposit.due_date <=', $end_date);
 				$this->db->join('sell_deposit', 'sell.id = sell_deposit.sell_id');
+			} */
+			
+			if($post['due_date'] != '') {
+				$due_date = $post['due_date'];
+				
+				$this->db->where('sell_deposit.due_date =', $due_date);
+				$this->db->join('sell_deposit', 'sell.id = sell_deposit.sell_id');
+			}
+			
+			if($post['fdate'] != '' && $post['tdate'] != '') {
+				$start_date = $post['fdate'];
+				$end_date = $post['tdate'];
+				$this->db->where('sell.created BETWEEN "'. date('Y-m-d H:i:s', strtotime($start_date.' 00:00:00')). '" and "'. date('Y-m-d H:i:s', strtotime($end_date.' 23:59:59')).'"');
 			}
 		}
 
@@ -210,6 +223,7 @@ class Sell extends CI_Controller {
 				redirect("sell/add/".$pkid);
 			} else {
 				$this->session->set_flashdata('success_entry', 'success');
+				//$post['created'] = date('Y-m-d');
 				$this->db->insert("sell", $post );
 				$insert_id = $this->db->insert_id();
 				//$this->db->where('bardana_id', $insert_id);
@@ -464,5 +478,54 @@ class Sell extends CI_Controller {
 			$result[] = ['id' => $val['id'], 'search' => $string, 'lots' => $lots];
 		}
 		echo json_encode($result);
+	}
+	
+	public function export() {
+		$post = $this->input->get('data');
+		//echo '<pre>'; print_r($post); die;
+		$csvData[] =array("Farmer", "Lot No","Year","Vendor", "Qty","Price","Total Price");
+		$this->db->limit(50);
+		$data = $this->db->get("sell")->result_array();
+		foreach($data as $cnt){
+			$vendorname = 'self';
+			$farmerName = $lot = '';
+			
+			if($cnt['self'] == 0 && $cnt['vendor_id'] > 0) {
+				$this->db->where('id', $cnt['vendor_id']);
+				$vendor = $this->db->get('vendors')->row();
+				if($vendor) {
+					$vendorname = $vendor->name;
+				}
+			}
+			
+			$this->db->where('id', $cnt['farmer_id']);
+			$obj = $this->db->get('farmer')->row();
+			if($obj) {
+				$farmerName = $obj->name;
+			}
+			
+			$this->db->where('id', $cnt['farmer_lot_id']);
+			$obj = $this->db->get('farmer_lots')->row();
+			if($obj) {
+				$lot = $obj->lots;
+			}
+			$csvData[]=array(
+			  $farmerName ,$lot, $cnt['year'], $vendorname, $cnt['quantity'], $cnt['price'], $cnt['quantity']*$cnt['price']
+			);
+		}
+
+		header("Pragma: public");
+		header("Expires: 0");
+		header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
+		header("Content-Type: application/force-download");
+		header("Content-Type: application/octet-stream");
+		header("Content-Type: application/download");
+		header("Content-Disposition: attachment;filename=Report_".time().".csv");
+		header("Content-Transfer-Encoding: binary");
+		$df = fopen("php://output", 'w');
+		array_walk($csvData, function($row) use ($df) {
+		  fputcsv($df, $row);
+		});
+		fclose($df);
 	}
 }

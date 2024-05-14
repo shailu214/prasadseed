@@ -367,6 +367,17 @@ class Vendors extends CI_Controller {
 		redirect("vendors");
 	}
 	
+	private function sumReturnQty($bardanaid, $qty, $type) {
+		$this->db->select_sum('return_qty');
+		$this->db->where('bardana_id', $bardanaid);
+		$this->db->where('type', $type);
+		$total_return_qty = $this->db->get('bardana_detail_return')->row();
+		if($total_return_qty) {
+			return $qty-$total_return_qty->return_qty;
+		}
+		return 0;
+	}
+	
 	public function getdata() {
 		$lotid = $this->input->get('lotid');
 		$pkid = $this->input->get('pkid');
@@ -412,17 +423,12 @@ class Vendors extends CI_Controller {
 					$this->db->where('id', $pkid);
 					$result['obj'] = $this->db->get('sell')->row();
 
-					foreach($bardanalist as $bardana) {
+					foreach($bardanalist as $bardanaType => $bardana) {
 						
-						$qtyone = 0;
-						$this->db->select_sum('return_qty');
-						$this->db->where('bardana_id', $bardana->id);
-						$this->db->where('type', 1);
-						$total_return_qty = $this->db->get('bardana_detail_return')->row();
-						if($total_return_qty) {
-							$qtyone = $bardana->qty-$total_return_qty->return_qty;
-						}
-						$bardana->returnqty = $qtyone;
+						$bardana->returnqty = $this->sumReturnQty($bardana->id, $bardana->qty, 1);
+						$bardana->returnqtytwo = $this->sumReturnQty($bardana->id, $bardana->qty_two, 2);
+						$bardana->returnqtythree = $this->sumReturnQty($bardana->id, $bardana->qty_three, 3);
+						$bardana->returnqtyfour = $this->sumReturnQty($bardana->id, $bardana->qty_four, 4);
 						
 						$this->db->select('bardana_comment.*');
 						$this->db->where('bardana_id', $bardana->id);
@@ -435,24 +441,18 @@ class Vendors extends CI_Controller {
 							$bardana->iscomment = false;
 						}
 						$bardana->comment = $cmt;
-						
 					}
 					
 					$result['bardana'] = $bardanalist;
 				} else {
 					foreach($bardanalist as $bardana) {
-						$qtyone = 0;
-						$this->db->select_sum('return_qty');
-						$this->db->where('bardana_id', $bardana->id);
-						$this->db->where('type', 1);
-						$total_return_qty = $this->db->get('bardana_detail_return')->row();
-						if($total_return_qty) {
-							$qtyone = $bardana->qty-$total_return_qty->return_qty;
-						}
-						$bardana->returnqty = $qtyone;
-						
-						$bardana->comment = null;
+						$bardana->returnqty = $this->sumReturnQty($bardana->id, $bardana->qty, 1);
+						$bardana->returnqtytwo = $this->sumReturnQty($bardana->id, $bardana->qty_two, 2);
+						$bardana->returnqtythree = $this->sumReturnQty($bardana->id, $bardana->qty_three, 3);
+						$bardana->returnqtyfour = $this->sumReturnQty($bardana->id, $bardana->qty_four, 4);
 						$bardana->iscomment = false;
+						$bardana->comment = '';
+						
 					}
 					
 					$result['bardana'] = $bardanalist;
