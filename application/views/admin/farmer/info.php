@@ -85,13 +85,16 @@
 						  <th>Quantity</th>
 						  <th>Fare</th>
 						  <th>Quality</th>
+						  <th>Remaning Quantity</th>
                           <th>Action</th>
                         </tr>
                       </thead>
                       <tbody>
                         <?php 
 						
-						foreach($entry as $entryobj) { $sn++; ?>
+						foreach($entry as $entryobj) { $sn++;
+							$fullQty = false;
+						?>
                         <tr>
                           <td><span class=""><?=$entryobj['sno']; ?>/<?=$entryobj['qty']; ?></span></td>
 						  <td align="left"> 
@@ -126,10 +129,36 @@
 							<td><span class=""><?=$entryobj['qty']; ?></span></td>
 							<td><span class=""><?=$entryobj['fare']; ?></span></td>
 							<td><span class=""><?=$entryobj['quality']; ?></span></td>
+							<td><span class="">
+									<?php
+									$db->where('farmer_lots.entry_management_id', $entryobj['id']);
+									$db->join('farmer_lots', 'sell.farmer_lot_id = farmer_lots.id');
+									
+									$db->select_sum('sell.quantity');
+									$obj = $db->get('sell')->row();
+									if($obj) {
+										if($obj->quantity > 0) {
+											
+										}
+										$val = $entryobj['qty'] - $obj->quantity;
+										if($val == 0) {
+											$fullQty = true;
+										}
+										
+									}
+									//echo $entryobj['id'];
+									
+									?>
+							</span></td>
 						  <td align="left">  
 							<a class="icon" href="<?=base_url()?>entry/view/<?=$entryobj['id']?>" data-row-id="<?=$val['id']?>" data-tbl="category">
                               <i class="fe fe-eye"></i>
                             </a>
+							
+							<?php if($fullQty == true) { ?>
+								
+							<?php } ?>
+							
 							<?php if($entryobj['verify'] == 1) { ?>
 								Not Clear
 							<?php } else if($entryobj['verify'] == 2) { ?>
