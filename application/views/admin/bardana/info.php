@@ -61,9 +61,52 @@
 				</tr>
 			  </thead>
 			  <tbody>
+				<tr>
+				  <td><span class="text-muted">1</span></td>
+				  <td align="left"> 
+					<?=$obj->item; ?>
+					
+				  </td>
+				  <td align="left">  <?=$obj->qty; ?>  </td>
+				  <td align="left">  <?=$obj->measurement; ?>  </td>
+				  
+				</tr>
+				
+				<tr>
+				  <td><span class="text-muted">2</span></td>
+				  <td align="left"> 
+					<?=$obj->item_two; ?>
+					
+				  </td>
+				  <td align="left">  <?=$obj->qty_two; ?>  </td>
+				  <td align="left">  <?=$obj->measurement_two; ?>  </td>
+				  
+				</tr>
+				
+				<tr>
+				  <td><span class="text-muted">3</span></td>
+				  <td align="left"> 
+					<?=$obj->item_three; ?>
+					
+				  </td>
+				  <td align="left">  <?=$obj->qty_three; ?>  </td>
+				  <td align="left">  <?=$obj->measurement_three; ?>  </td>
+				  
+				</tr>
+				
+				<tr>
+				  <td><span class="text-muted">4</span></td>
+				  <td align="left"> 
+					<?=$obj->item_four; ?>
+					
+				  </td>
+				  <td align="left">  <?=$obj->qty_four; ?>  </td>
+				  <td align="left">  <?=$obj->measurement_four; ?>  </td>
+				  
+				</tr>
 				<?php 
 				$sn = 0;
-				foreach ($details as $key => $detailsobj ) { $sn++; ?>
+				/* foreach ($details as $key => $detailsobj ) { $sn++; ?>
 				<tr>
 				  <td><span class="text-muted"><?=$sn?></span></td>
 				  <td align="left"> 
@@ -74,7 +117,7 @@
 				  <td align="left">  <?=$detailsobj['val']; ?>  </td>
 				  
 				</tr>
-			  <?php } ?>
+			  <?php } */ ?>
 			  </tbody>
 			  <tfoot>
 				<tr>
