@@ -16,7 +16,7 @@ class Pdffile extends CI_Controller {
 
     public function index( $pg=null ) {
 
-		
+		$this->load->view('admin/head');
 		$this->load->view('admin/challan/pdf',$data);
 		//$this->load->view('admin/footer');
 	}
