@@ -107,6 +107,9 @@
 							<a class="delete icon" href="<?=base_url()?>entry/delete/<?=$val['id']?>" data-row-id="<?=$val['id']?>" data-tbl="category">
 							  <i class="fe fe-trash"></i>
 							</a>
+							<a class="" href="<?=base_url()?>entry/lot/<?=$val['id']?>" data-row-id="<?=$val['id']?>" data-tbl="category">
+								Lot
+							</a>
 							<?php } ?>
 							<?php if($val['verify'] == 1) { ?>
 							<button type="button" class="btn btn-primary verifiedcontent" data-id="<?=$val['id']?>" data-toggle="modal" data-target="#exampleModalLong<?=$val['id']?>">

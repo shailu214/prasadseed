@@ -127,9 +127,9 @@ class Farmer extends CI_Controller {
 		$data['amount'] = $this->amountList($id, $search);
 		$data['fare'] = $this->fareList($id, $search);
 		
-		$this->db->where('farmer_id', $id);
-		$obj = $this->db->get("sell")->result();
-		$data['lots'] = $obj;
+		//$this->db->where('farmer_id', $id);
+		//$obj = $this->db->get("sell")->result();
+		//$data['lots'] = $obj;
 		
 		$this->db->where('farmer_id', $id);
 		$data['resultsell'] = $this->db->get("sell")->result_array();

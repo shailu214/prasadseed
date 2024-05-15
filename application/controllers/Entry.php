@@ -75,6 +75,22 @@ class Entry extends CI_Controller {
 		$this->load->view('admin/footer');
 	}
 	
+	public function lot($id) {
+		$this->db->select('sell.*');
+		$this->db->where('farmer_lots.entry_management_id', $id);
+		$this->db->join('farmer_lots', 'farmer_lots.id = sell.farmer_lot_id');
+		$data = [];
+		$data['lots'] = $this->db->get("sell")->result();
+		
+		//$data['db'] => $this->db;
+		
+		$this->load->view('admin/head');
+		$this->load->view('admin/header');
+		$this->load->view('admin/entry/lot',$data);
+		$this->load->view('admin/footer');
+	
+	}
+	
 	public function view($id) {
 		$this->db->where('id', $id);
 		$obj = $this->db->get("entry_management")->row();
