@@ -18,15 +18,17 @@
 <div class="container pdf" id="downloadPDFData" style="border-radius: 20px;max-width: 60%;">
   <div class="header text-center" style="padding:5px;">
     <div class="row">
-      <div class="col-md-8 text-center" style="display: flex;justify-content: center;">
-        <h4 style="padding: 10px; background-color:#fff;">चालान</h4>
+      <div class="col-md-7 text-center" style="display: flex;justify-content: end;">
+        <h4 style="padding: 12px 50px;background-color:#fff;border:1px solid #120c21;border-radius:20px;">चालान</h4>
       </div>
-      <div class="col-md-4"></div>
+      <div class="col-md-5">
+        
+      </div>
     </div>
     <div class="row">
       <div class="col-md-2"></div>
       <div class="col-md-8 text-center">
-        <h3>प्रसाद एग्रो इंडस्ट्रीज (कोल्ड स्टोरेज)</h3>
+        <h3 style="font-size: 40px;">प्रसाद एग्रो इंडस्ट्रीज <span style="font-size: 16px;">(कोल्ड स्टोरेज)</span></h3>
       </div>
       <div class="col-md-2"></div>
     </div>
