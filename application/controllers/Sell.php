@@ -150,8 +150,11 @@ class Sell extends CI_Controller {
 
 		$this->db->where('sell_id', $id);
 		$amount_deposit = $this->db->get("sell_deposit")->result_array();
+		$loadqty = $this->db->get("sell_load")->result_array();
 		
-		$data = ['obj' => $obj, 'amount_deposit' => $amount_deposit, 'totalamt' => $objcount[0]['amount']];
+		//echo '<pre>'; print_r($loadqty); die;
+
+		$data = ['obj' => $obj, 'amount_deposit' => $amount_deposit, 'loadqty' => $loadqty, 'totalamt' => $objcount[0]['amount']];
 		$this->load->view('admin/head');
 		$this->load->view('admin/header');
 		$this->load->view('admin/sell/info',$data);
@@ -447,6 +450,73 @@ class Sell extends CI_Controller {
 		$this->load->view('admin/sell/deposit',$data);
 		
 	}
+
+	
+	public function load($id=null)
+	{
+
+		$post = $this->input->post('data');
+		if(!empty($post)) {
+			$pkid = $this->input->post('pkid');
+			if($this->pageParam->role != 1) {
+				redirect("sell_load");
+			}
+			
+			$errors = [];
+			if(empty($post['date'])) {
+				$errors[] = 'date is required';
+			}
+			if(empty($post['qty'])) {
+				$errors[] = 'Qunatity is required';
+			}
+			
+			//echo '<pre>'; print_r($post); die;
+			if(count($errors) > 0) {
+				$this->session->set_flashdata('errors', $errors);
+				redirect("sell/load");
+			}
+			if($pkid > 0) {
+				$this->session->set_flashdata('success_entry', 'success update');
+				$this->db->where('id', $id);
+				$this->db->update('sell_load', $post);
+				redirect("sell/load".$id);
+			} else {
+				$this->session->set_flashdata('success_entry', 'success create');
+				$this->db->insert("sell_load", $post );
+				redirect("sell/load");
+			}
+			
+			
+			
+			
+			
+		}
+		
+		$data['obj'] = $data['farmer_lot_id'] = $data['advanced'] = $data['persent'] = null;
+		$data['lots'] = [];
+		if($id > 0) {
+			$this->db->where('id', $id);
+			$obj = $this->db->get('sell_load')->row();
+			if($obj) {
+				$data['obj'] = $obj;
+				$data['persent'] = $obj->per;
+				$this->db->where('farmer_id', $obj->farmer_id);
+				$data['lots'] = $this->db->get('farmer_lots')->result_array();
+				$data['farmer_lot_id'] = $obj->farmer_lot_id;
+			} else {
+				redirect("sell/load");
+			}
+			
+		}
+		
+		$data['db'] = $this->db;
+		$this->load->view('admin/head');
+		$this->load->view('admin/header');
+		$this->load->view('admin/sell/load',$data);
+		$this->load->view('admin/footer');
+	}
+
+
 	
 	public function delete($amountid) {
 		if($this->pageParam->role == 1) {

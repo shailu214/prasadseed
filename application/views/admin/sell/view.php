@@ -165,6 +165,9 @@
 							<a class="icon" href="<?=base_url()?>sell/deposit/<?=$val['id']?>" data-row-id="<?=$val['id']?>" data-tbl="deposit">
                               Deposit
                             </a>
+							<a class="icon" href="<?=base_url()?>sell/load/<?=$val['id']?>" data-row-id="<?=$val['id']?>" data-tbl="load">
+                              Loading
+                            </a>
 							<a class="icon delete" href="<?=base_url()?>sell/delete/<?=$val['id']?>" data-row-id="<?=$val['id']?>" data-tbl="category">
                               <i class="fe fe-trash"></i>
                             </a>

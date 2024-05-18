@@ -129,6 +129,38 @@
               </table>
             </div>
           </div>
+          <div class="card">
+            <div class="card-header">
+              <h3 class="card-title" style="width:100%;">
+            <i class="fe fe-user"></i> Loading
+              </h3>
+            </div>
+            <div class="table-responsive">
+              <!-- <br> -->
+              <table class="table table-bordered">
+                <tbody>
+					<tr>
+					  <th class="w-1">S.No.</th>
+					  <th>Date</th>
+					  <th>Loading Quantity</th>
+					  <th>Due Date</th>
+					</tr>
+					
+					<?php foreach($loadqty as $k=>$load) { ?>
+					<tr>
+					  <th class="w-1"><?=++$k?></th>
+					  <th><?=$load['date']?></th>
+					  <th><?=$load['qty']?></th>
+					  <th><?=$load['due_date']?></th>
+					</tr>
+					<?php } ?>
+				 
+                </tbody>
+                <tfoot>
+                </tfoot>
+              </table>
+            </div>
+          </div>
 
         </div>
       </div>
