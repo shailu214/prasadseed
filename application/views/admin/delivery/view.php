@@ -93,6 +93,9 @@
 							<a class="icon" href="<?=base_url()?>delivery/add/<?=$val['id']?>" data-row-id="<?=$val['id']?>" data-tbl="category">
                               <i class="fe fe-edit"></i>
                             </a>
+							<a class="icon" href="<?=base_url()?>pdffile/delivery/<?=$val['id']?>" data-row-id="<?=$val['id']?>" data-tbl="category">
+                              Print
+                            </a>
 							<a class="icon delete" href="<?=base_url()?>delivery/delete/<?=$val['id']?>" data-row-id="<?=$val['id']?>" data-tbl="category">
                               <i class="fe fe-trash"></i>
                             </a>

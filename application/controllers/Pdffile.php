@@ -44,6 +44,37 @@ class Pdffile extends CI_Controller {
 		$this->load->view('admin/challan/pdf',$data);
 		//$this->load->view('admin/footer');
 	}
+	
+	public function delivery( $id ) {
+		$this->db->where('id', $id);
+		$obj = $this->db->get('challan')->row();
+		if($obj) {
+			$this->db->where('id', $obj->farmer_id);
+			$farmer = $this->db->get('farmer')->row();
+			if($farmer) {
+				$obj->farmer = $farmer->name;
+				$this->db->where('id', $farmer->address);
+				$addressobj = $this->db->get('address')->row();
+				if($addressobj) {
+					$obj->address = $addressobj->address;
+				}
+			}
+
+
+
+			$this->db->where('id', $obj->vegetable_id);
+			$vegetable = $this->db->get('vegetable')->row();
+			if($vegetable) {
+				$obj->vegetable = $vegetable->name;
+			}
+		}
+		$data['obj'] = $obj;
+		//echo '<pre>'; print_r($data); die;
+		
+		$this->load->view('admin/head');
+		$this->load->view('admin/delivery/pdf',$data);
+		//$this->load->view('admin/footer');
+	}
 
     public function view($id) {
 		$this->db->where('id', $id);
