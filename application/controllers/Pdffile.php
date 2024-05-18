@@ -15,7 +15,11 @@ class Pdffile extends CI_Controller {
 	}
 
     public function index( $pg=null ) {
-
+		$id = 2;
+		$this->db->where('id', $id);
+		$data['obj'] = $this->db->get('challan')->row();
+		//echo '<pre>'; print_r($data); die;
+		
 		$this->load->view('admin/head');
 		$this->load->view('admin/challan/pdf',$data);
 		//$this->load->view('admin/footer');

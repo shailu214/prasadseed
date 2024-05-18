@@ -65,13 +65,13 @@
               <tr>
                 <td style="vertical-align: top; padding: 20px;">कर्मांक: </td>
                 <td style="padding: 20px;">
-                  <p class="text-left" style="margin:0">2</p>
+                  <p class="text-left" style="margin:0"><?=@$obj->id?></p>
                 </td>
               </tr>
               <tr>
                 <td style="vertical-align: top; padding: 0px;">दिनांक: </td>
                 <td style="padding:0px;">
-                  <p class="text-left" style="margin:0">13/04/2024</p>
+                  <p class="text-left" style="margin:0"><?=@$obj->id?></p>
                 </td>
               </tr>
             </table>
@@ -82,7 +82,7 @@
     <div class="row">
       <div class="col-md-12">
         <p class="text-left" style="font-size: 18px;padding:10px; ">महोदय,</p>
-        <p class="text-left" style="font-size: 18px;padding:10px; ">आज दिन गाड़ी नम्बर {UP431560} से आलू {७२७} बोरा शब्दों में {छै सौ चौरासी}, बिक्री हेतु आपके पास भेज रहा हूं सो आप माल संभालकर उतरवा लीजिएगा ।। गाड़ी भाड़ा बिल्टी मुजिब रुपए { } प्रति किग्रा / प्रति बोरा के हिसाब से जोड़कर दे देना ।। माल बिक्री का पूरा रुपया हमारे खाता नाम { Account Name , Account Number, IFSC code } में ही करें ।। <br>धन्यबाद
+        <p class="text-left" style="font-size: 18px;padding:10px; ">आज दिन गाड़ी नम्बर {<?=@$obj->vechicle_no?>} से आलू {<?=@$obj->no_of_bori_count?>} बोरा शब्दों में {<?=@$obj->no_of_bori_count_word?>}, बिक्री हेतु आपके पास भेज रहा हूं सो आप माल संभालकर उतरवा लीजिएगा ।। गाड़ी भाड़ा बिल्टी मुजिब रुपए { <?=@$obj->gaddi_bhada?>} प्रति किग्रा / प्रति बोरा के हिसाब से जोड़कर दे देना ।। माल बिक्री का पूरा रुपया हमारे खाता नाम { <?=@$obj->account_name?> , <?=@$obj->account_number?>, <?=@$obj->ifsc_code?> } में ही करें ।। <br>धन्यबाद
 </p>
       </div>
       
@@ -106,73 +106,73 @@
         <tbody>
               <tr>
                 <td>1</td>
-                <td>शैलेंद्र</td>
+                <td><?=@$obj->ms_name?></td>
                 <td>कानपुर देहात</td>
-                <td>169</td>
-                <td>2 नं</td>
+                <td><?=@$obj->no_of_bori?></td>
+                <td><?=@$obj->nisaan?> </td>
               </tr>
               <tr>
                 <td>2</td>
                 <td></td>
                 <td></td>
-                <td>169</td>
-                <td>2 नं</td>
+                <td><?=@$obj->no_of_bori1?></td>
+                <td><?=@$obj->nisaan1?> </td>
               </tr>
               <tr>
                 <td>3</td>
                 <td></td>
                 <td></td>
-                <td></td>
-                <td></td>
+                <td><?=@$obj->no_of_bori2?></td>
+                <td><?=@$obj->nisaan2?></td>
               </tr>
               <tr>
                 <td>4</td>
                 <td></td>
                 <td></td>
-                <td></td>
-                <td></td>
+                <td><?=@$obj->no_of_bori3?></td>
+                <td><?=@$obj->nisaan3?></td>
               </tr>
               <tr>
                 <td>5</td>
                 <td></td>
                 <td></td>
-                <td></td>
-                <td></td>
+                <td><?=@$obj->no_of_bori4?></td>
+                <td><?=@$obj->nisaan4?></td>
               </tr>
               <tr>
                 <td>6</td>
                 <td></td>
                 <td></td>
-                <td></td>
-                <td></td>
+                <td><?=@$obj->no_of_bori5?></td>
+                <td><?=@$obj->nisaan5?></td>
               </tr>
               <tr>
                 <td>7</td>
                 <td></td>
                 <td></td>
-                <td></td>
-                <td></td>
+                <td><?=@$obj->no_of_bori6?></td>
+                <td><?=@$obj->nisaan6?></td>
               </tr>
               <tr>
                 <td>8</td>
                 <td></td>
                 <td></td>
-                <td></td>
-                <td></td>
+                <td><?=@$obj->no_of_bori7?></td>
+                <td><?=@$obj->nisaan7?></td>
               </tr>
               <tr>
                 <td>9</td>
                 <td></td>
                 <td></td>
-                <td></td>
-                <td></td>
+                <td><?=@$obj->no_of_bori8?></td>
+                <td><?=@$obj->nisaan8?></td>
               </tr>
               <tr>
                 <td>10</td>
                 <td></td>
                 <td></td>
-                <td></td>
-                <td></td>
+                <td><?=@$obj->no_of_bori9?></td>
+                <td><?=@$obj->nisaan9?></td>
               </tr>
         </tbody>
       </table>
@@ -232,19 +232,21 @@
   </div>
 </div>
 
+<script src="<?=base_url()?>/assets/pdf/forpdf-jquery.min.js"></script>
+<script src="<?=base_url()?>/assets/pdf/forpdf-pdfmake.min.js"></script>
+<script src="<?=base_url()?>/assets/pdf/forpdf-html2canvas.min.js"></script>
+<script src="<?=base_url()?>/assets/pdf/forpdf-html2canvas.min.js"></script>
+<?php /*
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.22/pdfmake.min.js"></script>
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.3/jspdf.min.js"></script>
-
+*/ ?>
 
 <script>
-
-// Slightly adapted function from this SO answer: https://stackoverflow.com/a/21937796/2159528
-// It now returns the objects formatted for pdfMake
 function getClippedRegion(image, x, y, width, height) {
   var canvas = document.createElement("canvas"),
-      ctx = canvas.getContUnder Constructionext("2d");
+      ctx = canvas.getContext("2d");
 
   canvas.width = width;
   canvas.height = height;
@@ -258,6 +260,7 @@ function getClippedRegion(image, x, y, width, height) {
     width: 510
   };
 }
+
 
 $("body").on("click", "#downloadPDF", function () {
 	$('#downloadPDF').hide();
