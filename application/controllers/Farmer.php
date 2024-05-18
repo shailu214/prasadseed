@@ -133,7 +133,7 @@ class Farmer extends CI_Controller {
 		
 		$this->db->where('farmer_id', $id);
 		$data['resultsell'] = $this->db->get("sell")->result_array();
-		//echo '<pre>'; print_r($data['lots']); die;
+		//echo '<pre>'; print_r($data['entry']); die;
 		$this->load->view('admin/head');
 		$this->load->view('admin/header');
 		$this->load->view('admin/farmer/info',$data);

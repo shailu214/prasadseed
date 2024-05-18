@@ -150,6 +150,9 @@ class Sell extends CI_Controller {
 
 		$this->db->where('sell_id', $id);
 		$amount_deposit = $this->db->get("sell_deposit")->result_array();
+		
+		
+		$this->db->where('sell_id', $id);
 		$loadqty = $this->db->get("sell_load")->result_array();
 		
 		//echo '<pre>'; print_r($loadqty); die;
@@ -475,20 +478,11 @@ class Sell extends CI_Controller {
 				$this->session->set_flashdata('errors', $errors);
 				redirect("sell/load");
 			}
-			if($pkid > 0) {
-				$this->session->set_flashdata('success_entry', 'success update');
-				$this->db->where('id', $id);
-				$this->db->update('sell_load', $post);
-				redirect("sell/load".$id);
-			} else {
-				$this->session->set_flashdata('success_entry', 'success create');
-				$this->db->insert("sell_load", $post );
-				redirect("sell/load");
-			}
 			
-			
-			
-			
+			$post['sell_id'] = $pkid;
+			$this->session->set_flashdata('success_entry', 'success create');
+			$this->db->insert("sell_load", $post );
+			redirect("sell/load");
 			
 		}
 		

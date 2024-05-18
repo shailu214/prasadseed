@@ -129,7 +129,7 @@ class Vendors extends CI_Controller {
 		
 		$this->db->where('vendor_id', $id);
 		$data['resultsell'] = $this->db->get("sell")->result_array();
-		//echo '<pre>'; print_r($data['bardana']); die;
+		//echo '<pre>'; print_r($data['resultsell']); die;
 		$this->load->view('admin/head');
 		$this->load->view('admin/header');
 		$this->load->view('admin/vendors/info',$data);

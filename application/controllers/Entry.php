@@ -144,6 +144,7 @@ class Entry extends CI_Controller {
 
 		$this->db->where('entry_management_id', $obj->id);
 		$entry = $this->db->get("entry_management_detail")->result_array();
+		//echo '<pre>'; print_r($entry); die;
 		$data = ['obj' => $obj, 'shortQty' => $shortQty, 'entry' => $entry, 'db' => $this->db];
 		$this->load->view('admin/head');
 		$this->load->view('admin/header');

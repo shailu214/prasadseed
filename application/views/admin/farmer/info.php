@@ -129,27 +129,28 @@
 							<td><span class=""><?=$entryobj['qty']; ?></span></td>
 							<td><span class=""><?=$entryobj['fare']; ?></span></td>
 							<td><span class=""><?=$entryobj['quality']; ?></span></td>
-							<td><span class="">
+							<td>
+								<span class="">
 									<?php
 									$db->where('farmer_lots.entry_management_id', $entryobj['id']);
 									$db->join('farmer_lots', 'sell.farmer_lot_id = farmer_lots.id');
-									
-									$db->select_sum('sell.quantity');
+									//$db->select_sum('sell.quantity');
+									$db->select('sell.quantity, sell.short_qty');
 									$obj = $db->get('sell')->row();
+
 									if($obj) {
 										if($obj->quantity > 0) {
-											
+
 										}
-										$val = $entryobj['qty'] - $obj->quantity;
+										echo $val = $entryobj['qty'] - ($obj->quantity + $obj->short_qty);
 										if($val == 0) {
 											$fullQty = true;
 										}
-										
+
 									}
-									//echo $entryobj['id'];
-									
 									?>
-							</span></td>
+								</span>
+							</td>
 						  <td align="left">  
 							<a class="icon" href="<?=base_url()?>entry/view/<?=$entryobj['id']?>" data-row-id="<?=$val['id']?>" data-tbl="category">
                               <i class="fe fe-eye"></i>
