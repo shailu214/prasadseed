@@ -115,7 +115,7 @@
         <tbody>
               <tr>
                 <td>1</td>
-                <td><?=@$obj->ms_name?></td>
+                <td><?=@$obj->farmer?></td>
                 <td>कानपुर देहात</td>
                 <td><?=@$obj->no_of_bori?></td>
                 <td><?=@$obj->nisaan?> </td>
