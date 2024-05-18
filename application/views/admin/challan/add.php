@@ -435,12 +435,15 @@
 	  }
 	  $(document).ready(function() {
 		 
-		  $('body').on('change', '.no_of_bori_sum', function() {
+		  $('body').on('keyup', '.no_of_bori_sum', function() {
 			var sum = 0;
 			$('.no_of_bori_sum').each(function(){
-				sum += parseInt(this.value);
+				if(this.value > 0) {
+					sum += parseInt(this.value);
+				}
+				
 			});
-			console.log(sum);
+			$('.no_of_bori_count').val(sum);
 		  });
 		  
 		  $('body').on('keyup', '.credit_amount', function() {

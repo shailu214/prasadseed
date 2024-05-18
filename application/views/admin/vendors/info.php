@@ -1,3 +1,16 @@
+<?php 
+$total_amount = $total_deposit = $total_due_amount = 0;
+foreach ($resultsell as $objloop ) {
+	$total_amount += $objloop['quantity']*$objloop['price'];
+	
+	$db->where('sell_id', $objloop['id']);
+	$db->select_sum('amount');
+	$totalPreAmount = $db->get("sell_deposit")->row();
+	
+	
+	$total_due_amount += $objloop['total_amount']-$totalPreAmount->amount;
+	$total_deposit += $totalPreAmount->amount;
+} ?>
 <div class="my-3 my-md-5">
   <div class="container">
     <div class="row row-cards row-deck">
@@ -50,14 +63,14 @@
                     <th width="">Address</th>
                     <td colspan="4"><?=$obj->address?></td>
                     <th width=""> Total Amount </th>
-                    <td colspan="4"><?=$obj->address?></td>
+                    <td colspan="4"><?=$total_amount?></td>
                   </tr>
                   <tr>
 
                     <th width="">Total Deposit</th>
-                    <td colspan="4"><?=$obj->address?></td>
+                    <td colspan="4"><?=$total_deposit?></td>
                     <th width=""> Total Due Amount</th>
-                    <td colspan="4"><?=$obj->address?></td>
+                    <td colspan="4"><?=$total_due_amount?></td>
                   </tr>
                 </tbody>
                 <tfoot>
@@ -135,11 +148,21 @@
 							
 							</td>
 							
+							
                           <td align="left">  <?=$val['year']; ?>  </td>
 						  <td><?=$vendorname?></td>
 						  <td><?=$val['quantity']?></td>
 						  <td><?=$val['price']?></td>
 						  <td><?=$val['quantity']*$val['price']?></td>
+						  <td>
+						  <?php
+								$db->where('sell_id', $val['id']);
+								$db->select_sum('amount');
+
+								$totalPreAmount = $db->get("sell_deposit")->row();
+								echo $val['total_amount']-$totalPreAmount->amount;
+							?>
+						  </td>
 						  </td>
 						  <td align="left">  
 							<a class="icon" href="<?=base_url()?>sell/view/<?=$val['id']?>" data-row-id="<?=$val['id']?>" data-tbl="category">
