@@ -49,9 +49,16 @@
 
                     <th width="">Address</th>
                     <td colspan="4"><?=$obj->address?></td>
+                    <th width=""> Total Amount </th>
+                    <td colspan="4"><?=$obj->address?></td>
                   </tr>
                   <tr>
 
+                    <th width="">Total Deposit</th>
+                    <td colspan="4"><?=$obj->address?></td>
+                    <th width=""> Total Due Amount</th>
+                    <td colspan="4"><?=$obj->address?></td>
+                  </tr>
                 </tbody>
                 <tfoot>
                 </tfoot>
@@ -71,36 +78,74 @@
                 <tbody>
 					<tr>
 					  <th class="w-1">S.No.</th>
-						  <th>Tittle</th>
-						  <th>Value</th>
-                          <th>Tittle 2</th>
-						  <th>Value 2</th>
-						  
-						  <th>Tittle 3</th>
-						  <th>Value 3</th>
-						  
-						  <th>Tittle 4</th>
-						  <th>Value 4</th>
+						  <th>Farmer</th>
+						  <th>Lot No.</th>
+                          <th>Year</th>
+						  <th>Vendor</th>
+              <th>Qty</th>
+              <th>Price</th>
+              <th>Total Price</th>
+              <th>Due Amount </th>
+						  <th>Action</th>
 					</tr>
 					
 					<?php 
 						
-						foreach ($resultsell as $key => $val ) { $sni++;
+						foreach ($resultsell as $key => $val ) { $sn++;
+							$vendorname = 'self';
+							if($val['self'] == 0 && $val['vendor_id'] > 0) {
+								$this->db->where('id', $val['vendor_id']);
+								$vendor = $this->db->get('vendors')->row();
+								if($vendor) {
+									$vendorname = $vendor->name;
+								}
+							}
 							
+							/* $this->db->where('farmer_id', $val['farmer_id']);
+							$this->db->where('farmer_lot_id', $val['farmer_lot_id']);
+							$amtObj = $this->db->get('tbl_amount')->row();
+							$creditAmount = $depositAmount = $balanceAmount = '';
+							if($amtObj) {
+								$creditAmount = $amtObj->credit_amount;
+								$depositAmount = $amtObj->deposit_amount;
+								$balanceAmount = $amtObj->balance_amount;
+							} */
 						?>
                         <tr>
-                          <td><span class="text-muted"><?=$sni?></span></td>
+                          <td><span class="text-muted"><?=$sn?></span></td>
 						  <td align="left"> 
-							<?=$val['title_one'];?>
+
+							<?php 
+								$db->where('id', $val['farmer_id']);
+								$obj = $db->get('farmer')->row();
+								if($obj) {
+									echo $obj->name;
+								}
+							?>
 						  </td>
-							<td><?=$val['value_one'];?></td>
+							<td>
 							
-                          <td align="left"><?=$val['title_two'];?></td>
-						  <td><?=$val['value_two'];?></td>
-						  <td><?=$val['title_three'];?></td>
-						  <td><?=$val['value_three'];?></td>
-						  <td><?=$val['title_four'];?></td>
-						  <td><?=$val['value_four'];?></td>
+							<?php 
+								$db->where('id', $val['farmer_lot_id']);
+								$obj = $db->get('farmer_lots')->row();
+								if($obj) {
+									echo $obj->lots;
+								}
+							?>
+							
+							</td>
+							
+                          <td align="left">  <?=$val['year']; ?>  </td>
+						  <td><?=$vendorname?></td>
+						  <td><?=$val['quantity']?></td>
+						  <td><?=$val['price']?></td>
+						  <td><?=$val['quantity']*$val['price']?></td>
+						  </td>
+						  <td align="left">  
+							<a class="icon" href="<?=base_url()?>sell/view/<?=$val['id']?>" data-row-id="<?=$val['id']?>" data-tbl="category">
+                              <i class="fe fe-eye"></i>
+                            </a>
+							
 						  </td>
                         </tr>
                       <?php } ?>
@@ -109,6 +154,9 @@
                 <tfoot>
                 </tfoot>
               </table>
+
+
+              
             </div>
           </div>
 		  

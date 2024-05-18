@@ -14,8 +14,7 @@ class Pdffile extends CI_Controller {
 		$this->pageParam->role = $_SESSION[ADMIN]['role'];
 	}
 
-    public function index( $pg=null ) {
-		$id = 2;
+    public function index( $id ) {
 		$this->db->where('id', $id);
 		$obj = $this->db->get('challan')->row();
 		if($obj) {
@@ -23,6 +22,19 @@ class Pdffile extends CI_Controller {
 			$farmer = $this->db->get('farmer')->row();
 			if($farmer) {
 				$obj->farmer = $farmer->name;
+				$this->db->where('id', $farmer->address);
+				$addressobj = $this->db->get('address')->row();
+				if($addressobj) {
+					$obj->address = $addressobj->address;
+				}
+			}
+
+
+
+			$this->db->where('id', $obj->vegetable_id);
+			$vegetable = $this->db->get('vegetable')->row();
+			if($vegetable) {
+				$obj->vegetable = $vegetable->name;
 			}
 		}
 		$data['obj'] = $obj;

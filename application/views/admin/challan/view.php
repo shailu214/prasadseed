@@ -90,6 +90,9 @@
 							<a class="icon delete" href="<?=base_url()?>challan/delete/<?=$val['id']?>" data-row-id="<?=$val['id']?>" data-tbl="category">
                               <i class="fe fe-trash"></i>
                             </a>
+							<a class="icon" href="<?=base_url()?>pdffile/index/<?=$val['id']?>" data-row-id="<?=$val['id']?>" data-tbl="category">
+                              Print Challan
+                            </a>
 							<?php } ?>
 						  </td>
                         </tr>

@@ -63,8 +63,8 @@
               <tr>
                 <td style="vertical-align: top; padding:0 30px;padding: 20px;">मेसर्स: </td>
                 <td style="padding: 20px;">
-                  <p class="text-left" style="margin:0">मनोज कुमार, महेश कुमार</p>
-                  <p class="text-left" style="margin:0">सतना, मध्य प्रदेश</p>
+                  <p class="text-left" style="margin:0"><?=@$obj->ms_name?></p>
+                  <p class="text-left" style="margin:0"><?=@$obj->state?>, <?=@$obj->city?></p>
                 </td>
               </tr>
             </table>
@@ -80,7 +80,7 @@
               <tr>
                 <td style="vertical-align: top; padding: 0px;">दिनांक: </td>
                 <td style="padding:0px;">
-                  <p class="text-left" style="margin:0"><?=@$obj->id?></p>
+                  <p class="text-left" style="margin:0"><?=@$obj->year?></p>
                 </td>
               </tr>
             </table>
@@ -91,7 +91,7 @@
     <div class="row">
       <div class="col-md-12">
         <p class="text-left" style="font-size: 18px;padding:10px; ">महोदय,</p>
-        <p class="text-left" style="font-size: 18px;padding:10px; ">आज दिन गाड़ी नम्बर {<?=@$obj->vechicle_no?>} से आलू {<?=@$obj->no_of_bori_count?>} बोरा शब्दों में {<?=@$obj->no_of_bori_count_word?>}, बिक्री हेतु आपके पास भेज रहा हूं सो आप माल संभालकर उतरवा लीजिएगा ।। गाड़ी भाड़ा बिल्टी मुजिब रुपए { <?=@$obj->gaddi_bhada?>} प्रति किग्रा / प्रति बोरा के हिसाब से जोड़कर दे देना ।। माल बिक्री का पूरा रुपया हमारे खाता नाम { <?=@$obj->account_name?> , <?=@$obj->account_number?>, <?=@$obj->ifsc_code?> } में ही करें ।। <br>धन्यबाद
+        <p class="text-left" style="font-size: 18px;padding:10px; ">आज दिन गाड़ी नम्बर <?=@$obj->vechicle_no?> से  <?=@$obj->vegetable?> <?=@$obj->no_of_bori_count?> बोरा शब्दों में <?=@$obj->no_of_bori_count_word?>, बिक्री हेतु आपके पास भेज रहा हूं सो आप माल संभालकर उतरवा लीजिएगा ।। गाड़ी भाड़ा बिल्टी मुजिब रुपए  <?=@$obj->gaddi_bhada?> प्रति किग्रा / प्रति बोरा के हिसाब से जोड़कर दे देना ।। माल बिक्री का पूरा रुपया हमारे खाता नाम  <?=@$obj->account_name?> , <?=@$obj->account_number?>, <?=@$obj->ifsc_code?>  में ही करें ।। <br>धन्यबाद
 </p>
       </div>
       
@@ -116,7 +116,7 @@
               <tr>
                 <td>1</td>
                 <td><?=@$obj->farmer?></td>
-                <td>कानपुर देहात</td>
+                <td><?=@$obj->address?></td>
                 <td><?=@$obj->no_of_bori?></td>
                 <td><?=@$obj->nisaan?> </td>
               </tr>

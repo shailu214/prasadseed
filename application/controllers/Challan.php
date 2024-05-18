@@ -142,6 +142,9 @@ class Challan extends CI_Controller {
 				redirect("challan/add");
 				
 			}
+
+			$post['no_of_bori_count'] = ($post['no_of_bori']+$post['no_of_bori1']+$post['no_of_bori2']+$post['no_of_bori3']+$post['no_of_bori4']+$post['no_of_bori5']+$post['no_of_bori6']+$post['no_of_bori7']+$post['no_of_bori8']+$post['no_of_bori9']);
+
 			if($pkid > 0){
 				$this->db->where('id', $pkid);
 				$this->db->update("challan", $post );

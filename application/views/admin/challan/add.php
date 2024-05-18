@@ -141,7 +141,7 @@
 						<div class="col-md-2">
 						  <div class="form-group">
 							<label class="form-label">No. of Bori</label>
-							<input type="text" value="<?=@$obj->no_of_bori_count?>"  name="data[no_of_bori_count]"  class="form-control">
+							<input type="text" value="<?=@$obj->no_of_bori_count?>"  class="form-control no_of_bori_count" disabled>
 						  
 						  </div>
 						</div>
@@ -197,7 +197,7 @@
 					  	<div class="col-md-3">
 						  <div class="form-group">
 							<label class="form-label">No. of Bori</label>
-							<input type="text" value="<?=@$obj->no_of_bori?>"  name="data[no_of_bori]"  class="form-control ">
+							<input type="text" value="<?=@$obj->no_of_bori?>"  name="data[no_of_bori]"  class="form-control no_of_bori_sum">
 						  
 						  </div>
 						</div>
@@ -215,7 +215,7 @@
 					  	<div class="col-md-3">
 						  <div class="form-group">
 							<label class="form-label">No. of Bori</label>
-							<input type="text" value="<?=@$obj->no_of_bori1?>"  name="data[no_of_bori1]"  class="form-control ">
+							<input type="text" value="<?=@$obj->no_of_bori1?>"  name="data[no_of_bori1]"  class="form-control  no_of_bori_sum">
 						  
 						  </div>
 						</div>
@@ -233,7 +233,7 @@
 					  	<div class="col-md-3">
 						  <div class="form-group">
 							<label class="form-label">No. of Bori</label>
-							<input type="text" value="<?=@$obj->no_of_bori2?>"  name="data[no_of_bori2]"  class="form-control ">
+							<input type="text" value="<?=@$obj->no_of_bori2?>"  name="data[no_of_bori2]"  class="form-control  no_of_bori_sum">
 						  
 						  </div>
 						</div>
@@ -251,7 +251,7 @@
 					  	<div class="col-md-3">
 						  <div class="form-group">
 							<label class="form-label">No. of Bori</label>
-							<input type="text" value="<?=@$obj->no_of_bori3?>"  name="data[no_of_bori3]"  class="form-control ">
+							<input type="text" value="<?=@$obj->no_of_bori3?>"  name="data[no_of_bori3]"  class="form-control  no_of_bori_sum">
 						  
 						  </div>
 						</div>
@@ -269,7 +269,7 @@
 					  	<div class="col-md-3">
 						  <div class="form-group">
 							<label class="form-label">No. of Bori</label>
-							<input type="text" value="<?=@$obj->no_of_bori4?>"  name="data[no_of_bori4]"  class="form-control ">
+							<input type="text" value="<?=@$obj->no_of_bori4?>"  name="data[no_of_bori4]"  class="form-control  no_of_bori_sum">
 						  
 						  </div>
 						</div>
@@ -287,7 +287,7 @@
 					  	<div class="col-md-3">
 						  <div class="form-group">
 							<label class="form-label">No. of Bori</label>
-							<input type="text" value="<?=@$obj->no_of_bori5?>"  name="data[no_of_bori5]"  class="form-control ">
+							<input type="text" value="<?=@$obj->no_of_bori5?>"  name="data[no_of_bori5]"  class="form-control  no_of_bori_sum">
 						  
 						  </div>
 						</div>
@@ -305,7 +305,7 @@
 					  	<div class="col-md-3">
 						  <div class="form-group">
 							<label class="form-label">No. of Bori</label>
-							<input type="text" value="<?=@$obj->no_of_bori6?>"  name="data[no_of_bori6]"  class="form-control ">
+							<input type="text" value="<?=@$obj->no_of_bori6?>"  name="data[no_of_bori6]"  class="form-control  no_of_bori_sum">
 						  
 						  </div>
 						</div>
@@ -323,7 +323,7 @@
 					  	<div class="col-md-3">
 						  <div class="form-group">
 							<label class="form-label">No. of Bori</label>
-							<input type="text" value="<?=@$obj->no_of_bori7?>"  name="data[no_of_bori7]"  class="form-control ">
+							<input type="text" value="<?=@$obj->no_of_bori7?>"  name="data[no_of_bori7]"  class="form-control  no_of_bori_sum">
 						  
 						  </div>
 						</div>
@@ -341,7 +341,7 @@
 					  	<div class="col-md-3">
 						  <div class="form-group">
 							<label class="form-label">No. of Bori</label>
-							<input type="text" value="<?=@$obj->no_of_bori8?>"  name="data[no_of_bori8]"  class="form-control ">
+							<input type="text" value="<?=@$obj->no_of_bori8?>"  name="data[no_of_bori8]"  class="form-control  no_of_bori_sum">
 						  
 						  </div>
 						</div>
@@ -359,7 +359,7 @@
 					  	<div class="col-md-3">
 						  <div class="form-group">
 							<label class="form-label">No. of Bori</label>
-							<input type="text" value="<?=@$obj->no_of_bori9?>"  name="data[no_of_bori9]"  class="form-control ">
+							<input type="text" value="<?=@$obj->no_of_bori9?>"  name="data[no_of_bori9]"  class="form-control  no_of_bori_sum">
 						  
 						  </div>
 						</div>
@@ -435,10 +435,12 @@
 	  }
 	  $(document).ready(function() {
 		 
-		  $('body').on('change', '.credit_per', function() {
-			  let amt = $('.credit_amount').val();
-			  let per = $(this).val();
-			  handlepricecal(amt, per);
+		  $('body').on('change', '.no_of_bori_sum', function() {
+			var sum = 0;
+			$('.no_of_bori_sum').each(function(){
+				sum += parseInt(this.value);
+			});
+			console.log(sum);
 		  });
 		  
 		  $('body').on('keyup', '.credit_amount', function() {
