@@ -152,6 +152,23 @@
 						  
 						  </div>
 						</div>
+						
+						<div class="col-md-4">
+						  <div class="form-group">
+							<label class="form-label">State</label>
+							<input type="text" value="<?=@$obj->state?>"  name="data[state]"  class="form-control ">
+						  
+						  </div>
+						</div>
+						
+						<div class="col-md-4">
+						  <div class="form-group">
+							<label class="form-label">City</label>
+							<input type="text" value="<?=@$obj->city?>"  name="data[city]"  class="form-control ">
+						  
+						  </div>
+						</div>
+						
 						<div class="col-md-3">
 						  <div class="form-group">
 							<label class="form-label">Gaddi Bhada (Per Quintol/ Per Bora)</label>
@@ -162,13 +179,18 @@
 						<div class="col-md-4">
                           <div class="form-group">
                             <label class="form-label">Bank Account</label>
-							<select name="data[bank_account]" class="form-control" style="">
+							<select name="data[bank_account]" class="form-control bank_account_data" style="">
 								<option value="">Select Bank Account</option>
 								<option value="Prasad Agro Industries" <?php  if(@$obj->bank_account == 'Prasad Agro Industries') { echo 'selected'; } ?>>Prasad Agro Industries</option>
 								<option value="Krishna Trading Company" <?php  if(@$obj->bank_account == 'Krishna Trading Company') { echo 'selected'; } ?>>Krishna Trading Company</option>
 							</select>				
 						  </div>
                         </div>
+						
+						<div class="col-md-8 bank_account_detail">
+							
+						</div>
+						
                       </div>
 					  <div class="row">
 
@@ -384,10 +406,22 @@
 	  
       <script type="text/javascript">
 	  $(document).ready(function () {
-	$('body').on('click', '.farmerform', function() {
-		$('.q4').removeClass('d-none');
+		$('body').on('click', '.farmerform', function() {
+			$('.q4').removeClass('d-none');
+		});
+		
+		$('body').on('change', '.bank_account_data', function() {
+			let val = $(this).val();
+			let list = '';
+			if(val == 'Prasad Agro Industries') {
+				list = '<b>Name</b>: Prasad Agro Industries, <b>A/C</b>: 7486253753, <b>IFSC</b>: IDIB000L514,  RURA, KANPUR DEHAT';
+			} else if(val == 'Krishna Trading Company') {
+				list = '<b>Name</b>: KRISHNA TRADING COMPANY, <b>A/C</b>: 6431002100002355, <b>IFSC</b>: PUNB0643100, VIKASH NAGAR, LAKHANPUR, KANPUR NAGAR';
+			}
+			
+			$('.bank_account_detail').html(list);
+		});
 	});
-});
 	  function handlepricecal(amt, per) {
 		  let date = '<?php echo date('Y-m-d'); ?>';
 		  let lending_date = '<?php echo @$obj->lending_date; ?>';

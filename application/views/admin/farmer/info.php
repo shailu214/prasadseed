@@ -139,14 +139,8 @@
 									$obj = $db->get('sell')->row();
 
 									if($obj) {
-										if($obj->quantity > 0) {
-
-										}
 										echo $val = $entryobj['qty'] - ($obj->quantity + $obj->short_qty);
-										if($val == 0) {
-											$fullQty = true;
-										}
-
+										if($val == 0) { $fullQty = true; }
 									}
 									?>
 								</span>

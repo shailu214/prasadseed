@@ -108,7 +108,7 @@ class Challan extends CI_Controller {
 
 	public function add($id=null)
 	{
-
+		$data = [];
 
 		$post = $this->input->post('data');
 		if(!empty($post)) {
@@ -122,6 +122,18 @@ class Challan extends CI_Controller {
 			}
 			if(empty($post['farmer_id'])) {
 				$errors[] = 'Farmer Name is required';
+			}
+			$post['account_name'] = '';
+			$post['account_number'] = '';
+			$post['ifsc_code'] = '';
+			if($post['bank_account'] == 'Prasad Agro Industries') {
+				$post['account_name'] = 'Prasad Agro Industries';
+				$post['account_number'] = '7486253753';
+				$post['ifsc_code'] = 'IDIB000L514';
+			} else if($post['bank_account'] == 'Krishna Trading Company') {
+				$post['account_name'] = 'KRISHNA TRADING COMPANY';
+				$post['account_number'] = '6431002100002355';
+				$post['ifsc_code'] = 'PUNB0643100';
 			}
 			
 			//echo '<pre>'; print_r($post); die;
