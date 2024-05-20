@@ -19,14 +19,19 @@ class Vendors extends CI_Controller {
 	public function index( $pg=null ) {
 		$post = $this->input->get('src');
 		$request = http_build_query($_GET);
+		//print_r($post);
 		if(!empty( $post )) {
-			//echo '<pre>'; print_r($post);
+			
 			if($post['name'] != '') {
 				$this->db->like('name', $post['name']);
 			}
 			
 			if($post['farmer_id'] != '') {
 				$this->db->where('farmer.id', $post['farmer_id']);
+			}
+			
+			if($post['vendor_id'] != '') {
+				$this->db->where('vendors.id', $post['vendor_id']);
 			}
 			
 			if($post['mobile'] != '') {
@@ -44,30 +49,6 @@ class Vendors extends CI_Controller {
 		$this->db->join('address', 'address.id = vendors.address');
 		$rows = $this->db->get('vendors')->num_rows();
 		$lim = 10;
-		
-		
-		if(!empty( $post )) {
-			//echo '<pre>'; print_r($post);
-			if($post['name'] != '') {
-				$this->db->like('name', $post['name']);
-			}
-			
-			if($post['farmer_id'] != '') {
-				$this->db->where('farmer.id', $post['farmer_id']);
-			}
-			
-			if($post['mobile'] != '') {
-				$this->db->like('mobile', $post['mobile']);
-			}
-			
-			if($post['address'] != '') {
-				$this->db->where('address.address', $post['address']);
-			}
-			
-			/*if($post['address'] != '') {
-				$this->db->where('farmer.id', $post['address']);
-			}*/
-		}
 
 		$this->load->library('pagination');
 		$config['suffix'] = '?'.$request;
@@ -89,7 +70,28 @@ class Vendors extends CI_Controller {
 		if($pg>0) { $pg--; }
 		$start = $pg*$lim;
 
-
+		if(!empty( $post )) {
+			//echo '<pre>'; print_r($post);
+			if($post['name'] != '') {
+				$this->db->like('name', $post['name']);
+			}
+			
+			if($post['vendor_id'] != '') {
+				$this->db->where('vendors.id', $post['vendor_id']);
+			}
+			
+			if($post['farmer_id'] != '') {
+				//$this->db->where('farmer.id', $post['farmer_id']);
+			}
+			
+			if($post['mobile'] != '') {
+				$this->db->like('mobile', $post['mobile']);
+			}
+			
+			if($post['address'] != '') {
+				$this->db->where('address.address', $post['address']);
+			}
+		}
 		$this->db->order_by("id","desc");
 		$this->db->limit($lim,$start);
 		$this->db->select('vendors.*');

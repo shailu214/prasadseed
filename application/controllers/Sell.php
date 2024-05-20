@@ -107,7 +107,8 @@ class Sell extends CI_Controller {
 			if($post['fdate'] != '' && $post['tdate'] != '') {
 				$start_date = $post['fdate'];
 				$end_date = $post['tdate'];
-				$this->db->where('sell.created BETWEEN "'. date('Y-m-d H:i:s', strtotime($start_date.' 00:00:00')). '" and "'. date('Y-m-d H:i:s', strtotime($end_date.' 23:59:59')).'"');
+				$this->db->where('sell.year BETWEEN "'. date('Y-m-d', strtotime($start_date)). '" and "'. date('Y-m-d', strtotime($end_date)).'"');
+				//$this->db->where('sell.created BETWEEN "'. date('Y-m-d H:i:s', strtotime($start_date.' 00:00:00')). '" and "'. date('Y-m-d H:i:s', strtotime($end_date.' 23:59:59')).'"');
 			}
 		}
 
@@ -221,7 +222,8 @@ class Sell extends CI_Controller {
 			if($post['self'] == 1) {
 				$post['price'] = 0;
 			}
-			$post['total_amount'] = $post['quantity']*$post['price'];
+			$post['total_amount'] = $post['price'];
+			$post['qty2'] = $post['qty2'];
 			if($obj) {
 				
 				$this->session->set_flashdata('success_entry', 'success update');
