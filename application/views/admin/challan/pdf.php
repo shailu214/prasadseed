@@ -256,18 +256,6 @@
 */ ?>
 
 <script>
-$("body").on("click", "#downloadPDF", function () {
-	
-	var DocumentContainer = document.getElementById('downloadPDFData');
-    var WindowObject = window.open('', "PrintWindow", "width=750,height=650,top=50,left=50,toolbars=no,scrollbars=yes,status=no,resizable=yes");
-    WindowObject.document.writeln(DocumentContainer.innerHTML);
-    WindowObject.document.close();
-    WindowObject.focus();
-    WindowObject.print();
-    WindowObject.close();
-
-});
-
 function getClippedRegion(image, x, y, width, height) {
   var canvas = document.createElement("canvas"),
       ctx = canvas.getContext("2d");
@@ -284,11 +272,9 @@ function getClippedRegion(image, x, y, width, height) {
     width: 510
   };
 }
-$('.printMe').click(function(){
-     $("#outprint").print();
-});
 
-$("body").on("click", "#downloadPDFss", function () {
+
+$("body").on("click", "#downloadPDF", function () {
 	$('#downloadPDF').hide();
   html2canvas($("#downloadPDFData")[0], {
     onrendered: function (canvas) {
