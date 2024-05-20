@@ -54,7 +54,7 @@
                           <div class="form-group">
                             <label class="form-label"> Date</label>
                             <input type="date" class="form-control year" name="data[date]">
-							<input type="hidden" name="pkid" value="<?=$obj->id?>" />
+							<input type="hidden" name="pkid" value="<?=$id?>" />
 						  </div>
                         </div>
 						
