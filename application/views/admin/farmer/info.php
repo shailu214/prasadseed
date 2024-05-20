@@ -150,7 +150,7 @@
                               <i class="fe fe-eye"></i>
                             </a>
 							<a class="" href="<?=base_url()?>entry/lot/<?=$entryobj['id']?>" data-row-id="<?=$val['id']?>" data-tbl="category">
-								Lot
+								Sell
 							</a>
 							<?php if($fullQty == true) { ?>
 								

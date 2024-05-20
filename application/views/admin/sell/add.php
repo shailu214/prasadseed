@@ -310,7 +310,13 @@ if(@$obj->id > 0) {
 							<input type="text" class="form-control quantity" value="<?=@$obj->quantity?>" name="data[quantity]">
 						  </div>
 						</div>
-						<div class="col-md-3 credit_amount_row" style="<?=$isSelf?>">
+						  <div class="col-md-3">
+						  <div class="form-group">
+							<label class="form-label">Quantity 2 </label>
+							<input type="text" class="form-control" value="<?=@$obj->qty2?>" name="data[qty2]">
+						  </div>
+						</div>
+						<div class="col-md-4 credit_amount_row" style="<?=$isSelf?>">
 						  <div class="form-group">
 							<label class="form-label">Price</label>
 							<input type="text" class="form-control credit_amount prce" value="<?=@$obj->price?>" name="data[price]">
@@ -319,7 +325,7 @@ if(@$obj->id > 0) {
 						<div class="col-md-3 total_price_row" style="<?=$isSelf?>">
 						  <div class="form-group">
 							<label class="form-label">Total Price</label>
-							<input type="text" value="<?=@$obj->quantity*@$obj->price?>"  class="form-control total_price"  disabled>
+							<input type="text"  value="<?=@$obj->total_amount?>" name="data[total_amount]"  class="form-control">
 						  </div>
 						</div>
 						

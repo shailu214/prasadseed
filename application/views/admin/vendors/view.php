@@ -19,12 +19,12 @@
                               <table>
                                 <tr>
 								<td>
-								<select name="" class="select3" style="width:100%">
-									<option> </option>
-								</select>
-								<input type="hidden" id="farmer_id" name="src[farmer_id]">
-								
-							  </td>
+										<select name="" id="vendorselect3" style="width:100%">
+											<option> </option>
+										</select>
+										<input type="hidden" id="vendor_id" name="data[vendor_id]">
+									
+									</td>
                                   <td><input type="text" class="src-inp" name="src[name]" style="width:190px;"  placeholder="Name.."  /></td>
 								  <td><input type="text" class="src-inp" name="src[mobile]" style="width:190px;"  placeholder="Mobile.."  /></td>
                                  <td>
@@ -35,7 +35,7 @@
 								 </td>
                                   
                                   <td><button class="btn btn-primary btn-sm"><i class="fe fe-search"></i> Search</button></td>
-                                  <td><a href="<?php echo base_url(); ?>/farmer" class="btn btn-danger btn-sm" id="reset" style="color:#fff"><i class="fe fe-rotate-ccw"></i> Reset</a></td>
+                                  <td><a href="<?php echo base_url(); ?>vendors" class="btn btn-danger btn-sm" id="reset" style="color:#fff"><i class="fe fe-rotate-ccw"></i> Reset</a></td>
                                 </tr>
                               </table>
                             </form>
@@ -46,9 +46,9 @@
                           <th class="w-1">S.No.</th>
                           <th>Name</th>
                           <th>Mobile</th>
-						  <th>Fther Name</th>
 						  <th>Address</th>
 						  <th>Refrence Name</th>
+						  <th>Comment</th>
                           <th>Action</th>
                         </tr>
                       </thead>
@@ -60,7 +60,6 @@
                           <td><span class="text-muted"><?=$sn?></span></td>
                           <td align="left">  <?=$val['name']?>  </td>
                           <td align="left">  <?=$val['mobile']; ?>  </td>
-						  <td align="left">  <?=$val['father_name']?>  </td>
                           <td align="left"> 
 
 							<?php 
@@ -73,8 +72,8 @@
 						  </td>
                           <td width="200">
                             <?=$val['reference_name']; ?>
-                            
                           </td>
+						  <td align="left">  <?=$val['comment']?>  </td>
 						  <td align="left">  
 							<a class="icon" href="<?=base_url()?>vendors/view/<?=$val['id']?>" data-row-id="<?=$val['id']?>" data-tbl="category">
                               <i class="fe fe-eye"></i>
@@ -153,6 +152,38 @@ $(document).ready(function() {
 		  
 		  
 		});
+
+		$(function(){
+	$("#vendorselect3").select2({
+		placeholder: "Search Vendor...",
+		minimumInputLength: 1,
+		//templateResult: formatState,
+			ajax: {
+				url: '<?=base_url("sell/vendorsearchajax")?>',
+				dataType: 'json',
+				type: "POST",
+				data: function (params) {
+					return {
+						searchTerm: params.term 
+					};
+				},
+				processResults: function (data) {
+					return {
+						results: $.map(data, function (item) {
+							return {
+								text: item.search,
+								id: item.id
+							}
+						})
+					};
+				}
+
+		}
+	}).on('change', function(e) {
+		var data = $("#vendorselect3 option:selected");
+		$("#vendor_id").val(data.val());
+	});
+});
 		
 		$(function(){
 			$(".select3").select2({

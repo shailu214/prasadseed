@@ -40,12 +40,14 @@
                     <td colspan="2"><?=$obj->vendor_id?></td>
 					<th >Quantity</th>
                     <td colspan="2"><?=$obj->quantity?></td>
-					<th >Short Qty</th>
-                    <td colspan="2"><?=$obj->short_qty?></td>
+                    <th >Quantity 2</th>
+                    <td colspan="2"><?=$obj->qty2?></td>
+					
                   </tr>
 				  
 				  <tr>
-
+          <th >Short Qty</th>
+                    <td colspan="2"><?=$obj->short_qty?></td>
                     <th  width="150">Price</th>
                     <td colspan="2"><?=$obj->price?></td>
 					<th >Total Price</th>
@@ -58,11 +60,11 @@
 					?>
                     
                     
-					<th >Nikasi Date</th>
-                    <td colspan="2"><?=$obj->nikasi_date?></td>
+				
                   </tr>
                   <tr>
-
+                  <th >Nikasi Date</th>
+                    <td colspan="2"><?=$obj->nikasi_date?></td>
                     <th  width="150">Payment Mode</th>
                     <td colspan="2"><?php
                     if($obj->pament_mode == 1) {
@@ -89,6 +91,29 @@
                   </tr>
 
                   <tr>
+                  <th  width="150">Title</th>
+                    <td colspan="2"><?=$obj->title_one?></td>
+                    <th  width="150">Value</th>
+                    <td colspan="2"><?=$obj->value_one?></td>
+                  </tr>
+                  <tr>
+                  <th  width="150">Title2</th>
+                    <td colspan="2"><?=$obj->title_two?></td>
+                    <th  width="150">Value</th>
+                    <td colspan="2"><?=$obj->value_two?></td>
+                  </tr>
+                  <tr>
+                  <th  width="150">Title3</th>
+                    <td colspan="2"><?=$obj->title_three?></td>
+                    <th  width="150">Value</th>
+                    <td colspan="2"><?=$obj->value_three?></td>
+                  </tr>
+                  <tr>
+                  <th  width="150">Title3</th>
+                    <td colspan="2"><?=$obj->title_four?></td>
+                    <th  width="150">Value</th>
+                    <td colspan="2"><?=$obj->value_four?></td>
+                  </tr>
 				 
                 </tbody>
                 <tfoot>
