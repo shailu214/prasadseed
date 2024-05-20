@@ -22,7 +22,7 @@
 										<select name="" id="vendorselect3" style="width:100%">
 											<option> </option>
 										</select>
-										<input type="hidden" id="vendor_id" name="data[vendor_id]">
+										<input type="hidden" id="vendor_id" name="src[vendor_id]">
 									
 									</td>
                                   <td><input type="text" class="src-inp" name="src[name]" style="width:190px;"  placeholder="Name.."  /></td>
