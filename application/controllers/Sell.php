@@ -28,6 +28,10 @@ class Sell extends CI_Controller {
 				//$this->db->join('sell_deposit', 'sell.id = sell_deposit.sell_id');
 			}
 			
+			if($post['vendor_id'] != '') {
+				$this->db->where('vendor_id', $post['vendor_id']);
+			}
+			
 			if($post['search_year'] != '') {
 				$this->db->where('year(year)', $post['search_year']);
 			}
@@ -35,15 +39,11 @@ class Sell extends CI_Controller {
 			if($post['farmer_id'] != '') {
 				$this->db->where('farmer_id', $post['farmer_id']);
 			}
-			
-			if($post['vendor_id'] != '') {
-				//$this->db->where('vendor_id', $post['vendor_id']);
-			}
 		}
 		if($search != null) {
 			$this->db->where('year(year)', $search);
 		}
-		$rows = $this->db->get('amount')->num_rows();
+		$rows = $this->db->get('sell')->num_rows();
 		$lim = 10;
 		
 		$search = null;
@@ -323,9 +323,6 @@ class Sell extends CI_Controller {
 			if(empty($post['amount'])) {
 				$errors[] = 'Amount is required';
 			}
-			if(empty($post['due_date'])) {
-				$errors[] = 'Due Date is required';
-			}
 			
 			if($post['amount'] > 0 && $pkid > 0) {
 				$this->db->where('id', $pkid);
@@ -455,14 +452,19 @@ class Sell extends CI_Controller {
 	}
 
 	
-	public function load($id=null)
+	public function load($id)
 	{
-
+		$this->db->where('id', $id);
+		$obj = $this->db->get('sell')->row();
+		if($obj == null) {
+			redirect("sell");
+		}
+			
 		$post = $this->input->post('data');
 		if(!empty($post)) {
-			$pkid = $this->input->post('pkid');
+			echo $pkid = $this->input->post('pkid');
 			if($this->pageParam->role != 1) {
-				redirect("sell_load");
+				redirect("sell");
 			}
 			
 			$errors = [];
@@ -476,37 +478,22 @@ class Sell extends CI_Controller {
 			//echo '<pre>'; print_r($post); die;
 			if(count($errors) > 0) {
 				$this->session->set_flashdata('errors', $errors);
-				redirect("sell/load");
+				redirect("sell/load/".$id);
 			}
 			
 			$post['sell_id'] = $pkid;
+			
 			$this->session->set_flashdata('success_entry', 'success create');
 			$this->db->insert("sell_load", $post );
-			redirect("sell/load");
 			
-		}
-		
-		$data['obj'] = $data['farmer_lot_id'] = $data['advanced'] = $data['persent'] = null;
-		$data['lots'] = [];
-		if($id > 0) {
-			$this->db->where('id', $id);
-			$obj = $this->db->get('sell_load')->row();
-			if($obj) {
-				$data['obj'] = $obj;
-				$data['persent'] = $obj->per;
-				$this->db->where('farmer_id', $obj->farmer_id);
-				$data['lots'] = $this->db->get('farmer_lots')->result_array();
-				$data['farmer_lot_id'] = $obj->farmer_lot_id;
-			} else {
-				redirect("sell/load");
-			}
+			redirect("sell/load/".$id);
 			
 		}
 		
 		$data['db'] = $this->db;
 		$this->load->view('admin/head');
 		$this->load->view('admin/header');
-		$this->load->view('admin/sell/load',$data);
+		$this->load->view('admin/sell/load',['id' => $id]);
 		$this->load->view('admin/footer');
 	}
 
