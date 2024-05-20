@@ -376,7 +376,7 @@
                   </div>
                 </div>
                 <div class="card-footer text-right">
-                  <a href="<?=base_url()?>delivery.html" class="btn btn-default"><i class="fa fa-angle-double-left"></i> &nbsp;BACK</a>
+                  <a href="<?=base_url()?>challan.html" class="btn btn-default"><i class="fa fa-angle-double-left"></i> &nbsp;BACK</a>
                   <button type="submit" class="btn btn-primary">SAVE RECORD</button>
                 </div>
               </form>

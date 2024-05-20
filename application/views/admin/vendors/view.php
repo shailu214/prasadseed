@@ -6,7 +6,7 @@
 
                 <div class="card">
                   <div class="card-header">
-                    <h3 class="card-title" style="width:100%;">Farmer List
+                    <h3 class="card-title" style="width:100%;">Vendors List
                     <a href="<?=base_url()?>vendors/add" class="btn btn-primary btn-sm pull-right" style="color:#fff;"><i class="fe fe-plus"></i> Add New</a>
                     </h3>
                   </div>

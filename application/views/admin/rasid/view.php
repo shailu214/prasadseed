@@ -134,6 +134,9 @@
 							<a class="icon delete" href="<?=base_url()?>rasid/delete/<?=$val['id']?>" data-row-id="<?=$val['id']?>" data-tbl="category">
                               <i class="fe fe-trash"></i>
                             </a>
+							<a class="icon" href="<?=base_url()?>pdffile/rasid/<?=$val['id']?>" data-row-id="<?=$val['id']?>" data-tbl="category">
+                              Print Rasid
+                            </a>
 							<?php } ?>
 						  </td>
                         </tr>

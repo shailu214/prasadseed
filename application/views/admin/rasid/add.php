@@ -158,13 +158,19 @@ if(@$obj->id > 0) {
 							<input type="text" class="form-control total_price" value="<?=@$obj->quantity*@$obj->kiraya?>"  disabled>
 						  </div>
 						</div>
+						<div class="col-md-4" style="<?=$isSelf?>">
+						  <div class="form-group">
+							<label class="form-label">Total Amount (in Word)</label>
+							<input type="text" class="form-control" value="<?=@$obj->total_amount_word?>" name="data[total_amount_word]" >
+						  </div>
+						</div>
 								
 						</div>
 						
                       </div>
                 </div>
                 <div class="card-footer text-right">
-                  <a href="<?=base_url()?>entry.html" class="btn btn-default"><i class="fa fa-angle-double-left"></i> &nbsp;BACK</a>
+                  <a href="<?=base_url()?>rasid.html" class="btn btn-default"><i class="fa fa-angle-double-left"></i> &nbsp;BACK</a>
                   <button type="submit" class="btn btn-primary">SAVE RECORD</button>
                 </div>
               </form>

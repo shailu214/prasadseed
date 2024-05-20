@@ -76,6 +76,48 @@ class Pdffile extends CI_Controller {
 		//$this->load->view('admin/footer');
 	}
 
+
+	public function rasid( $id ) {
+		$this->db->where('id', $id);
+		$obj = $this->db->get('rasid')->row();
+		if($obj) {
+			$this->db->where('id', $obj->farmer_id);
+			$farmer = $this->db->get('farmer')->row();
+			if($farmer) {
+				$obj->farmer = $farmer->name;
+				$this->db->where('id', $farmer->address);
+				$addressobj = $this->db->get('address')->row();
+				if($addressobj) {
+					$obj->address = $addressobj->address;
+				}
+			}
+
+			$this->db->where('id', $obj->farmer_lot_id);
+			$farmer_lot = $this->db->get("farmer_lots")->row();
+			if($farmer_lot) {
+				$obj->farmer_lot_id = $farmer_lot->lots;
+			}
+
+			$this->db->where('id', $obj->vendor_id);
+			$vendor = $this->db->get("vendors")->row();
+			if($vendor) {
+				$obj->vendor_id = $vendor->name;
+			}
+
+			$this->db->where('id', $obj->vegetable_id);
+			$vegetable = $this->db->get('vegetable')->row();
+			if($vegetable) {
+				$obj->vegetable = $vegetable->name;
+			}
+		}
+		$data['obj'] = $obj;
+		//echo '<pre>'; print_r($data); die;
+		
+		$this->load->view('admin/head');
+		$this->load->view('admin/rasid/pdf',$data);
+		//$this->load->view('admin/footer');
+	}
+
     public function view($id) {
 		$this->db->where('id', $id);
 		$obj = $this->db->get("fare_gadi_bada")->row();
