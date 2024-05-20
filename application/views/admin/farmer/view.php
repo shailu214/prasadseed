@@ -46,7 +46,7 @@
                           <th class="w-1">S.No.</th>
                           <th>Name</th>
                           <th>Mobile</th>
-						  <th>Fther Name</th>
+						  <th>Father Name</th>
 						  <th>Address</th>
 						  <th>Refrence Name</th>
                           <th>Action</th>

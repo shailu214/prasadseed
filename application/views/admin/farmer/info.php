@@ -150,18 +150,18 @@
                               <i class="fe fe-eye"></i>
                             </a>
 							<a class="" href="<?=base_url()?>entry/lot/<?=$entryobj['id']?>" data-row-id="<?=$val['id']?>" data-tbl="category">
-								Sell
+								Sell Record
 							</a>
 							<?php if($fullQty == true) { ?>
 								
 							<?php } ?>
 							
 							<?php if($entryobj['verify'] == 1) { ?>
-								Not Clear
+								<!---Not Clear---->
 							<?php } else if($entryobj['verify'] == 2) { ?>
-								<button type="button" data-toggle="modal" data-target="#exampleModalLong<?=$entryobj['id']?>" class="btn btn-green verifiedcontent">
+								<!---<button type="button" data-toggle="modal" data-target="#exampleModalLong<?=$entryobj['id']?>" class="btn btn-green verifiedcontent">
 									Cleared <i class="fe fe-check"></i>
-								</button>
+								</button>----->
 								
 								<div class="modal fade" id="exampleModalLong<?=$entryobj['id']?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 						  <div class="modal-dialog modal-dialog-centered" role="document">
