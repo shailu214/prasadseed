@@ -69,7 +69,7 @@
 						<div class="col-md-3">
                           <div class="form-group">
                             <label class="form-label">Comment</label>
-                            <textarea class="form-control" name="data[due_date]"></textarea>
+                            <textarea class="form-control" name="data[comment]"></textarea>
 						  </div>
                         </div>
 					</div>
@@ -78,7 +78,7 @@
                   </div>
                 </div>
                 <div class="card-footer text-right">
-                  <a href="<?=base_url()?>amount.html" class="btn btn-default"><i class="fa fa-angle-double-left"></i> &nbsp;BACK</a>
+                  <a href="<?=base_url()?>sell.html" class="btn btn-default"><i class="fa fa-angle-double-left"></i> &nbsp;BACK</a>
                   <button type="submit" class="btn btn-primary">SAVE RECORD</button>
                 </div>
               </form>

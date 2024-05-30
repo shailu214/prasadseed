@@ -74,7 +74,10 @@
 						  <th>Farmer</th>
 						  <th>Lot No.</th>
                           <th>Year</th>
-						  <th>Vendor</th><th>Qty</th><th>Price</th><th>Total Price</th>
+						  <th>Vendor</th>
+						  <th>Qty</th>
+						  <th>Price</th>
+						  <th>Total Price</th>
 						  <th>Due Date</th>
 						  <th>Due Amount</th>
                           <th>Action</th>
@@ -161,10 +164,10 @@
 							<?php if($this->pageParam->role == 1) { ?>
 							<a class="icon" href="<?=base_url()?>sell/add/<?=$val['id']?>" data-row-id="<?=$val['id']?>" data-tbl="category">
                               <i class="fe fe-edit"></i>
-                            </a>
+                            </a>|
 							<a class="icon" href="<?=base_url()?>sell/deposit/<?=$val['id']?>" data-row-id="<?=$val['id']?>" data-tbl="deposit">
                               Deposit
-                            </a>
+                            </a> |
 							<a class="icon" href="<?=base_url()?>sell/load/<?=$val['id']?>" data-row-id="<?=$val['id']?>" data-tbl="load">
                               Loading
                             </a>

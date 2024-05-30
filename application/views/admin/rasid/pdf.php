@@ -31,21 +31,21 @@
   <div class="header text-center" style="padding:5px;">
     <div class="row">
       <div class="col-md-12 text-center" style="display: flex;justify-content: center;">
-        <h4 style="padding: 12px 50px;background-color:#fff;border:1px solid #120c21;border-radius:20px;">धन प्राप्त रसीद</h4>
+        <p class="text-left" style="padding: 12px 50px;background-color:#fff;border:2px solid #120c21;border-radius:20px;font-weight:900;">धन प्राप्त रसीद</p>
       </div>
       
     </div>
     <div class="row">
       <div class="col-md-2"></div>
       <div class="col-md-8 text-center">
-        <h3 style="font-size: 40px;">प्रसाद एग्रो इंडस्ट्रीज <span style="font-size: 16px;">(कोल्ड स्टोरेज)</span></h3>
+        <p class="text-left" style="font-size: 40px; font-weight:900;color:#120c21;padding:0 0 0 80px">प्रसाद एग्रो इंडस्ट्रीज <span style="font-size: 16px;">(कोल्ड स्टोरेज)</span></p>
       </div>
       <div class="col-md-2"></div>
     </div>
     <div class="row">
       <div class="col-md-2"></div>
       <div class="col-md-8 text-center">
-        <h3 style="font-size: 18px;border:1px solid #120c21;border-radius:20px;padding:10px">रूरा-अकबरपुर रोड, ग्राम नरिहा, कानपुर देहात (यूo पीo)</h3>
+        <p class="text-left" style="font-size: 18px;border:2px solid #120c21;border-radius:20px;padding:0 0 0 80px">रूरा-अकबरपुर रोड, ग्राम नरिहा, कानपुर देहात (यूo पीo)</p>
       </div>
       <div class="col-md-2"></div>
     </div>
@@ -71,13 +71,13 @@
         <div class="col-md-4" style="">
         <table>
               <tr>
-                <td style="vertical-align: top; padding: 20px;">कर्मांक: </td>
+                <td style="vertical-align: top; padding: 20px;"><p class="text-left" style="font-size: 16px;">कर्मांक: </p></td>
                 <td style="padding: 20px;">
                   <p class="text-left" style="margin:0"><?=@$obj->id?></p>
                 </td>
               </tr>
               <tr>
-                <td style="vertical-align: top; padding: 0px;">दिनांक: </td>
+                <td style="vertical-align: top; padding: 0px;"><p class="text-left" style="font-size: 16px;">दिनांक: </p></td>
                 <td style="padding:0px;">
                   <p class="text-left" style="margin:0"><?=@$obj->year?></p>
                 </td>
@@ -90,10 +90,10 @@
     <div>
       <table class="table-bordered " style="min-height: 380px;">
         <thead class="text-center" style="background-color: #595273;color:#fff">
-          <th style="width: 500px; text-align:center">लॉट नंo</th>
-          <th style="width: 200px; text-align:center">तौल</th>
-          <th style="width: 200px; text-align:center">किराया दर</th>
-          <th style="width: 100px; text-align:center">कीमत</th>
+          <th style="width: 500px; text-align:center"><p class="text-left" style="font-size: 16px;">लॉट नंo</p></th>
+          <th style="width: 200px; text-align:center"><p class="text-left" style="font-size: 16px;">तौल</p></th>
+          <th style="width: 200px; text-align:center"><p class="text-left" style="font-size: 16px;">किराया दर</p></th>
+          <th style="width: 100px; text-align:center"><p class="text-left" style="font-size: 16px;">कीमत</p></th>
         </thead>
         <tbody>
               <tr>

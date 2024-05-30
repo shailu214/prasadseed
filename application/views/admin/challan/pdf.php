@@ -31,7 +31,7 @@
   <div class="header text-center" style="padding:5px;">
     <div class="row">
       <div class="col-md-7 text-center" style="display: flex;justify-content: end;">
-        <h4 style="padding: 12px 50px;background-color:#fff;border:1px solid #120c21;border-radius:20px;">चालान</h4>
+        <p class="text-left" style="padding: 12px 50px;background-color:#fff;border:2px solid #120c21;border-radius:20px;font-weight:900;font-size:20px;">चालान</p>
       </div>
       <div class="col-md-5" style="display: flex;justify-content: end;">
           <table>
@@ -48,14 +48,14 @@
     <div class="row">
       <div class="col-md-2"></div>
       <div class="col-md-8 text-center">
-        <h3 style="font-size: 40px;">प्रसाद एग्रो इंडस्ट्रीज <span style="font-size: 16px;">(कोल्ड स्टोरेज)</span></h3>
+       <p class="text-left" style="font-size: 40px;color:#120c21;font-weight:900;padding:10px 10px 10px 80px;">प्रसाद एग्रो इंडस्ट्रीज <span style="font-size: 16px;color:#120c21;">(कोल्ड स्टोरेज)</span></p>
       </div>
       <div class="col-md-2"></div>
     </div>
     <div class="row">
       <div class="col-md-2"></div>
       <div class="col-md-8 text-center">
-        <h3 style="font-size: 18px;border:1px solid #120c21;border-radius:20px;padding:10px">रूरा-अकबरपुर रोड, ग्राम नरिहा, कानपुर देहात (यूo पीo)</h3>
+        <p class="text-left" style="font-size: 18px;border:2px solid #444;border-radius:20px;padding:10px 10px 10px 80px;color:#120c21;font-weight:900">रूरा-अकबरपुर रोड, ग्राम नरिहा, कानपुर देहात (यूo पीo)</p>
       </div>
       <div class="col-md-2"></div>
     </div>
@@ -64,7 +64,7 @@
         <div class="col-md-8" style="border-right: 4px solid #666; border-radius:15px" >
           <table>
               <tr>
-                <td style="vertical-align: top; padding:0 30px;padding: 20px;">मेसर्स: </td>
+                <td style="vertical-align: top; padding:0 30px;padding: 20px;"><p class="text-left" style="font-size: 16px;">मेसर्स: </p></td>
                 <td style="padding: 20px;">
                   <p class="text-left" style="margin:0"><?=@$obj->ms_name?></p>
                   <p class="text-left" style="margin:0"><?=@$obj->state?>, <?=@$obj->city?></p>
@@ -75,13 +75,13 @@
         <div class="col-md-4" style="border-left: 4px solid #666; border-radius:15px">
         <table>
               <tr>
-                <td style="vertical-align: top; padding: 20px;">कर्मांक: </td>
+                <td style="vertical-align: top; padding: 20px;"><p class="text-left" style="font-size: 16px;">कर्मांक: </p></td>
                 <td style="padding: 20px;">
                   <p class="text-left" style="margin:0"><?=@$obj->id?></p>
                 </td>
               </tr>
               <tr>
-                <td style="vertical-align: top; padding: 0px;">दिनांक: </td>
+                <td style="vertical-align: top; padding: 5px 5px 5px 20px;"><p class="text-left" style="font-size: 16px;">दिनांक: </p></td>
                 <td style="padding:0px;">
                   <p class="text-left" style="margin:0"><?=@$obj->year?></p>
                 </td>
@@ -102,18 +102,18 @@
     <div class="row">
     <div class="col-md-4"></div>
     <div class="col-md-4">
-        <h3 style="font-size: 18px;border:1px solid #120c21;border-radius:20px;padding:10px">माल का विवरण</h3>
+        <p class="text-left"  style="font-size: 18px;border:2px solid #120c21;border-radius:20px;padding:10px 10px 10px 80px;font-weight:900">माल का विवरण</p>
       </div>
       <div class="col-md-4"></div>
     </div>
     <div>
       <table class="table-bordered ">
         <thead class="text-center" style="background-color: #595273;color:#fff">
-          <th style="width: 100px; text-align:center">क्रम.</th>
-          <th style="width: 500px; text-align:center">भेजने वाले का नाम</th>
-          <th style="width: 200px; text-align:center">ग्राम</th>
-          <th style="width: 100px; text-align:center">बोरा</th>
-          <th style="width: 100px; text-align:center">निशान</th>
+          <th style="width: 100px; text-align:center"><p class="text-left" style="font-size: 16px;">क्रम.</p></th>
+          <th style="width: 500px; text-align:center"><p class="text-left" style="font-size: 16px;">भेजने वाले का नाम</p></th>
+          <th style="width: 200px; text-align:center"><p class="text-left" style="font-size: 16px;">ग्राम</p></th>
+          <th style="width: 100px; text-align:center"><p class="text-left" style="font-size: 16px;">बोरा</p></th>
+          <th style="width: 100px; text-align:center"><p class="text-left" style="font-size: 16px;">निशान</p></th>
         </thead>
         <tbody>
               <tr>
@@ -205,8 +205,8 @@
         <table>
               <tr>
                 <td style="vertical-align: top; padding: 20px 5px; text-align:center">
-                <h5>भवदीए</h5>
-                <h5>वास्ते प्रसाद एग्रो इंडस्ट्रीज</h5>
+                <p class="text-left" style="font-size: 16px;">भवदीए</p>
+                <p class="text-left" style="font-size: 16px;">वास्ते प्रसाद एग्रो इंडस्ट्रीज</p>
               </td>
                 
               </tr>
@@ -219,7 +219,7 @@
         <div class="col-md-8" style="display: flex;justify-content: center; ;">
           <table>
               <tr>
-                <td style="vertical-align: top; padding:0 30px;padding: 20px;">हस्ताक्षर ड्राइवर / व्यापारी</td>
+                <td style="vertical-align: top; padding:0 30px;padding: 20px;"><p class="text-left" style="font-size: 16px;">हस्ताक्षर ड्राइवर / व्यापारी</p></td>
               </tr>
             </table>
           </div>
@@ -229,7 +229,7 @@
                 <td style="vertical-align: top; padding: 20px 5px; text-align:center">
                 <table>
               <tr>
-                <td style="vertical-align: top; padding:0 30px;padding: 20px;">मैनेजर</td>
+                <td style="vertical-align: top; padding:0 30px;padding: 20px;"><p class="text-left" style="font-size: 16px;">मैनेजर</p></td>
               </tr>
             </table>
                
@@ -294,7 +294,7 @@ $("body").on("click", "#downloadPDF", function () {
 			pdf.save('report.pdf'); */// Generated PDF  
       // split the canvas produced by html2canvas into several, based on desired PDF page height
 
-      let splitAt =1120; // A page height which fits for "LETTER" pageSize...
+      let splitAt =1320; // A page height which fits for "LETTER" pageSize...
 
       let images = [];
       let y = 0;

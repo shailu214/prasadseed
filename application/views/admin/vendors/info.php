@@ -52,8 +52,8 @@ foreach ($resultsell as $objloop ) {
 				  
 				  <tr>
 
-                    <th width="150">Father Name</th>
-                    <td colspan="2"><?=$obj->father_name?></td>
+                    <th width="150">Comment</th>
+                    <td colspan="2"><?=$obj->comment?></td>
                     <th >Reference Name</th>
                     <td colspan="2"><?=$obj->reference_name?></td>
                   </tr>

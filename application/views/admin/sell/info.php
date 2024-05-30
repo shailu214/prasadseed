@@ -168,7 +168,7 @@
 					  <th class="w-1">S.No.</th>
 					  <th>Date</th>
 					  <th>Loading Quantity</th>
-					  <th>Due Date</th>
+					  <th>Comment</th>
 					</tr>
 					
 					<?php foreach($loadqty as $k=>$load) { ?>
@@ -176,7 +176,7 @@
 					  <th class="w-1"><?=++$k?></th>
 					  <th><?=$load['date']?></th>
 					  <th><?=$load['qty']?></th>
-					  <th><?=$load['due_date']?></th>
+					  <th><?=$load['comment']?></th>
 					</tr>
 					<?php } ?>
 				 
