@@ -173,6 +173,7 @@ class Sell extends CI_Controller {
 			if($this->pageParam->role != 1) {
 				redirect("sell");
 			}
+			$pkid = $this->input->post('pkid');
 			$errors = [];
 			if(empty($post['year'])) {
 				$errors[] = 'Year is required';
@@ -212,10 +213,10 @@ class Sell extends CI_Controller {
 			
 			if(count($errors) > 0) {
 				$this->session->set_flashdata('errors', $errors);
-				redirect("sell/add");
+				redirect("sell/add/".$pkid);
 			}
 			
-			$pkid = $this->input->post('pkid');
+			
 			$this->db->where('id', $pkid);
 			$obj = $this->db->get('sell')->row();
 			//echo '<pre>'; print_r($_POST); die;
@@ -229,6 +230,13 @@ class Sell extends CI_Controller {
 				$this->session->set_flashdata('success_entry', 'success update');
 				$this->db->where('id', $pkid);
 				$this->db->update('sell', $post);
+				
+				//echo '<pre>'; print_r($this->input->post('bardanacomment')); die;
+				foreach($this->input->post('bardanacomment') as $k => $bardanacmt) {
+					$this->db->where('sell_id', $pkid);
+					$this->db->where('bardana_id', $k);
+					$this->db->update("bardana_comment", ['comment'=>$bardanacmt]);
+				}
 				redirect("sell/add/".$pkid);
 			} else {
 				$this->session->set_flashdata('success_entry', 'success');
@@ -236,6 +244,7 @@ class Sell extends CI_Controller {
 				$this->db->insert("sell", $post );
 				$insert_id = $this->db->insert_id();
 				//$this->db->where('bardana_id', $insert_id);
+				
 				foreach($this->input->post('bardanacomment') as $k => $bardanacmt) {//echo 1111; print_r($bardanacmt);
 					$this->db->insert("bardana_comment", ['sell_id'=>$insert_id,'bardana_id'=>$k,'comment'=>$bardanacmt]);
 				}

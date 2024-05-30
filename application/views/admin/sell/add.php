@@ -35,7 +35,7 @@ if(@$obj->id > 0) {
 									  <div class="form-group">
 										<label class="form-label">Name</label>
 										<input type="text" class="form-control" placeholder="Name.." data-validation="required" name="data[name]" data-validation-error-msg="Please enter name." value="">
-										<input type="hidden" name="pkid" value="">
+										<input type="hidden" name="pkid" value="<?php echo @$obj->id; ?>">
 										<input type="hidden" name="fromway" value="<?php echo 'sell/add'; ?>">
 									 </div>
 									</div>
