@@ -66,7 +66,7 @@
       </div>
 	  
       <div class="header collapse d-lg-flex p-0" id="headerMenuCollapse">
-        <div class="container">
+        <div class="container-fluid">
           <div class="row align-items-center">
             <div class="col-lg order-lg-first">
               <ul class="nav nav-tabs border-0 flex-column flex-lg-row">
@@ -109,9 +109,9 @@
                 
              
                <li class="nav-item">
-                  <a href="javascript:void(0)" class="nav-link <?=($this->pageParam->nav == 'fare')? 'active' : ''?>" data-toggle="dropdown"><i class="fe fe-user"></i> Fare</a>
+                  <a href="javascript:void(0)" class="nav-link <?=($this->pageParam->nav == 'fare')? 'active' : ''?>" data-toggle="dropdown"><i class="fe fe-user"></i> V.F.P</a>
                   <div class="dropdown-menu dropdown-menu-arrow">
-                      <a href="<?=base_url()?>fare.html" class="dropdown-item ">Fare List</a>
+                      <a href="<?=base_url()?>fare.html" class="dropdown-item ">V.F.P List</a>
                     
                   </div>
                 </li>
@@ -152,6 +152,15 @@
                   <div class="dropdown-menu dropdown-menu-arrow">
 					            <a href="<?=base_url()?>rasid/add.html" class="dropdown-item ">Add Rasid</a>
                       <a href="<?=base_url()?>rasid.html" class="dropdown-item ">Rasid List</a>
+                    
+                  </div>
+                </li>
+                <li class="nav-item">
+                  <a href="javascript:void(0)" class="nav-link <?=($this->pageParam->nav == 'expence')? 'active' : ''?>" data-toggle="dropdown"><i class="fe fe-user"></i>Rokad </a>
+                  <div class="dropdown-menu dropdown-menu-arrow">
+                      <a href="<?=base_url()?>category.html" class="dropdown-item ">Category</a>
+                      <a href="<?=base_url()?>subcategory.html" class="dropdown-item ">Sub Category</a>
+					            <a href="<?=base_url()?>expence/add.html" class="dropdown-item ">Add Rokad </a>
                     
                   </div>
                 </li>

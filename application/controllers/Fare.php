@@ -71,8 +71,18 @@ class Fare extends CI_Controller {
 		$farmer = $this->db->get("farmer")->row();
 		if($farmer) {
 			$obj->farmer_id = $farmer->name;
+			$obj->mobile_no = $farmer->mobile;
+			$obj->father = $farmer->father_name;
+			$obj->reference = $farmer->reference_name;
+			$obj->address = $farmer->address;
 		}
 
+		$this->db->where('id', $obj->address);
+		$address = $this->db->get("address")->row();
+		if($address) {
+			$obj->farmer_address = $address->address;
+		}
+		
 		$data = ['obj' => $obj];
 		$this->load->view('admin/head');
 		$this->load->view('admin/header');
@@ -93,12 +103,24 @@ class Fare extends CI_Controller {
 			if(empty($post['year'])) {
 				$errors[] = 'Year is required';
 			}
+			if(empty($post['farmer_lot_id'])) {
+				$errors[] = 'Farmer Lot is required';
+			}
 			if(empty($post['farmer_id'])) {
 				$errors[] = 'Farmer Name is required';
 			}
 			
 			//echo '<pre>'; print_r($post); die;
 			if(count($errors) > 0) {
+				$this->session->set_flashdata('errors', $errors);
+				redirect("fare/add");
+			}
+
+			$lotid = $post['farmer_lot_id'];
+			$this->db->where('id', $lotid);
+			$farmerlot = $this->db->get('farmer_lots')->row();
+			if($farmerlot == null) {
+				$errors[] = 'Lot Not Found ';
 				$this->session->set_flashdata('errors', $errors);
 				redirect("fare/add");
 			}

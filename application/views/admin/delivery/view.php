@@ -99,6 +99,9 @@
 							<a class="icon delete" href="<?=base_url()?>delivery/delete/<?=$val['id']?>" data-row-id="<?=$val['id']?>" data-tbl="category">
                               <i class="fe fe-trash"></i>
                             </a>
+							<a class="icon" href="<?=base_url()?>pdffile/delivery/<?=$val['id']?>" data-row-id="<?=$val['id']?>" data-tbl="category">
+                              Print Delivery Order
+                            </a>
 							<?php } ?>
 						  </td>
                         </tr>

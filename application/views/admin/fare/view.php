@@ -6,7 +6,7 @@
 
                 <div class="card">
                   <div class="card-header">
-                    <h3 class="card-title" style="width:100%;">Fare List
+                    <h3 class="card-title" style="width:100%;">V.F.P List
                     <a href="<?=base_url()?>fare/add" class="btn btn-primary btn-sm pull-right" style="color:#fff;"><i class="fe fe-plus"></i> Add New</a>
                     </h3>
                   </div>
@@ -35,7 +35,7 @@
 								  </td>
 								  
                                   <td><button class="btn btn-primary btn-sm"><i class="fe fe-search"></i> Search</button></td>
-                                  <td><a href="<?php echo base_url(); ?>/amount" class="btn btn-danger btn-sm" id="reset" style="color:#fff"><i class="fe fe-rotate-ccw"></i> Reset</a></td>
+                                  <td><a href="<?php echo base_url(); ?>/fare" class="btn btn-danger btn-sm" id="reset" style="color:#fff"><i class="fe fe-rotate-ccw"></i> Reset</a></td>
                                 </tr>
                               </table>
                             </form>
@@ -44,9 +44,10 @@
 					  
                         <tr>
                           <th class="w-1">S.No.</th>
-						  <th>Farmer</th>
+						              <th>Farmer</th>
+                          <th>Lot No.</th>
                           <th>Year</th>
-						  <th>Fare</th>
+						              <th>Fare</th>
                           <th>Action</th>
                         </tr>
                       </thead>
@@ -66,6 +67,13 @@
 								}
 							?>
 						  </td>
+              <td><?php 
+								$db->where('id', $val['farmer_lot_id']);
+								$obj = $db->get('farmer_lots')->row();
+								if($obj) {
+									echo $obj->lots;
+								}
+							?></td>
                           <td align="left">  <?=$val['year']; ?>  </td>
 						  <td align="left">  <?=$val['add_fare']; ?>  </td>
 						  <td align="left">  

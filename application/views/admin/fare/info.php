@@ -7,7 +7,7 @@
           <div class="card">
             <div class="card-header">
               <h3 class="card-title" style="width:100%;">
-            <i class="fe fe-user"></i> Fare Gadi Bada Details
+            <i class="fe fe-user"></i>V.F.P
               </h3>
             </div>
             <div class="table-responsive">
@@ -26,16 +26,34 @@
 
                     <th  width="150">Farmer</th>
                     <td colspan="2"><?=$obj->farmer_id?></td>
-					<th >Year</th>
-                    <td colspan="2"><?=$obj->year?></td>
+                    <th >Address</th>
+                    <td colspan="2"><?=$obj->farmer_address?></td>
+					
                   </tr>
 
 					<tr>
+          <th >Year</th>
+                    <td colspan="2"><?=$obj->year?></td>
 
                     <th  width="150">Value</th>
                     <td colspan="2"><?=$obj->value?></td>
-					<th >Value2</th>
+				
+                  </tr>
+                  <tr>
+                  <th >Value2</th>
                     <td colspan="2"><?=$obj->value_two?></td>
+                    <th  width="150">Lot No.</th>
+                    <td colspan="2">
+                    <?php
+						$this->db->where('id', $obj->farmer_lot_id);
+						$farmer_lot = $this->db->get("farmer_lots")->row();
+						if($farmer_lot) {
+							echo $farmer_lot->lots;
+						}
+					?>
+
+
+                    </td>
                   </tr>
 				  
                   <tr>

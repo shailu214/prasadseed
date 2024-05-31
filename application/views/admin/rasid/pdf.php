@@ -45,13 +45,13 @@
     <div class="row">
       <div class="col-md-2"></div>
       <div class="col-md-8 text-center">
-        <p class="text-left" style="font-size: 18px;border:2px solid #120c21;border-radius:20px;padding:0 0 0 80px">रूरा-अकबरपुर रोड, ग्राम नरिहा, कानपुर देहात (यूo पीo)</p>
+        <p class="text-left" style="font-size: 22px;border:2px solid #120c21;border-radius:20px;padding:0 0 0 60px;font-weight:900;color:#120c21">रूरा-अकबरपुर रोड, ग्राम नरिहा, कानपुर देहात (यूo पीo)</p>
       </div>
       <div class="col-md-2"></div>
     </div>
     <div style="background-color: #d6d167;">
     <div class="row" >
-        <div class="col-md-8 text-left" style="padding: 20px;"  >
+        <div class="col-md-8 text-left" style="padding: 20px; font-size:22px; font-weight:900; color:#120c21"  >
             नाम: <?=@$obj->farmer?><br>
             विक्रेता का नाम:  <?php 
                   $self = 'Self';
@@ -71,15 +71,15 @@
         <div class="col-md-4" style="">
         <table>
               <tr>
-                <td style="vertical-align: top; padding: 20px;"><p class="text-left" style="font-size: 16px;">कर्मांक: </p></td>
+                <td style="vertical-align: middle; padding: 0px;"><p class="text-left" style="font-size: 22px;font-weight:900;color:#120c21">कर्मांक: </p></td>
                 <td style="padding: 20px;">
-                  <p class="text-left" style="margin:0"><?=@$obj->id?></p>
+                  <p class="text-left" style="margin:0; font-size: 22px;font-weight:900;color:#120c21"><?=@$obj->id?></p>
                 </td>
               </tr>
               <tr>
-                <td style="vertical-align: top; padding: 0px;"><p class="text-left" style="font-size: 16px;">दिनांक: </p></td>
+                <td style="vertical-align: middle; padding: 0px;"><p class="text-left" style="font-size: 22px;font-weight:900;color:#120c21">दिनांक: </p></td>
                 <td style="padding:0px;">
-                  <p class="text-left" style="margin:0"><?=@$obj->year?></p>
+                  <p class="text-left" style="margin:0;font-size: 22px;font-weight:900;color:#120c21"><?=@$obj->year?></p>
                 </td>
               </tr>
             </table>
@@ -90,17 +90,17 @@
     <div>
       <table class="table-bordered " style="min-height: 380px;">
         <thead class="text-center" style="background-color: #595273;color:#fff">
-          <th style="width: 500px; text-align:center"><p class="text-left" style="font-size: 16px;">लॉट नंo</p></th>
-          <th style="width: 200px; text-align:center"><p class="text-left" style="font-size: 16px;">तौल</p></th>
-          <th style="width: 200px; text-align:center"><p class="text-left" style="font-size: 16px;">किराया दर</p></th>
-          <th style="width: 100px; text-align:center"><p class="text-left" style="font-size: 16px;">कीमत</p></th>
+          <th style="width: 500px; text-align:center"><p class="text-left" style="font-size: 22px; font-weight:900">लॉट नंo</p></th>
+          <th style="width: 200px; text-align:center"><p class="text-left" style="font-size: 22px; font-weight:900">तौल</p></th>
+          <th style="width: 200px; text-align:center"><p class="text-left" style="font-size: 22px; font-weight:900">किराया दर</p></th>
+          <th style="width: 100px; text-align:center"><p class="text-left" style="font-size: 22px; font-weight:900">कीमत</p></th>
         </thead>
         <tbody>
               <tr>
-                <td><?=@$obj->farmer_lot_id?></td>
-                <td><?=@$obj->quantity?></td>
-                <td><?=@$obj->kiraya?></td>
-                <td><?=@$obj->total_amount?> </td>
+                <td style="font-size: 22px; font-weight:900;color:#120c21"><?=@$obj->farmer_lot_id?></td>
+                <td style="font-size: 22px; font-weight:900;color:#120c21"><?=@$obj->quantity?></td>
+                <td style="font-size: 22px; font-weight:900;color:#120c21"><?=@$obj->kiraya?></td>
+                <td style="font-size: 22px; font-weight:900;color:#120c21"><?=@$obj->total_amount?> </td>
               </tr>
               
         </tbody>
@@ -112,17 +112,17 @@
           <table>
               <tr>
                 <td style="padding: 20px;">
-                  <p class="text-left" style="margin:0">रुपया ( शब्दों में ) : <?=@$obj->total_amount_word?></p>
+                  <p class="text-left" style="margin:0;font-size: 22px; font-weight:900;color:#120c21">रुपया ( शब्दों में ) : <?=@$obj->total_amount_word?></p>
                 </td>
               </tr>
               <tr>
                 <td style="padding: 20px; width:650px">
-                  <p class="text-left" style="margin:0">किराया दाता/ अधिकृत</p>
-                  <p class="text-left" style="margin:0">अभिकर्ता के हस्ताक्षर</p>
+                  <p class="text-left" style="margin:0;font-size: 22px; font-weight:900;color:#120c21">किराया दाता/ अधिकृत</p>
+                  <p class="text-left" style="margin:0;font-size: 22px; font-weight:900;color:#120c21">अभिकर्ता के हस्ताक्षर</p>
                 </td>
                 <td style="padding: 20px; width:350px">
-                <p class="text-left" style="margin:0">लाइसेंस गृहीता/ अधिकृत</p>
-                  <p class="text-left" style="margin:0">अभिकर्ता के हस्ताक्षर</p>
+                <p class="text-left" style="margin:0;font-size: 22px; font-weight:900;color:#120c21">लाइसेंस गृहीता/ अधिकृत</p>
+                  <p class="text-left" style="margin:0;font-size: 22px; font-weight:900;color:#120c21">अभिकर्ता के हस्ताक्षर</p>
                 </td>
               </tr>
             </table>
@@ -184,7 +184,7 @@ $("body").on("click", "#downloadPDF", function () {
 			pdf.save('report.pdf'); */// Generated PDF  
       // split the canvas produced by html2canvas into several, based on desired PDF page height
 
-      let splitAt = 920; // A page height which fits for "LETTER" pageSize...
+      let splitAt = 960; // A page height which fits for "LETTER" pageSize...
 
       let images = [];
       let y = 0;

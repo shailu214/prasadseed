@@ -491,7 +491,7 @@
 		<div class="card">
             <div class="card-header">
               <h3 class="card-title" style="width:100%;">
-				<i class="fe fe-user"></i> Fare
+				<i class="fe fe-user"></i> V.F.P
               <!-- <a href="<?=base_url()?>exam/eprint/<?=$ex_code?>" style="color:#fff" class="btn btn-info btn-sm pull-right"><i class="fe fe-file"></i> Print</a> -->
               </h3>
             </div>
@@ -508,6 +508,7 @@
 					  
                         <tr>
                           <th class="w-1">S.No.</th>
+						  <th>Lot No.</th>
 						  <th>Farmer</th>
                           <th>Year</th>
 						  <th>Fare</th>
@@ -520,6 +521,13 @@
 						foreach($fare as $fareobj) { $sn++; ?>
                         <tr>
                           <td><span class="text-muted"><?=$sn?></span></td>
+						  <td><?php 
+								$db->where('id', $fareobj['farmer_lot_id']);
+								$obj = $db->get('farmer_lots')->row();
+								if($obj) {
+									echo $obj->lots;
+								}
+							?></td>
 						  <td align="left"> 
 
 							<?php 
@@ -558,6 +566,7 @@
                 <tbody>
 					<tr>
 					  <th class="w-1">S.No.</th>
+					  	  <th>Lot No.</th>
 						  <th>Tittle</th>
 						  <th>Value</th>
                           <th>Tittle 2</th>
@@ -577,6 +586,15 @@
 						?>
                         <tr>
                           <td><span class="text-muted"><?=$sni?></span></td>
+						  <td>
+						  <?php 
+								$db->where('id', $val['farmer_lot_id']);
+								$obj = $db->get('farmer_lots')->row();
+								if($obj) {
+									echo $obj->lots;
+								}
+							?>
+							</td>
 						  <td align="left"> 
 							<?=$val['title_one'];?>
 						  </td>

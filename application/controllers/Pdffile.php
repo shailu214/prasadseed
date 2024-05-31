@@ -47,7 +47,7 @@ class Pdffile extends CI_Controller {
 	
 	public function delivery( $id ) {
 		$this->db->where('id', $id);
-		$obj = $this->db->get('challan')->row();
+		$obj = $this->db->get('delivery')->row();
 		if($obj) {
 			$this->db->where('id', $obj->farmer_id);
 			$farmer = $this->db->get('farmer')->row();
@@ -61,6 +61,11 @@ class Pdffile extends CI_Controller {
 			}
 
 
+			$this->db->where('id', $obj->farmer_lot_id);
+			$farmer_lot = $this->db->get("farmer_lots")->row();
+			if($farmer_lot) {
+				$obj->farmer_lot_id = $farmer_lot->lots;
+			}
 
 			$this->db->where('id', $obj->vegetable_id);
 			$vegetable = $this->db->get('vegetable')->row();

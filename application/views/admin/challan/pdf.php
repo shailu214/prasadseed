@@ -25,21 +25,22 @@
 .table-bordered th, .text-wrap table th, .table-bordered td, .text-wrap table td {
     border: 2px solid #666;
 }
+
 </style>
 <button style="background-color:#DA0C29; color:#fff;" id="downloadPDF">Download</button>
 <div class="container pdf" id="downloadPDFData" style="border-radius: 20px;max-width: 60%;">
   <div class="header text-center" style="padding:5px;">
     <div class="row">
       <div class="col-md-7 text-center" style="display: flex;justify-content: end;">
-        <p class="text-left" style="padding: 12px 50px;background-color:#fff;border:2px solid #120c21;border-radius:20px;font-weight:900;font-size:20px;">चालान</p>
+        <p class="text-left" style="padding: 5px 50px;background-color:#fff;border:2px solid #120c21;border-radius:20px;font-weight:900;font-size:20px; margin:0;max-height:50px">चालान</p>
       </div>
       <div class="col-md-5" style="display: flex;justify-content: end;">
           <table>
             <tr>
-              <td>Mobile:</td>
+              <td style="font-size: 20px; font-weight:900;color:#120c21">Mobile:</td>
               <td>
-                <p style="margin-bottom:0">9956125168</p>
-                <p>7618961160</p>
+                <p style="margin-bottom:0; font-size: 20px; font-weight:900;color:#120c21">9956125168</p>
+                <p style="font-size: 20px; font-weight:900;color:#120c21">7618961160</p>
               </td>
             </tr>
           </table>
@@ -48,14 +49,14 @@
     <div class="row">
       <div class="col-md-2"></div>
       <div class="col-md-8 text-center">
-       <p class="text-left" style="font-size: 40px;color:#120c21;font-weight:900;padding:10px 10px 10px 80px;">प्रसाद एग्रो इंडस्ट्रीज <span style="font-size: 16px;color:#120c21;">(कोल्ड स्टोरेज)</span></p>
+       <p class="text-left" style="font-size: 40px;color:#120c21;font-weight:900;padding:10px 10px 10px 80px; margin:0">प्रसाद एग्रो इंडस्ट्रीज <span style="font-size: 16px;color:#120c21;">(कोल्ड स्टोरेज)</span></p>
       </div>
       <div class="col-md-2"></div>
     </div>
     <div class="row">
       <div class="col-md-2"></div>
       <div class="col-md-8 text-center">
-        <p class="text-left" style="font-size: 18px;border:2px solid #444;border-radius:20px;padding:10px 10px 10px 80px;color:#120c21;font-weight:900">रूरा-अकबरपुर रोड, ग्राम नरिहा, कानपुर देहात (यूo पीo)</p>
+        <p class="text-left" style="font-size: 22px;border:2px solid #120c21;border-radius:20px;padding:0 0 0 20px;font-weight:900;color:#120c21">रूरा-अकबरपुर रोड, ग्राम नरिहा, कानपुर देहात (यूo पीo)</p>
       </div>
       <div class="col-md-2"></div>
     </div>
@@ -64,10 +65,10 @@
         <div class="col-md-8" style="border-right: 4px solid #666; border-radius:15px" >
           <table>
               <tr>
-                <td style="vertical-align: top; padding:0 30px;padding: 20px;"><p class="text-left" style="font-size: 16px;">मेसर्स: </p></td>
+                <td style="vertical-align: top; padding:0 30px;padding: 20px;"><p class="text-left" style="font-size:22px; font-weight:900;color:#120c21">मेसर्स: </p></td>
                 <td style="padding: 20px;">
-                  <p class="text-left" style="margin:0"><?=@$obj->ms_name?></p>
-                  <p class="text-left" style="margin:0"><?=@$obj->state?>, <?=@$obj->city?></p>
+                  <p class="text-left" style="margin:0;font-size:22px; font-weight:900;color:#120c21"><?=@$obj->ms_name?></p>
+                  <p class="text-left" style="margin:0;font-size:22px; font-weight:900;color:#120c21"><?=@$obj->state?>, <?=@$obj->city?></p>
                 </td>
               </tr>
             </table>
@@ -75,15 +76,15 @@
         <div class="col-md-4" style="border-left: 4px solid #666; border-radius:15px">
         <table>
               <tr>
-                <td style="vertical-align: top; padding: 20px;"><p class="text-left" style="font-size: 16px;">कर्मांक: </p></td>
-                <td style="padding: 20px;">
-                  <p class="text-left" style="margin:0"><?=@$obj->id?></p>
+                <td style="vertical-align: top; padding: 0px;"><p class="text-left" style="font-size:22px; font-weight:900;color:#120c21">कर्मांक: </p></td>
+                <td style="padding: 0px;">
+                  <p class="text-left" style="margin:0;font-size:22px; font-weight:900;color:#120c21"><?=@$obj->id?></p>
                 </td>
               </tr>
               <tr>
-                <td style="vertical-align: top; padding: 5px 5px 5px 20px;"><p class="text-left" style="font-size: 16px;">दिनांक: </p></td>
+                <td style="vertical-align: top; padding: 5px 5px 5px 0px;"><p class="text-left" style="font-size:22px; font-weight:900;color:#120c21">दिनांक: </p></td>
                 <td style="padding:0px;">
-                  <p class="text-left" style="margin:0"><?=@$obj->year?></p>
+                  <p class="text-left" style="margin:0;font-size:22px; font-weight:900;color:#120c21"><?=@$obj->year?></p>
                 </td>
               </tr>
             </table>
@@ -93,8 +94,8 @@
     <div style="background-color: #fff;">
     <div class="row">
       <div class="col-md-12">
-        <p class="text-left" style="font-size: 18px;padding:10px; ">महोदय,</p>
-        <p class="text-left" style="font-size: 18px;padding:10px; ">आज दिन गाड़ी नम्बर <?=@$obj->vechicle_no?> से  <?=@$obj->vegetable?> <?=@$obj->no_of_bori_count?> बोरा शब्दों में <?=@$obj->no_of_bori_count_word?>, बिक्री हेतु आपके पास भेज रहा हूं सो आप माल संभालकर उतरवा लीजिएगा ।। गाड़ी भाड़ा बिल्टी मुजिब रुपए  <?=@$obj->gaddi_bhada?> प्रति किग्रा / प्रति बोरा के हिसाब से जोड़कर दे देना ।। माल बिक्री का पूरा रुपया हमारे खाता नाम  <?=@$obj->account_name?> ,खाता नंबर: <?=@$obj->account_number?>, आई एफ एस सी कोड: <?=@$obj->ifsc_code?>  में ही करें ।। <br>धन्यबाद
+        <p class="text-left" style="font-size:19px;padding:0 10px; color:#120c21;margin:0 ">महोदय,</p>
+        <p class="text-left" style="font-size: 19px;padding:0 10px; color:#120c21 ">आज दिन गाड़ी नम्बर <?=@$obj->vechicle_no?> से  <?=@$obj->vegetable?> <?=@$obj->no_of_bori_count?> बोरा शब्दों में <?=@$obj->no_of_bori_count_word?>, बिक्री हेतु आपके पास भेज रहा हूं सो आप माल संभालकर उतरवा लीजिएगा ।। गाड़ी भाड़ा बिल्टी मुजिब रुपए  <?=@$obj->gaddi_bhada?> प्रति किग्रा / प्रति बोरा के हिसाब से जोड़कर दे देना ।। माल बिक्री का पूरा रुपया हमारे खाता नाम  <?=@$obj->account_name?> ,खाता नंबर: <?=@$obj->account_number?>, आई एफ एस सी कोड: <?=@$obj->ifsc_code?>  में ही करें ।। <br>धन्यबाद
 </p>
       </div>
       
@@ -102,89 +103,89 @@
     <div class="row">
     <div class="col-md-4"></div>
     <div class="col-md-4">
-        <p class="text-left"  style="font-size: 18px;border:2px solid #120c21;border-radius:20px;padding:10px 10px 10px 80px;font-weight:900">माल का विवरण</p>
+        <p class="text-left"  style="font-size: 22px;border:2px solid #120c21;border-radius:20px;padding:10px 10px 10px 80px;font-weight:900;color:#120c21">माल का विवरण</p>
       </div>
       <div class="col-md-4"></div>
     </div>
     <div>
       <table class="table-bordered ">
         <thead class="text-center" style="background-color: #595273;color:#fff">
-          <th style="width: 100px; text-align:center"><p class="text-left" style="font-size: 16px;">क्रम.</p></th>
-          <th style="width: 500px; text-align:center"><p class="text-left" style="font-size: 16px;">भेजने वाले का नाम</p></th>
-          <th style="width: 200px; text-align:center"><p class="text-left" style="font-size: 16px;">ग्राम</p></th>
-          <th style="width: 100px; text-align:center"><p class="text-left" style="font-size: 16px;">बोरा</p></th>
-          <th style="width: 100px; text-align:center"><p class="text-left" style="font-size: 16px;">निशान</p></th>
+          <th style="width: 100px; text-align:center"><p class="text-left" style="font-size: 22px; font-weight:900;color:#fff;margin:0">क्रम.</p></th>
+          <th style="width: 500px; text-align:center"><p class="text-left" style="font-size: 22px; font-weight:900;color:#fff;margin:0">भेजने वाले का नाम</p></th>
+          <th style="width: 200px; text-align:center"><p class="text-left" style="font-size: 22px; font-weight:900;color:#fff;margin:0">ग्राम</p></th>
+          <th style="width: 100px; text-align:center"><p class="text-left" style="font-size: 22px; font-weight:900;color:#fff;margin:0">बोरा</p></th>
+          <th style="width: 100px; text-align:center"><p class="text-left" style="font-size: 22px; font-weight:900;color:#fff;margin:0">निशान</p></th>
         </thead>
         <tbody>
               <tr>
-                <td>1</td>
-                <td><?=@$obj->farmer?></td>
-                <td><?=@$obj->address?></td>
-                <td><?=@$obj->no_of_bori?></td>
-                <td><?=@$obj->nisaan?> </td>
+                <td style="font-size: 22px; font-weight:900;color:#120c21">1</td>
+                <td style="font-size: 22px; font-weight:900;color:#120c21"><?=@$obj->farmer?></td>
+                <td style="font-size: 22px; font-weight:900;color:#120c21"><?=@$obj->address?></td>
+                <td style="font-size: 22px; font-weight:900;color:#120c21"><?=@$obj->no_of_bori?></td>
+                <td style="font-size: 22px; font-weight:900;color:#120c21"><?=@$obj->nisaan?> </td>
               </tr>
               <tr>
-                <td>2</td>
-                <td></td>
-                <td></td>
-                <td><?=@$obj->no_of_bori1?></td>
-                <td><?=@$obj->nisaan1?> </td>
+                <td style="font-size: 22px; font-weight:900;color:#120c21">2</td>
+                <td style="font-size: 22px; font-weight:900;color:#120c21"></td>
+                <td style="font-size: 22px; font-weight:900;color:#120c21"></td>
+                <td style="font-size: 22px; font-weight:900;color:#120c21"><?=@$obj->no_of_bori1?></td>
+                <td style="font-size: 22px; font-weight:900;color:#120c21"><?=@$obj->nisaan1?> </td>
               </tr>
               <tr>
-                <td>3</td>
-                <td></td>
-                <td></td>
-                <td><?=@$obj->no_of_bori2?></td>
-                <td><?=@$obj->nisaan2?></td>
+                <td style="font-size: 22px; font-weight:900;color:#120c21">3</td>
+                <td style="font-size: 22px; font-weight:900;color:#120c21"></td>
+                <td style="font-size: 22px; font-weight:900;color:#120c21"></td>
+                <td style="font-size: 22px; font-weight:900;color:#120c21"><?=@$obj->no_of_bori2?></td>
+                <td style="font-size: 22px; font-weight:900;color:#120c21"><?=@$obj->nisaan2?></td>
               </tr>
               <tr>
-                <td>4</td>
-                <td></td>
-                <td></td>
-                <td><?=@$obj->no_of_bori3?></td>
-                <td><?=@$obj->nisaan3?></td>
+                <td style="font-size: 22px; font-weight:900;color:#120c21">4</td>
+                <td style="font-size: 22px; font-weight:900;color:#120c21"></td>
+                <td style="font-size: 22px; font-weight:900;color:#120c21"></td>
+                <td style="font-size: 22px; font-weight:900;color:#120c21"><?=@$obj->no_of_bori3?></td>
+                <td style="font-size: 22px; font-weight:900;color:#120c21"><?=@$obj->nisaan3?></td>
               </tr>
               <tr>
-                <td>5</td>
-                <td></td>
-                <td></td>
-                <td><?=@$obj->no_of_bori4?></td>
-                <td><?=@$obj->nisaan4?></td>
+                <td style="font-size: 22px; font-weight:900;color:#120c21">5</td>
+                <td style="font-size: 22px; font-weight:900;color:#120c21"></td>
+                <td style="font-size: 22px; font-weight:900;color:#120c21"></td>
+                <td style="font-size: 22px; font-weight:900;color:#120c21"><?=@$obj->no_of_bori4?></td>
+                <td style="font-size: 22px; font-weight:900;color:#120c21"><?=@$obj->nisaan4?></td>
               </tr>
               <tr>
-                <td>6</td>
-                <td></td>
-                <td></td>
-                <td><?=@$obj->no_of_bori5?></td>
-                <td><?=@$obj->nisaan5?></td>
+                <td style="font-size: 22px; font-weight:900;color:#120c21">6</td>
+                <td style="font-size: 22px; font-weight:900;color:#120c21"></td>
+                <td style="font-size: 22px; font-weight:900;color:#120c21"></td>
+                <td style="font-size: 22px; font-weight:900;color:#120c21"><?=@$obj->no_of_bori5?></td>
+                <td style="font-size: 22px; font-weight:900;color:#120c21"><?=@$obj->nisaan5?></td>
               </tr>
               <tr>
-                <td>7</td>
-                <td></td>
-                <td></td>
-                <td><?=@$obj->no_of_bori6?></td>
-                <td><?=@$obj->nisaan6?></td>
+                <td style="font-size: 22px; font-weight:900;color:#120c21">7</td>
+                <td style="font-size: 22px; font-weight:900;color:#120c21"></td>
+                <td style="font-size: 22px; font-weight:900;color:#120c21"></td>
+                <td style="font-size: 22px; font-weight:900;color:#120c21"><?=@$obj->no_of_bori6?></td>
+                <td style="font-size: 22px; font-weight:900;color:#120c21"><?=@$obj->nisaan6?></td>
               </tr>
               <tr>
-                <td>8</td>
-                <td></td>
-                <td></td>
-                <td><?=@$obj->no_of_bori7?></td>
-                <td><?=@$obj->nisaan7?></td>
+                <td style="font-size: 22px; font-weight:900;color:#120c21">8</td>
+                <td style="font-size: 22px; font-weight:900;color:#120c21"></td>
+                <td style="font-size: 22px; font-weight:900;color:#120c21"></td>
+                <td style="font-size: 22px; font-weight:900;color:#120c21"><?=@$obj->no_of_bori7?></td>
+                <td style="font-size: 22px; font-weight:900;color:#120c21"><?=@$obj->nisaan7?></td>
               </tr>
               <tr>
-                <td>9</td>
-                <td></td>
-                <td></td>
-                <td><?=@$obj->no_of_bori8?></td>
-                <td><?=@$obj->nisaan8?></td>
+                <td style="font-size: 22px; font-weight:900;color:#120c21">9</td>
+                <td style="font-size: 22px; font-weight:900;color:#120c21"></td>
+                <td style="font-size: 22px; font-weight:900;color:#120c21"></td>
+                <td style="font-size: 22px; font-weight:900;color:#120c21"><?=@$obj->no_of_bori8?></td>
+                <td style="font-size: 22px; font-weight:900;color:#120c21"><?=@$obj->nisaan8?></td>
               </tr>
               <tr>
-                <td>10</td>
-                <td></td>
-                <td></td>
-                <td><?=@$obj->no_of_bori9?></td>
-                <td><?=@$obj->nisaan9?></td>
+                <td style="font-size: 22px; font-weight:900;color:#120c21">10</td>
+                <td style="font-size: 22px; font-weight:900;color:#120c21"></td>
+                <td style="font-size: 22px; font-weight:900;color:#120c21"></td>
+                <td style="font-size: 22px; font-weight:900;color:#120c21"><?=@$obj->no_of_bori9?></td>
+                <td style="font-size: 22px; font-weight:900;color:#120c21"><?=@$obj->nisaan9?></td>
               </tr>
         </tbody>
       </table>
@@ -194,9 +195,9 @@
         <div class="col-md-8">
           <table>
               <tr>
-                <td style="vertical-align: top; padding:0 30px;padding: 20px;">नोट: </td>
+                <td style="vertical-align: top; padding:0 30px;padding: 20px; font-size: 20px; font-weight:900;color:#120c21">नोट: </td>
                 <td style="padding: 20px;">
-                  <p class="text-left" style="margin:0">कृपया आलू की धर्म कांटा तौल  की पर्ची एवं आपके मंडी की प्रवेश पर्ची हमारे WhatsApp Number 7618961160 पर माल उतारने के बाद अवश्य ही प्रेषित करने का कष्ट करें।।</p>
+                  <p class="text-left" style="margin:0;font-size: 20px; font-weight:900;color:#120c21">कृपया आलू की धर्म कांटा तौल  की पर्ची एवं आपके मंडी की प्रवेश पर्ची हमारे WhatsApp Number 7618961160 पर माल उतारने के बाद अवश्य ही प्रेषित करने का कष्ट करें।।</p>
                 </td>
               </tr>
             </table>
@@ -205,8 +206,8 @@
         <table>
               <tr>
                 <td style="vertical-align: top; padding: 20px 5px; text-align:center">
-                <p class="text-left" style="font-size: 16px;">भवदीए</p>
-                <p class="text-left" style="font-size: 16px;">वास्ते प्रसाद एग्रो इंडस्ट्रीज</p>
+                <p class="text-left" style="font-size: 16px;font-size: 20px; font-weight:900;color:#120c21">भवदीए</p>
+                <p class="text-left" style="font-size: 16px;font-size: 20px; font-weight:900;color:#120c21">वास्ते प्रसाद एग्रो इंडस्ट्रीज</p>
               </td>
                 
               </tr>
@@ -219,7 +220,7 @@
         <div class="col-md-8" style="display: flex;justify-content: center; ;">
           <table>
               <tr>
-                <td style="vertical-align: top; padding:0 30px;padding: 20px;"><p class="text-left" style="font-size: 16px;">हस्ताक्षर ड्राइवर / व्यापारी</p></td>
+                <td style="vertical-align: top; padding:0 30px;padding: 20px;"><p class="text-left" style="font-size: 20px; font-weight:900;color:#120c21">हस्ताक्षर ड्राइवर / व्यापारी</p></td>
               </tr>
             </table>
           </div>
@@ -229,7 +230,7 @@
                 <td style="vertical-align: top; padding: 20px 5px; text-align:center">
                 <table>
               <tr>
-                <td style="vertical-align: top; padding:0 30px;padding: 20px;"><p class="text-left" style="font-size: 16px;">मैनेजर</p></td>
+                <td style="vertical-align: top; padding:0 30px;padding: 5px;"><p class="text-left" style="font-size: 20px; font-weight:900;color:#120c21">मैनेजर</p></td>
               </tr>
             </table>
                
@@ -294,7 +295,7 @@ $("body").on("click", "#downloadPDF", function () {
 			pdf.save('report.pdf'); */// Generated PDF  
       // split the canvas produced by html2canvas into several, based on desired PDF page height
 
-      let splitAt =1320; // A page height which fits for "LETTER" pageSize...
+      let splitAt =1362; // A page height which fits for "LETTER" pageSize...
 
       let images = [];
       let y = 0;
