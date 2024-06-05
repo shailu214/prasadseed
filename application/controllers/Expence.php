@@ -21,6 +21,7 @@ class Expence extends CI_Controller {
 		$post = $this->input->post('src');
 
 		if(!empty( $post )) {
+			
 			$this->session->src = $post;
 		}
 
@@ -78,7 +79,14 @@ class Expence extends CI_Controller {
 		if( strlen($_SESSION['src']['edate']) ) {
 			$this->db->where("DATE(ex.created) <= DATE('".date("Y-m-d", strtotime($_SESSION['src']['edate']))."')");
 		}
-
+		if(!empty( $post )) {
+			if(!empty($post['search_year'])) {
+				$this->db->where("year(ex.created)", $post['search_year']);
+				//echo '<pre>'; print_r($post); die;
+			}
+			
+			$this->session->src = $post;
+		}
 		$this->db->where("ex.cat=cat.id");
 		$this->db->where("ex.sbcat=scat.id");
 		$this->db->order_by("ex.id","desc");

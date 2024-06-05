@@ -22,7 +22,7 @@
                                 <?php 
                                 $static_year = 2024;
                                 $current_year = date('Y'); ?>
-                                <select class="form-control" name="data[search_year]">
+                                <select class="form-control" name="src[search_year]">
                                   <option value="">Select Year</option>
                                   <?php for ($x = $static_year; $x <= $current_year; $x++) { ?>
                                     <option value="<?php echo $x; ?>"><?php echo $x; ?></option>
