@@ -103,8 +103,16 @@
                       </tbody>
                       <tfoot>
                         <tr style="border-top:1px solid #ddd">
+                          <th colspan="6" style="text-align:right; color:#333; font-weight:600; font-size:18px;">TOTAL Deposit &nbsp; &nbsp; </th>
+                          <th style="text-align:center; color:#333; font-weight:600; font-size:20px;"><span style="text-transform:capitalize">Rs.</span> <?=array_sum( $sum )?></th>
+                        </tr>
+                        <tr style="border-top:1px solid #ddd">
                           <th colspan="6" style="text-align:right; color:#333; font-weight:600; font-size:18px;">TOTAL EXPENSE &nbsp; &nbsp; </th>
                           <th style="text-align:center; color:#333; font-weight:600; font-size:20px;"><span style="text-transform:capitalize">Rs.</span> <?=array_sum( $sum )?></th>
+                        </tr>
+                        <tr style="border-top:1px solid #ddd">
+                          <th colspan="6" style="text-align:right; color:#333; font-weight:600; font-size:18px;">Remaining Amont &nbsp; &nbsp; </th>
+                          <th style="text-align:center; color:#333; font-weight:600; font-size:20px;"><span style="text-transform:capitalize">Rs.</span> Total Deposit - total expense</th>
                         </tr>
                       </tfoot>
                     </table>
