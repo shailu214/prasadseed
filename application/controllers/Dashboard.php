@@ -25,8 +25,9 @@ class Dashboard extends CI_Controller {
 		$data['fare'] = $this->db->get("fare_gadi_bada")->num_rows();
 		$head['nav'] = 1;
 
-	
-
+		$data['total_qty'] = $this->db->select_sum('qty')->get("entry_management")->row();
+		$data['total_qty_sell'] = $this->db->select_sum('quantity')->get("sell")->row();
+		
 		$this->load->view('admin/head');
 		$this->load->view('admin/header', $head);
 		$this->load->view('admin/dashboard', $data);
