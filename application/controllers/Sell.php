@@ -202,6 +202,10 @@ class Sell extends CI_Controller {
 			//$this->db->select_sum('quantity+short_qty');
 			$this->db->select('SUM(quantity) + SUM(short_qty) as total', FALSE);
 			$this->db->where('farmer_lot_id', $farmerlot->id);
+			if($pkid > 0) {
+				$this->db->where('id !=', $pkid);
+			}
+			
 			$objcount = $this->db->get('tbl_sell')->result_array();  //5
 
 
@@ -216,7 +220,7 @@ class Sell extends CI_Controller {
 				///if($objcount[0]['quantity'] < $post['quantity']) {
 				//$errors[] = 'Qty should be '.( $objcount[0]['quantity']);
 			//}
-			//echo '<pre>'; print_r($errors); die;
+			//echo '<pre>'; print_r($objcount); die;
 			if(count($errors) > 0) {
 				$this->session->set_flashdata('errors', $errors);
 				redirect("sell/add/".$pkid);
@@ -232,7 +236,8 @@ class Sell extends CI_Controller {
 			$post['total_amount'] = $post['price'];
 			$post['qty2'] = $post['qty2'];
 			if($obj) {
-				
+				//$post['quantity'] = $post['quantity']+$obj->quantity;
+				//$post['short_qty'] = $post['short_qty']+$obj->short_qty;
 				$this->session->set_flashdata('success_entry', 'success update');
 				$this->db->where('id', $pkid);
 				$this->db->update('sell', $post);

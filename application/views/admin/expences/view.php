@@ -72,18 +72,22 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <?php $i=$sno; foreach ($result as $key => $val ) { $i++;?>
+                        <?php 
+						$Deposit = $Expense = [];
+						$i=$sno; foreach ($result as $key => $val ) { $i++;?>
                         <tr>
-                          <td><span class="text-muted"><?=$val->id?>-1</span></td>
+                          <td><span class="text-muted"><?=$i?></span></td>
                           <td> <?=$val['pcat']?>  </td>
                           <td> <?=$val['category']?>  </td>
                           <td> <?=$val['title']?>  </td>
                           <td> Rs. <?=$val['amount']?> </td>
                           <td>
                                 <?php
-                              if($val->type == 1) {
+                              if($val['type'] == 1) {
+								  $Deposit[] = $val['amount'];
                                 echo 'Deposit';
-                              } else if($val->type == 2) {
+                              } else if($val['type'] == 2) {
+								  $Expense[] = $val['amount'];
                                 echo 'Expense'; 
                               } ?> 
                          </td>
@@ -99,20 +103,23 @@
                           </td>
                         </tr>
                         <?php $sum[] = $val['amount']; ?>
-                      <?php } ?>
+                      <?php } 
+					  $dep = array_sum( $Deposit );
+					  $exp = array_sum( $Expense );
+					  ?>
                       </tbody>
                       <tfoot>
                         <tr style="border-top:1px solid #ddd">
                           <th colspan="6" style="text-align:right; color:#333; font-weight:600; font-size:18px;">TOTAL Deposit &nbsp; &nbsp; </th>
-                          <th style="text-align:center; color:#333; font-weight:600; font-size:20px;"><span style="text-transform:capitalize">Rs.</span> <?=array_sum( $sum )?></th>
+                          <th style="text-align:center; color:#333; font-weight:600; font-size:20px;"><span style="text-transform:capitalize">Rs.</span> <?=$dep?></th>
                         </tr>
                         <tr style="border-top:1px solid #ddd">
                           <th colspan="6" style="text-align:right; color:#333; font-weight:600; font-size:18px;">TOTAL EXPENSE &nbsp; &nbsp; </th>
-                          <th style="text-align:center; color:#333; font-weight:600; font-size:20px;"><span style="text-transform:capitalize">Rs.</span> <?=array_sum( $sum )?></th>
+                          <th style="text-align:center; color:#333; font-weight:600; font-size:20px;"><span style="text-transform:capitalize">Rs.</span> <?=$exp?></th>
                         </tr>
                         <tr style="border-top:1px solid #ddd">
                           <th colspan="6" style="text-align:right; color:#333; font-weight:600; font-size:18px;">Remaining Amont &nbsp; &nbsp; </th>
-                          <th style="text-align:center; color:#333; font-weight:600; font-size:20px;"><span style="text-transform:capitalize">Rs.</span> Total Deposit - total expense</th>
+                          <th style="text-align:center; color:#333; font-weight:600; font-size:20px;"><span style="text-transform:capitalize">Rs.</span> <?php echo $dep- $exp; ?> </th>
                         </tr>
                       </tfoot>
                     </table>
