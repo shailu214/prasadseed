@@ -131,13 +131,13 @@
                     <div>
                       <h4 class="m-0">
                         <a href="javascript:void(0)">
-                        <span style="font-size:18px;">Total Quantity: </span> <span style="font-size:25px;"><?php  echo $totalamt; ?></span> 
+                        <span style="font-size:18px;">Total Quantity: </span> <span style="font-size:25px;"><?php  echo $total_qty->qty; ?></span> 
                         </a><br>
                         <a href="javascript:void(0)">
-                        <span style="font-size:18px;">Total Sale: </span> <span style="font-size:25px;"><?=($qty)? $qty : 0;?></span> 
+                        <span style="font-size:18px;">Total Sale: </span> <span style="font-size:25px;"><?php  echo $total_qty_sell->quantity; ?></span> 
                         </a><br> 
                         <a href="javascript:void(0)">
-                        <span style="font-size:18px;">Remaining Quantity: </span> <span style="font-size:25px;"><?=($qty)? $qty : 0;?></span> 
+                        <span style="font-size:18px;">Remaining Quantity: </span> <span style="font-size:25px;"><?php  echo $total_qty->qty - $total_qty_sell->quantity; ?></span> 
                         </a><br>
                         
                       </h4>
