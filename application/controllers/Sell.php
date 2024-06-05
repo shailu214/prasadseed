@@ -199,18 +199,24 @@ class Sell extends CI_Controller {
 				redirect("sell/add");
 			}
 			
-			$this->db->select_sum('quantity');
+			//$this->db->select_sum('quantity+short_qty');
+			$this->db->select('SUM(quantity) + SUM(short_qty) as total', FALSE);
 			$this->db->where('farmer_lot_id', $farmerlot->id);
-			$objcount = $this->db->get('tbl_sell')->result_array();
-			$objcount[0]['quantity'];
+			$objcount = $this->db->get('tbl_sell')->result_array();  //5
+
+
 			
 			$this->db->where('id', $farmerlot->entry_management_id);
-			$entryCheck = $this->db->get('entry_management')->row();
+			$entryCheck = $this->db->get('entry_management')->row(); ////11
 			
-			if(($entryCheck->qty - $objcount[0]['quantity']) < $post['quantity']) {
-				$errors[] = 'Qty should be '.($entryCheck->qty - $objcount[0]['quantity']);
+			if(($objcount[0]['total'] + ($post['quantity'] + $post['short_qty'])) > $entryCheck->qty) {
+				$errors[] = 'Qty should be '.( $entryCheck->qty - ($objcount[0]['total']));
 			}
-			
+			//if(($entryCheck->qty - $objcount[0]['quantity']) < $post['quantity']) {
+				///if($objcount[0]['quantity'] < $post['quantity']) {
+				//$errors[] = 'Qty should be '.( $objcount[0]['quantity']);
+			//}
+			//echo '<pre>'; print_r($errors); die;
 			if(count($errors) > 0) {
 				$this->session->set_flashdata('errors', $errors);
 				redirect("sell/add/".$pkid);

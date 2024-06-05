@@ -161,6 +161,7 @@
                       <a href="<?=base_url()?>category.html" class="dropdown-item ">Category</a>
                       <a href="<?=base_url()?>subcategory.html" class="dropdown-item ">Sub Category</a>
 					            <a href="<?=base_url()?>expence/add.html" class="dropdown-item ">Add Rokad </a>
+                      <a href="<?=base_url()?>expence.html" class="dropdown-item "> Rokad List </a>
                     
                   </div>
                 </li>

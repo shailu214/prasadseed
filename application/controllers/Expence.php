@@ -85,6 +85,7 @@ class Expence extends CI_Controller {
 		$this->db->limit($lim,$start);
 
 		$data['result'] = $this->db->get()->result_array();
+	//	echo '<pre>'; print_r($data); die;
 		$data['pages'] = $pages;
 		$data['sno'] = $start;
 

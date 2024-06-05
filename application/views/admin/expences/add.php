@@ -11,7 +11,7 @@
 
             <div class="col-lg-12">
               <form method="post" class="card">
-                <h3 class="card-title" style="margin:20px 25px;;"><i class="fa fa-money"></i> &nbsp;Add Expenses</h3>
+                <h3 class="card-title" style="margin:20px 25px;;"><i class="fa fa-money"></i> &nbsp;Add Rokad</h3>
                 <hr style="margin:0px;">
                 <div class="card-body">
 
@@ -37,10 +37,23 @@
                             </select>
                           </div>
                         </div>
+                        <div class="col-md-3">
+                          <div class="form-group">
+                            <label class="form-label">Year</label>
+                            <input type="date" class="form-control year" value="" placeholder="Mobile.." data-validation="required" name="data[created]" data-validation-error-msg="Please enter date.">
+                            <input type="hidden" name="pkid" value="">
+                          </div>
+                        </div>
                         <div class="col-md-4">
                           <div class="form-group">
                             <label class="form-label">Title</label>
                             <input type="text" name="data[title]" class="form-control" data-validation="required" data-validation-error-msg="Please enter title."  placeholder="Enter a title." value="<?=$title?>" >
+                          </div>
+                        </div>
+                        <div class="col-md-4">
+                          <div class="form-group">
+                            <label class="form-label">Title</label>
+                            <input type="text" name="data[name]" class="form-control" data-validation="required" data-validation-error-msg="Please enter Name."  placeholder="Enter a Name." value="<?=$name?>" >
                           </div>
                         </div>
                         <div class="col-md-2">
@@ -49,6 +62,18 @@
                             <input type="text" name="data[amount]" class="form-control" data-validation-error-msg="Please enter amount." data-validation="required number"  placeholder="Enter amount.." value="<?=$amount?>" >
                           </div>
                         </div>
+                        <div class="col-md-4">
+                        <div class="form-group">
+                        <label class="form-label">Type</label>
+                        <div class="form-group">
+                          <select name="data[type]" class="pament_mode form-control" fdprocessedid="j0b6v5">
+                            <option value=""> Select Option </option>
+                            <option value="1" <?php if(@$obj->type == 1) { echo 'selected'; } ?>>Deposit</option>
+                            <option value="2" <?php if(@$obj->type == 2) { echo 'selected'; } ?>>Expenses</option>
+                           </select><br>
+                        </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>

@@ -122,6 +122,30 @@
                   </div>
                 </div>
               </div>
+              <div class="col-sm-6 col-lg-4">
+                <div class="card p-3">
+                  <div class="d-flex align-items-center">
+                    <span class="stamp stamp-md bg-yellow mr-3">
+                      <i class="fe fe-edit-3 fa-2x"></i>
+                    </span>
+                    <div>
+                      <h4 class="m-0">
+                        <a href="javascript:void(0)">
+                        <span style="font-size:18px;">Total Quantity: </span> <span style="font-size:25px;"><?php  echo $totalamt; ?></span> 
+                        </a><br>
+                        <a href="javascript:void(0)">
+                        <span style="font-size:18px;">Total Sale: </span> <span style="font-size:25px;"><?=($qty)? $qty : 0;?></span> 
+                        </a><br> 
+                        <a href="javascript:void(0)">
+                        <span style="font-size:18px;">Remaining Quantity: </span> <span style="font-size:25px;"><?=($qty)? $qty : 0;?></span> 
+                        </a><br>
+                        
+                      </h4>
+                      <small class="text-muted"></small>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
 
           </div>

@@ -25,6 +25,8 @@ class Dashboard extends CI_Controller {
 		$data['fare'] = $this->db->get("fare_gadi_bada")->num_rows();
 		$head['nav'] = 1;
 
+	
+
 		$this->load->view('admin/head');
 		$this->load->view('admin/header', $head);
 		$this->load->view('admin/dashboard', $data);

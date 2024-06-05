@@ -18,6 +18,17 @@
                           <td colspan="9"  style="border-bottom:1px solid #ddd">
                             <form method="post">
                               <table>
+                              <td>
+                                <?php 
+                                $static_year = 2024;
+                                $current_year = date('Y'); ?>
+                                <select class="form-control" name="data[search_year]">
+                                  <option value="">Select Year</option>
+                                  <?php for ($x = $static_year; $x <= $current_year; $x++) { ?>
+                                    <option value="<?php echo $x; ?>"><?php echo $x; ?></option>
+                                  <?php } ?>
+                                </select>
+                                </td>
                                 <tr>
                                   <td>
                                     <select class="src-inp" name="src[cat]" id="cat">
@@ -42,6 +53,7 @@
                                   <td><input type="text" class="src-inp dps" name="src[sdate]" placeholder="From Date.." value="<?=$this->session->src['sdate']?>" /></td>
                                   <td><input type="text" class="src-inp dps" name="src[edate]" placeholder="To Date.." value="<?=$this->session->src['edate']?>" /></td>
                                   <td><button class="btn btn-primary btn-sm"><i class="fe fe-search"></i> Search</button></td>
+                                  <td><a href="<?php echo base_url(); ?>/expence" class="btn btn-danger btn-sm" id="reset" style="color:#fff"><i class="fe fe-rotate-ccw"></i> Reset</a></td>
                                   <td><a href="<?=base_url()?>expence/download.html" class="btn btn-success btn-sm"><i class="fe fe-download"></i> Download</a></td>
                                 </tr>
                               </table>
@@ -54,6 +66,7 @@
                           <th>SubCategory</th>
                           <th>Title</th>
                           <th>Amount</th>
+                          <th>Type</th>
                           <th>Created</th>
                           <th>Action</th>
                         </tr>
@@ -61,11 +74,19 @@
                       <tbody>
                         <?php $i=$sno; foreach ($result as $key => $val ) { $i++;?>
                         <tr>
-                          <td><span class="text-muted"><?=$i?></span></td>
+                          <td><span class="text-muted"><?=$val->id?>-1</span></td>
                           <td> <?=$val['pcat']?>  </td>
                           <td> <?=$val['category']?>  </td>
                           <td> <?=$val['title']?>  </td>
                           <td> Rs. <?=$val['amount']?> </td>
+                          <td>
+                                <?php
+                              if($val->type == 1) {
+                                echo 'Deposit';
+                              } else if($val->type == 2) {
+                                echo 'Expense'; 
+                              } ?> 
+                         </td>
                           <td><?=date("d-M-Y", strtotime( $val['created'] ))?></td>
                           <td>
                             <a class="icon" href="<?=base_url()?>/expence/edit/<?=$val['id']?>">
