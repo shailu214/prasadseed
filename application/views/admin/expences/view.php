@@ -66,7 +66,8 @@
                           <th>SubCategory</th>
                           <th>Title</th>
                           <th>Amount</th>
-                          <th>Type</th>
+                          <th>Deposit</th>
+                          <th>Expense</th>
                           <th>Created</th>
                           <th>Action</th>
                         </tr>
@@ -86,7 +87,11 @@
                               if($val['type'] == 1) {
 								  $Deposit[] = $val['amount'];
                                 echo 'Deposit';
-                              } else if($val['type'] == 2) {
+                              } ?> 
+                         </td>
+                         <td>
+                                <?php
+                             if($val['type'] == 2) {
 								  $Expense[] = $val['amount'];
                                 echo 'Expense'; 
                               } ?> 
@@ -110,16 +115,13 @@
                       </tbody>
                       <tfoot>
                         <tr style="border-top:1px solid #ddd">
-                          <th colspan="6" style="text-align:right; color:#333; font-weight:600; font-size:18px;">TOTAL Deposit &nbsp; &nbsp; </th>
+                          <th colspan="" style="text-align:right; color:#333; font-weight:600; font-size:18px;">TOTAL Deposit &nbsp; &nbsp; </th>
                           <th style="text-align:center; color:#333; font-weight:600; font-size:20px;"><span style="text-transform:capitalize">Rs.</span> <?=$dep?></th>
-                        </tr>
-                        <tr style="border-top:1px solid #ddd">
-                          <th colspan="6" style="text-align:right; color:#333; font-weight:600; font-size:18px;">TOTAL EXPENSE &nbsp; &nbsp; </th>
+                          <th colspan="" style="text-align:right; color:#333; font-weight:600; font-size:18px;">TOTAL EXPENSE &nbsp; &nbsp; </th>
                           <th style="text-align:center; color:#333; font-weight:600; font-size:20px;"><span style="text-transform:capitalize">Rs.</span> <?=$exp?></th>
-                        </tr>
-                        <tr style="border-top:1px solid #ddd">
-                          <th colspan="6" style="text-align:right; color:#333; font-weight:600; font-size:18px;">Remaining Amont &nbsp; &nbsp; </th>
+                          <th colspan="" style="text-align:right; color:#333; font-weight:600; font-size:18px;">Remaining Amont &nbsp; &nbsp; </th>
                           <th style="text-align:center; color:#333; font-weight:600; font-size:20px;"><span style="text-transform:capitalize">Rs.</span> <?php echo $dep- $exp; ?> </th>
+                        
                         </tr>
                       </tfoot>
                     </table>
