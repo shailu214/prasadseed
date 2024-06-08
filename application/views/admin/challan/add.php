@@ -182,7 +182,9 @@
 							<select name="data[bank_account]" class="form-control bank_account_data" style="">
 								<option value="">Select Bank Account</option>
 								<option value="Prasad Agro Industries" <?php  if(@$obj->bank_account == 'Prasad Agro Industries') { echo 'selected'; } ?>>Prasad Agro Industries</option>
-								<option value="Krishna Trading Company" <?php  if(@$obj->bank_account == 'Krishna Trading Company') { echo 'selected'; } ?>>Krishna Trading Company</option>
+								<option value="Krishna Trading Company PNB Account" <?php  if(@$obj->bank_account == 'Krishna Trading Company PNB Account') { echo 'selected'; } ?>>Krishna Trading Company PNB Account</option>
+								<option value="Krishna Trading Company HDFC Account" <?php  if(@$obj->bank_account == 'Krishna Trading Company HDFC Account') { echo 'selected'; } ?>>Krishna Trading Company HDFC Account</option>
+							
 							</select>				
 						  </div>
                         </div>
@@ -414,9 +416,11 @@
 			let val = $(this).val();
 			let list = '';
 			if(val == 'Prasad Agro Industries') {
-				list = '<b>Name</b>: Prasad Agro Industries, <b>A/C</b>: 7486253753, <b>IFSC</b>: IDIB000L514,  RURA, KANPUR DEHAT';
-			} else if(val == 'Krishna Trading Company') {
-				list = '<b>Name</b>: KRISHNA TRADING COMPANY, <b>A/C</b>: 6431002100002355, <b>IFSC</b>: PUNB0643100, VIKASH NAGAR, LAKHANPUR, KANPUR NAGAR';
+				list = '<b>Name</b>: Prasad Agro Industries, <b>Bank Name</b>:INDIAN BANK, <b>A/C</b>: 7486253753, <b>IFSC</b>: IDIB000L514,  RURA, KANPUR DEHAT';
+			} else if(val == 'Krishna Trading Company PNB Account') {
+				list = '<b>Name</b>: KRISHNA TRADING COMPANY, <b>Bank Name</b>:PUNB BANK, <b>A/C</b>: 6431002100002355, <b>IFSC</b>: PUNB0643100, VIKASH NAGAR, LAKHANPUR, KANPUR NAGAR';
+			}else if(val == 'Krishna Trading Company HDFC Account') {
+				list = '<b>Name</b>: KRISHNA TRADING COMPANY, <b>Bank Name</b>:HDFC BANK, <b>A/C</b>: 50200096112200, <b>IFSC</b>: HDFC0007255, RURA, KANPUR DEHAT';
 			}
 			
 			$('.bank_account_detail').html(list);

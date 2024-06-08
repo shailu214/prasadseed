@@ -66,36 +66,30 @@
                           <th>SubCategory</th>
                           <th>Title</th>
                           <th>Amount</th>
-                          <th>Deposit</th>
-                          <th>Expense</th>
                           <th>Created</th>
                           <th>Action</th>
                         </tr>
                       </thead>
                       <tbody>
                         <?php 
-						$Deposit = $Expense = [];
+					
 						$i=$sno; foreach ($result as $key => $val ) { $i++;?>
                         <tr>
-                          <td><span class="text-muted"><?=$i?></span></td>
+                          <td><span class="text-muted"><?=$val['id']?></span></td>
                           <td> <?=$val['pcat']?>  </td>
                           <td> <?=$val['category']?>  </td>
                           <td> <?=$val['title']?>  </td>
-                          <td> Rs. <?=$val['amount']?> </td>
-                          <td>
-                                <?php
+                          <td> Rs. <?=$val['amount']?>
+                          <?php
                               if($val['type'] == 1) {
-								  $Deposit[] = $val['amount'];
+								 
                                 echo 'Deposit';
-                              } ?> 
-                         </td>
-                         <td>
-                                <?php
-                             if($val['type'] == 2) {
-								  $Expense[] = $val['amount'];
-                                echo 'Expense'; 
-                              } ?> 
-                         </td>
+                              }else if($val['type'] == 2) {
+                               
+                                              echo 'Expense'; 
+                                            } 
+                                          ?> 
+                        </td>
                           <td><?=date("d-M-Y", strtotime( $val['created'] ))?></td>
                           <td>
                             <a class="icon" href="<?=base_url()?>/expence/edit/<?=$val['id']?>">
@@ -107,22 +101,30 @@
                             </a>
                           </td>
                         </tr>
-                        <?php $sum[] = $val['amount']; ?>
+                       
                       <?php } 
-					  $dep = array_sum( $Deposit );
-					  $exp = array_sum( $Expense );
 					  ?>
                       </tbody>
                       <tfoot>
                         <tr style="border-top:1px solid #ddd">
                           <th colspan="" style="text-align:right; color:#333; font-weight:600; font-size:18px;">TOTAL Deposit &nbsp; &nbsp; </th>
-                          <th style="text-align:center; color:#333; font-weight:600; font-size:20px;"><span style="text-transform:capitalize">Rs.</span> <?=$dep?></th>
+                          <th style="text-align:center; color:#333; font-weight:600; font-size:20px;"><span style="text-transform:capitalize">Rs.</span> <?=$deposit_sum?></th>
                           <th colspan="" style="text-align:right; color:#333; font-weight:600; font-size:18px;">TOTAL EXPENSE &nbsp; &nbsp; </th>
-                          <th style="text-align:center; color:#333; font-weight:600; font-size:20px;"><span style="text-transform:capitalize">Rs.</span> <?=$exp?></th>
-                          <th colspan="" style="text-align:right; color:#333; font-weight:600; font-size:18px;">Remaining Amont &nbsp; &nbsp; </th>
-                          <th style="text-align:center; color:#333; font-weight:600; font-size:20px;"><span style="text-transform:capitalize">Rs.</span> <?php echo $dep- $exp; ?> </th>
+                          <th style="text-align:center; color:#333; font-weight:600; font-size:20px;"><span style="text-transform:capitalize">Rs.</span> <?=$expense_sum?></th>
+                          <th colspan="" style="text-align:right; color:#333; font-weight:600; font-size:18px;">Balance Amount &nbsp; &nbsp; </th>
+                          <th style="text-align:center; color:#333; font-weight:600; font-size:20px;"><span style="text-transform:capitalize">Rs.</span> <?php echo $deposit_sum- $expense_sum; ?> </th>
                         
                         </tr>
+                      </tfoot>
+
+                      <tfoot>
+                        <tr>
+                          <td colspan="6">
+                            <nav aria-label="Page navigation example">
+                              <?=$pages?>
+                            </nav>
+                          </td>
+                        <tr>
                       </tfoot>
                     </table>
                   </div>

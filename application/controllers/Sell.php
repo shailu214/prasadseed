@@ -233,8 +233,7 @@ class Sell extends CI_Controller {
 			if($post['self'] == 1) {
 				$post['price'] = 0;
 			}
-			$post['total_amount'] = $post['price'];
-			$post['qty2'] = $post['qty2'];
+			
 			if($obj) {
 				//$post['quantity'] = $post['quantity']+$obj->quantity;
 				//$post['short_qty'] = $post['short_qty']+$obj->short_qty;

@@ -79,7 +79,7 @@
 
             <div class="col-lg-12">
               <form method="post" class="card">
-                <h3 class="card-title" style="margin:20px 25px;;"><i class="fe fe-list"></i> &nbsp;Fare</h3>
+                <h3 class="card-title" style="margin:20px 25px;;"><i class="fe fe-list"></i> &nbsp;VFP</h3>
                 <hr style="margin:0px;">
                 <div class="card-body">
                   <div class="row">
@@ -130,7 +130,7 @@
 						
 						<div class="col-md-4">
 						  <div class="form-group">
-							<label class="form-label">Fare</label>
+							<label class="form-label">Amount</label>
 							<input type="text" class="form-control" value="<?=@$obj->add_fare?>" name="data[add_fare]">
 						  
 						  </div>

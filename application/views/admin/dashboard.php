@@ -93,7 +93,7 @@
                     <div>
                       <h4 class="m-0">
                         <a href="javascript:void(0)">
-                        <span style="font-size:25px;"><?=($fare)? $fare : 0;?></span> <span style="font-size:18px;">Fare</span> 
+                        <span style="font-size:25px;"><?=($fare)? $fare : 0;?></span> <span style="font-size:18px;">V.F.P.</span> 
                         </a><br><br>
 						  <a href="<?=base_url()?>fare/add.html" class="btn btn-primary btn-sm font-md">Add Fare</a>
 						  <a href="<?=base_url()?>fare.html" class="btn btn-primary btn-sm font-md">Fare List</a>

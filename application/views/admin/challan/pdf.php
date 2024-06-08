@@ -39,8 +39,8 @@
             <tr>
               <td style="font-size: 20px; font-weight:900;color:#120c21">Mobile:</td>
               <td>
-                <p style="margin-bottom:0; font-size: 20px; font-weight:900;color:#120c21">9956125168</p>
-                <p style="font-size: 20px; font-weight:900;color:#120c21">7618961160</p>
+                <p style="margin-bottom:0; font-size: 20px; font-weight:900;color:#120c21">+91-6386945728</p>
+                <p style="font-size: 20px; font-weight:900;color:#120c21">+91-7618961160</p>
               </td>
             </tr>
           </table>
@@ -95,7 +95,7 @@
     <div class="row">
       <div class="col-md-12">
         <p class="text-left" style="font-size:19px;padding:0 10px; color:#120c21;margin:0 ">महोदय,</p>
-        <p class="text-left" style="font-size: 19px;padding:0 10px; color:#120c21 ">आज दिन गाड़ी नम्बर <?=@$obj->vechicle_no?> से  <?=@$obj->vegetable?> <?=@$obj->no_of_bori_count?> बोरा शब्दों में <?=@$obj->no_of_bori_count_word?>, बिक्री हेतु आपके पास भेज रहा हूं सो आप माल संभालकर उतरवा लीजिएगा ।। गाड़ी भाड़ा बिल्टी मुजिब रुपए  <?=@$obj->gaddi_bhada?> प्रति किग्रा / प्रति बोरा के हिसाब से जोड़कर दे देना ।। माल बिक्री का पूरा रुपया हमारे खाता नाम  <?=@$obj->account_name?> ,खाता नंबर: <?=@$obj->account_number?>, आई एफ एस सी कोड: <?=@$obj->ifsc_code?>  में ही करें ।। <br>धन्यबाद
+        <p class="text-left" style="font-size: 19px;padding:0 10px; color:#120c21 ">आज दिन गाड़ी नम्बर <?=@$obj->vechicle_no?> से  <?=@$obj->vegetable?> <?=@$obj->no_of_bori_count?> बोरा शब्दों में <?=@$obj->no_of_bori_count_word?>, बिक्री हेतु आपके पास भेज रहा हूं सो आप माल संभालकर उतरवा लीजिएगा ।। गाड़ी भाड़ा बिल्टी मुजिब रुपए  <?=@$obj->gaddi_bhada?> प्रति किग्रा / प्रति बोरा के हिसाब से जोड़कर दे देना ।। माल बिक्री का पूरा रुपया हमारे खाता नाम  <?=@$obj->account_name?> , बैंक का नाम: <?=@$obj->bank_name?>, खाता नंबर: <?=@$obj->account_number?>, आई एफ एस सी कोड: <?=@$obj->ifsc_code?>, बैंक का पता: <?=@$obj->bank_address?>  में ही करें ।। <br>धन्यबाद
 </p>
       </div>
       
@@ -197,7 +197,7 @@
               <tr>
                 <td style="vertical-align: top; padding:0 30px;padding: 20px; font-size: 20px; font-weight:900;color:#120c21">नोट: </td>
                 <td style="padding: 20px;">
-                  <p class="text-left" style="margin:0;font-size: 20px; font-weight:900;color:#120c21">कृपया आलू की धर्म कांटा तौल  की पर्ची एवं आपके मंडी की प्रवेश पर्ची हमारे WhatsApp Number 7618961160 पर माल उतारने के बाद अवश्य ही प्रेषित करने का कष्ट करें।।</p>
+                  <p class="text-left" style="margin:0;font-size: 20px; font-weight:900;color:#120c21">कृपया आलू की धर्म कांटा तौल  की पर्ची एवं आपके मंडी की प्रवेश पर्ची हमारे WhatsApp Number +91-6386945728 पर माल उतारने के बाद अवश्य ही प्रेषित करने का कष्ट करें।।</p>
                 </td>
               </tr>
             </table>

@@ -18,7 +18,8 @@ header("Expires: 0");
 			<th>SUBCATEGORY</th>
 			<th>DESCRIPTION</th>
 			<th>DATE</th>
-			<th>AMOUNT</th>
+			<th>DEPOSIT</th>
+			<th>EXPENSE</th>
 		</tr>
 		<?php foreach ($result as $key => $val) : ?>
       <tr>
@@ -26,12 +27,19 @@ header("Expires: 0");
         <td align="center"> <?=$val['category']?></td>
         <td align="center"> <?=$val['title']?></td>
         <td align="center"> <?=date("d-m-Y", strtotime($val['created']))?></td>
-        <td align="center"><?=$val['amount']?></td>
+		<td align="center"><?php  if($val['type'] == 1) { 
+			echo $val['amount'];
+		} ?>
+		</td>
+		<td align="center"><?php  if($val['type'] == 2) { 
+			echo $val['amount'];
+		} ?></td>
         <?php $sum[] = $val['amount']; ?>
       </tr>
 		<?php endforeach; ?>
     <tr>
       <th colspan="4" align="right">Total Amount</th>
-      <th><?=array_sum($sum)?></th>
+      <th><?=$deposit_sum?></th>
+	  <th><?=$expense_sum?></th>
     </tr>
 	</table>

@@ -18,7 +18,7 @@
 
                     <th  width="150">Title</th>
                     <td colspan="2"><?=$obj->title?></td>
-					<th >Fare</th>
+					<th >Amount</th>
                     <td colspan="2"><?=$obj->add_fare?></td>
                   </tr>
 				  

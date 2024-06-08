@@ -55,7 +55,7 @@
                       
                     <?php
 						
-						echo $obj->quantity*$obj->price;
+						echo $obj->total_amount;
 						
 					?>
                     

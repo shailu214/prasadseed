@@ -128,12 +128,23 @@ class Challan extends CI_Controller {
 			$post['ifsc_code'] = '';
 			if($post['bank_account'] == 'Prasad Agro Industries') {
 				$post['account_name'] = 'Prasad Agro Industries';
+				$post['bank_name'] = 'INDIAN BANK';
 				$post['account_number'] = '7486253753';
 				$post['ifsc_code'] = 'IDIB000L514';
-			} else if($post['bank_account'] == 'Krishna Trading Company') {
+				$post['address'] = 'RURA, KANPUR DEHAT';
+			} else if($post['bank_account'] == 'Krishna Trading Company PNB Account') {
 				$post['account_name'] = 'KRISHNA TRADING COMPANY';
+				$post['bank_name'] = 'PUNB BANK';
 				$post['account_number'] = '6431002100002355';
 				$post['ifsc_code'] = 'PUNB0643100';
+				$post['address'] = 'VIKASH NAGAR, LAKHANPUR, KANPUR NAGAR';
+			}
+			else if($post['bank_account'] == 'Krishna Trading Company HDFC Account') {
+				$post['account_name'] = 'KRISHNA TRADING COMPANY';
+				$post['bank_name'] = 'HDFC BANK';
+				$post['account_number'] = '50200096112200';
+				$post['ifsc_code'] = 'HDFC0007255';
+				$post['address'] = 'RURA, KANPUR DEHAT';
 			}
 			
 			//echo '<pre>'; print_r($post); die;

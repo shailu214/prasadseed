@@ -24,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 //$config['base_url'] = 'https://spminfosys.com/phonixacademy/';
-$config['base_url'] = 'http://localhost/prasadseed/';
+$config['base_url'] = 'http://localhost/prasadseeds/';
 
 /*
 |--------------------------------------------------------------------------

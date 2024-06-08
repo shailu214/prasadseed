@@ -1,7 +1,7 @@
 <?php 
 $total_amount = $total_deposit = $total_due_amount = 0;
 foreach ($resultsell as $objloop ) {
-	$total_amount += $objloop['quantity']*$objloop['price'];
+	$total_amount += $objloop['total_amount'];
 	
 	$db->where('sell_id', $objloop['id']);
 	$db->select_sum('amount');
@@ -153,7 +153,7 @@ foreach ($resultsell as $objloop ) {
 						  <td><?=$vendorname?></td>
 						  <td><?=$val['quantity']?></td>
 						  <td><?=$val['price']?></td>
-						  <td><?=$val['quantity']*$val['price']?></td>
+						  <td><?=$val['total_amount']?></td>
 						  <td>
 						  <?php
 								$db->where('sell_id', $val['id']);

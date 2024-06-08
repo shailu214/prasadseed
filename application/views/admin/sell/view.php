@@ -80,7 +80,7 @@
 						  <th>Total Price</th>
 						  <th>Due Date</th>
 						  <th>Due Amount</th>
-                          <th>Action</th>
+                          <!--<th>Action</th>---->
                         </tr>
                       </thead>
                       <tbody>
@@ -117,6 +117,27 @@
 									echo $obj->name;
 								}
 							?>
+							<br>
+
+							<a class="icon"  href="<?=base_url()?>sell/view/<?=$val['id']?>" data-row-id="<?=$val['id']?>" data-tbl="category">
+                              <i class="fe fe-eye" style="color:#90DFAA"></i>
+                            </a>
+							<?php if($this->pageParam->role == 1) { ?>
+							<a class="icon" href="<?=base_url()?>sell/add/<?=$val['id']?>" data-row-id="<?=$val['id']?>" data-tbl="category">
+                              <i class="fe fe-edit" style="color:#FFA500"></i>
+                            </a>|
+							<a class="icon delete" href="<?=base_url()?>sell/delete/<?=$val['id']?>" data-row-id="<?=$val['id']?>" data-tbl="category">
+                              <i class="fe fe-trash" style="color:#FF0000"></i>
+                            </a>
+							<a class="icon" href="<?=base_url()?>sell/deposit/<?=$val['id']?>" data-row-id="<?=$val['id']?>" data-tbl="deposit">
+                              Deposit
+                            </a> |
+							<a class="icon" href="<?=base_url()?>sell/load/<?=$val['id']?>" data-row-id="<?=$val['id']?>" data-tbl="load">
+                              Loading
+                            </a>
+							
+							<?php } ?>
+
 						  </td>
 							<td>
 							
@@ -134,7 +155,7 @@
 						  <td><?=$vendorname?></td>
 						  <td><?=$val['quantity']?></td>
 						  <td><?=$val['price']?></td>
-						  <td><?=$val['quantity']*$val['price']?></td>
+						  <td><?=$val['total_amount']?></td>
 						  <td>
 						  <?php 
 								$db->where('sell_id', $val['id']);
@@ -158,23 +179,7 @@
 							</td>
 							
 						  <td align="left">  
-							<a class="icon" href="<?=base_url()?>sell/view/<?=$val['id']?>" data-row-id="<?=$val['id']?>" data-tbl="category">
-                              <i class="fe fe-eye"></i>
-                            </a>
-							<?php if($this->pageParam->role == 1) { ?>
-							<a class="icon" href="<?=base_url()?>sell/add/<?=$val['id']?>" data-row-id="<?=$val['id']?>" data-tbl="category">
-                              <i class="fe fe-edit"></i>
-                            </a>|
-							<a class="icon" href="<?=base_url()?>sell/deposit/<?=$val['id']?>" data-row-id="<?=$val['id']?>" data-tbl="deposit">
-                              Deposit
-                            </a> |
-							<a class="icon" href="<?=base_url()?>sell/load/<?=$val['id']?>" data-row-id="<?=$val['id']?>" data-tbl="load">
-                              Loading
-                            </a>
-							<a class="icon delete" href="<?=base_url()?>sell/delete/<?=$val['id']?>" data-row-id="<?=$val['id']?>" data-tbl="category">
-                              <i class="fe fe-trash"></i>
-                            </a>
-							<?php } ?>
+							
 						  </td>
                         </tr>
                       <?php } ?>

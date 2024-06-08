@@ -322,7 +322,7 @@ if(@$obj->id > 0) {
 							<input type="text" class="form-control credit_amount prce" value="<?=@$obj->price?>" name="data[price]">
 						  </div>
 						</div>
-						<div class="col-md-3 total_price_row" style="<?=$isSelf?>">
+						<div class="col-md-3 total_price_row">
 						  <div class="form-group">
 							<label class="form-label">Total Price</label>
 							<input type="text"  value="<?=@$obj->total_amount?>" name="data[total_amount]"  class="form-control">

@@ -47,7 +47,7 @@
 						              <th>Farmer</th>
                           <th>Lot No.</th>
                           <th>Year</th>
-						              <th>Fare</th>
+						              <th>Amount</th>
                           <th>Action</th>
                         </tr>
                       </thead>
