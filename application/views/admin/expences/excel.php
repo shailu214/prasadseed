@@ -17,6 +17,7 @@ header("Expires: 0");
 			<th>CATEGORY </th>
 			<th>SUBCATEGORY</th>
 			<th>DESCRIPTION</th>
+			<th>NAME</th>
 			<th>DATE</th>
 			<th>DEPOSIT</th>
 			<th>EXPENSE</th>
@@ -26,6 +27,7 @@ header("Expires: 0");
         <td align="center"> <?=$val['pcat']?></td>
         <td align="center"> <?=$val['category']?></td>
         <td align="center"> <?=$val['title']?></td>
+		<td align="center"> <?=$val['name']?></td>
         <td align="center"> <?=date("d-m-Y", strtotime($val['created']))?></td>
 		<td align="center"><?php  if($val['type'] == 1) { 
 			echo $val['amount'];
@@ -38,7 +40,7 @@ header("Expires: 0");
       </tr>
 		<?php endforeach; ?>
     <tr>
-      <th colspan="4" align="right">Total Amount</th>
+      <th colspan="5" align="right">Total Amount</th>
       <th><?=$deposit_sum?></th>
 	  <th><?=$expense_sum?></th>
     </tr>
