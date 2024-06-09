@@ -16,9 +16,26 @@ class Expence extends CI_Controller {
 		$this->notify->getStdInfo();
 	}
 
-	private function sum_amt($type) {
+	private function sum_amt($type, $post) {
 		$this->db->select_sum('amount');
-			$this->db->where('type', $type);
+		$this->db->where('type', $type);
+		//print_r($post); die;
+		if(!empty( $post )) {
+			if( $post['cat'] > 0 ) {
+				$this->db->where("cat", $post['cat']);
+			}
+
+			if(  $post['sbcat'] > 0 ) {
+				$this->db->where("sbcat", $post['sbcat']);
+			}
+
+			if( strlen($post['sdate']) ) {
+				$this->db->where("DATE(created) >= DATE('".date("Y-m-d", strtotime($post['sdate']))."')");
+			}
+			if( strlen($post['edate']) ) {
+				$this->db->where("DATE(created) <= DATE('".date("Y-m-d", strtotime($post['edate']))."')");
+			}
+		}
 		return  $this->db->get('expences')->row();
 	}
 
@@ -28,8 +45,10 @@ class Expence extends CI_Controller {
 
 		if(!empty( $post )) {
 			//echo '<pre>'; print_r($post); die;
-			//$this->session->src = $post;
-		
+			$this->session->src = $post;
+			if(!empty($post['search_year'])) {
+				$this->db->where("year(created)", $post['search_year']);
+			}
 
 			if( $post['cat'] > 0 ) {
 				$this->db->where("cat", $post['cat']);
@@ -107,9 +126,10 @@ class Expence extends CI_Controller {
 		if($post['cat']>0) {
 			$data['scats'] = $this->db->get_where("sub_category", array("status"=>1, "parent"=>$post['cat']))->result_array();
 		}
-		$data['deposit_sum'] = $this->sum_amt(1)->amount;
-		//print_r($data['deposit']); die;
-		$data['expense_sum'] = $this->sum_amt(2)->amount;
+		$data['deposit_sum'] = $this->sum_amt(1, $post)->amount;
+		
+		$data['expense_sum'] = $this->sum_amt(2, $post)->amount;
+		//print_r($data['expense_sum']); die;
 		$this->load->view('admin/head');
 		$this->load->view('admin/header');
 		$this->load->view('admin/expences/view', $data);
@@ -158,7 +178,8 @@ class Expence extends CI_Controller {
 
 
 		public function download() {
-
+			$post = $this->input->post('src');
+			
 			$this->db->select("cat.category as pcat, scat.category, ex.*");
 			$this->db->from("expences ex, category cat, sub_category scat");
 
@@ -183,9 +204,9 @@ class Expence extends CI_Controller {
 			$this->db->limit($lim,$start);
 
 			$data['result'] = $this->db->get()->result_array();
-			$data['deposit_sum'] = $this->sum_amt(1)->amount;
+			$data['deposit_sum'] = $this->sum_amt(1, [])->amount;
 			//print_r($data['deposit']); die;
-			$data['expense_sum'] = $this->sum_amt(2)->amount;
+			$data['expense_sum'] = $this->sum_amt(2, [])->amount;
 			//echo '<PRE>'; print_r($data['result']); die;
 			$this->load->view("admin/expences/excel", $data);
 

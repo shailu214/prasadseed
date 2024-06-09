@@ -16,7 +16,8 @@
                       <thead>
                         <tr>
                           <td colspan="9"  style="border-bottom:1px solid #ddd">
-                            <form method="post">
+						  
+                            <form method="post" id="formdata" action="">
                               <table>
                               <td>
                                 <?php 
@@ -34,7 +35,7 @@
                                     <select class="src-inp" name="src[cat]" id="cat">
                                       <option value="0"> --- Category --- </option>
                                       <?php foreach ($cats as $ck => $cv) : ?>
-                                        <option value="<?=$cv['id']?>" <?=($_SESSION['src']['cat'] == $cv['id'])? 'selected="selected"' : '';?>><?=$cv['category']?></option>
+                                        <option value="<?=$cv['id']?>"><?=$cv['category']?></option>
                                       <?php endforeach; ?>
                                     </select>
                                     <!-- <input type="text" class="src-inp" name="src[oid]" placeholder="Order ID.." value="<?=$this->session->src['oid']?>" />
@@ -44,20 +45,22 @@
                                     <select class="src-inp" name="src[sbcat]" id="sbcat">
                                       <option value="0"> --- SubCategory --- </option>
                                       <?php foreach ($scats as $sck => $scv) : ?>
-                                        <option value="<?=$scv['id']?>" <?=($_SESSION['src']['sbcat'] == $scv['id'])? 'selected="selected"' : '';?>><?=$scv['category']?></option>
+                                        <option value="<?=$scv['id']?>" ><?=$scv['category']?></option>
                                       <?php endforeach; ?>
                                     </select>
                                   </td>
                                   <!-- <td><input type="text" class="src-inp" name="src[mob]" placeholder="Contact No.." value="<?=$this->session->src['mob']?>" /></td> -->
                                   <td style="width:150px"></td>
-                                  <td><input type="text" class="src-inp dps" name="src[sdate]" placeholder="From Date.." value="<?=$this->session->src['sdate']?>" /></td>
-                                  <td><input type="text" class="src-inp dps" name="src[edate]" placeholder="To Date.." value="<?=$this->session->src['edate']?>" /></td>
+                                  <td><input type="text" class="src-inp dps" name="src[sdate]" placeholder="From Date.." value="" /></td>
+                                  <td><input type="text" class="src-inp dps" name="src[edate]" placeholder="To Date.." value="" /></td>
                                   <td><button class="btn btn-primary btn-sm"><i class="fe fe-search"></i> Search</button></td>
                                   <td><a href="<?php echo base_url(); ?>/expence" class="btn btn-danger btn-sm" id="reset" style="color:#fff"><i class="fe fe-rotate-ccw"></i> Reset</a></td>
-                                  <td><a href="<?=base_url()?>expence/download.html" class="btn btn-success btn-sm"><i class="fe fe-download"></i> Download</a></td>
+                                  <td><a href="<?=base_url()?>expence/download.html" class="btn btn-success btn-sm downloadfilter"><i class="fe fe-download"></i> Download</a></td>
                                 </tr>
                               </table>
                             </form>
+							
+							
                           </td>
                         </tr>
                         <tr>
@@ -137,7 +140,7 @@
 
       <script>
       $(document).ready(function(){
-
+		  
         $(".dps").datepicker({ format:'dd-mm-yyyy'});
 
         $("#cat").change(function(){
