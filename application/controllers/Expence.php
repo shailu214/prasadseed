@@ -27,25 +27,25 @@ class Expence extends CI_Controller {
 		$post = $this->input->post('src');
 
 		if(!empty( $post )) {
-			
-			$this->session->src = $post;
-		}
+			//echo '<pre>'; print_r($post); die;
+			//$this->session->src = $post;
+		
 
-		if( $_SESSION['src']['cat'] > 0 ) {
-			$this->db->where("cat", $_SESSION['src']['cat']);
-		}
+			if( $post['cat'] > 0 ) {
+				$this->db->where("cat", $post['cat']);
+			}
 
-		if(  $_SESSION['src']['sbcat'] > 0 ) {
-			$this->db->where("sbcat", $_SESSION['src']['sbcat']);
-		}
+			if(  $post['sbcat'] > 0 ) {
+				$this->db->where("sbcat", $post['sbcat']);
+			}
 
-		if( strlen($_SESSION['src']['sdate']) ) {
-			$this->db->where("DATE(created) >= DATE('".date("Y-m-d", strtotime($_SESSION['src']['sdate']))."')");
+			if( strlen($post['sdate']) ) {
+				$this->db->where("DATE(created) >= DATE('".date("Y-m-d", strtotime($post['sdate']))."')");
+			}
+			if( strlen($post['edate']) ) {
+				$this->db->where("DATE(created) <= DATE('".date("Y-m-d", strtotime($post['edate']))."')");
+			}
 		}
-		if( strlen($_SESSION['src']['edate']) ) {
-			$this->db->where("DATE(created) <= DATE('".date("Y-m-d", strtotime($_SESSION['src']['edate']))."')");
-		}
-
 		$rows = $this->db->get('expences')->num_rows();
 		$lim = 10;
 
@@ -71,19 +71,19 @@ class Expence extends CI_Controller {
 		$this->db->select("cat.category as pcat, scat.category, ex.*");
 		$this->db->from("expences ex, category cat, sub_category scat");
 
-		if( $_SESSION['src']['cat'] > 0 ) {
-			$this->db->where("ex.cat", $_SESSION['src']['cat']);
+		if( $post['cat'] > 0 ) {
+			$this->db->where("ex.cat", $post['cat']);
 		}
 
-		if(  $_SESSION['src']['sbcat'] > 0 ) {
-			$this->db->where("ex.sbcat", $_SESSION['src']['sbcat']);
+		if(  $post['sbcat'] > 0 ) {
+			$this->db->where("ex.sbcat", $post['sbcat']);
 		}
 
-		if( strlen($_SESSION['src']['sdate']) ) {
-			$this->db->where("DATE(ex.created) >= DATE('".date("Y-m-d", strtotime($_SESSION['src']['sdate']))."')");
+		if( strlen($pos['sdate']) ) {
+			$this->db->where("DATE(ex.created) >= DATE('".date("Y-m-d", strtotime($post['sdate']))."')");
 		}
-		if( strlen($_SESSION['src']['edate']) ) {
-			$this->db->where("DATE(ex.created) <= DATE('".date("Y-m-d", strtotime($_SESSION['src']['edate']))."')");
+		if( strlen($post['edate']) ) {
+			$this->db->where("DATE(ex.created) <= DATE('".date("Y-m-d", strtotime($post['edate']))."')");
 		}
 		if(!empty( $post )) {
 			if(!empty($post['search_year'])) {
@@ -91,7 +91,7 @@ class Expence extends CI_Controller {
 				//echo '<pre>'; print_r($post); die;
 			}
 			
-			$this->session->src = $post;
+			//$this->session->src = $post;
 		}
 		$this->db->where("ex.cat=cat.id");
 		$this->db->where("ex.sbcat=scat.id");
@@ -104,8 +104,8 @@ class Expence extends CI_Controller {
 		$data['sno'] = $start;
 
 		$data['cats'] = $this->db->get_where("category", array("status"=>1))->result_array();
-		if($_SESSION['src']['cat']>0) {
-			$data['scats'] = $this->db->get_where("sub_category", array("status"=>1, "parent"=>$_SESSION['src']['cat']))->result_array();
+		if($post['cat']>0) {
+			$data['scats'] = $this->db->get_where("sub_category", array("status"=>1, "parent"=>$post['cat']))->result_array();
 		}
 		$data['deposit_sum'] = $this->sum_amt(1)->amount;
 		//print_r($data['deposit']); die;
